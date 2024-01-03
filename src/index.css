@@ -1,13 +1,33 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: satoshi;
+    src: url(./assets/Satoshi-Regular.otf);
+  }
+
+@font-face {
+    font-family: satoshiBold;
+    src: url(./assets/Satoshi-Bold.otf);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+    font-family: satoshiBlack;
+    src: url(./assets/Satoshi-Black.otf);
+}
+
+@font-face {
+    font-family: satoshiItalic;
+    src: url(./assets/Satoshi-Italic.otf);
+}
+
+@layer base {
+    body{
+        font-family: satoshi;
+    }
+
+    li:hover{
+        font-family: satoshiBold;
+    }
 }
