@@ -11,7 +11,7 @@ const Navbar = () => {
   return (
     <div className='fixed w-full h-[80px] flex justify-between items-center px-8 text-[#FEFEFA] bg-[#000000ba] backdrop-blur-md z-50'>
         <div>
-            <Link to='/'><img src={Logo} alt="" style={{width: '150px'}}/></Link>
+            <Link to='/'><img src={Logo} alt="" className='md:w-[150px] w-[120px]' /></Link>
         </div>
 
         <ul className='hidden md:flex space-x-5 px-2'>
@@ -24,7 +24,7 @@ const Navbar = () => {
 
         {/* menu nav bar when screen mobile/md */}
         <div onClick={handleClick} className='md:hidden z-10'>
-            {nav ? <FaTimes/> : <FaBars/>}
+            {nav ? <FaTimes size='20'/> : <FaBars size='20' />}
         </div>
         <ul className={nav ? 'absolute top-0 left-0 w-full h-screen flex flex-col justify-center items-center bg-[#111111] backdrop-blur-md gap-1' : 'hidden'}>
             <li className='hover:scale-95 duration-150 ease-out'><Link to='/'>Home</Link></li>
