@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import Logo from '../assets/sign samuelbagin-white.png'
 import {FaBars, FaTimes} from 'react-icons/fa'
+import { Link } from "react-router-dom"
 
 
 const Navbar = () => {
@@ -8,16 +9,16 @@ const Navbar = () => {
     const handleClick = () => setNav(!nav)
 
   return (
-    <div className='fixed w-full h-[80px] flex justify-between items-center px-8 text-[#FEFEFA]'>
+    <div className='fixed w-full h-[80px] flex justify-between items-center px-8 text-[#FEFEFA] bg-[#000000ba] backdrop-blur-md z-50'>
         <div>
-            <img src={Logo} alt="" style={{width: '150px'}}/>
+            <Link to='/'><img src={Logo} alt="" style={{width: '150px'}}/></Link>
         </div>
 
         <ul className='hidden md:flex space-x-5 px-2'>
-            <li>Home</li>
-            <li>Portfolio</li>
-            <li>Skills</li>
-            <li>Contact</li>
+            <li className='hover:scale-95 duration-150 ease-out'><Link to='/'>Home</Link></li>
+            <li className='hover:scale-95 duration-150 ease-out'><Link to='/portfolio'>Portfolio</Link></li>
+            <li className='hover:scale-95 duration-150 ease-out'><Link to='/skills'>Skills</Link></li>
+            <li className='hover:scale-95 duration-150 ease-out'><Link to='/contact'>Contact</Link></li>
         </ul>
 
 
@@ -25,11 +26,11 @@ const Navbar = () => {
         <div onClick={handleClick} className='md:hidden z-10'>
             {nav ? <FaTimes/> : <FaBars/>}
         </div>
-        <ul className={nav ? 'absolute top-0 left-0 w-full h-screen flex flex-col justify-center items-center bg-[#111111]' : 'hidden'}>
-            <li>Home</li>
-            <li>Portfolio</li>
-            <li>Skills</li>
-            <li>Contact</li>
+        <ul className={nav ? 'absolute top-0 left-0 w-full h-screen flex flex-col justify-center items-center bg-[#111111] backdrop-blur-md gap-1' : 'hidden'}>
+            <li className='hover:scale-95 duration-150 ease-out'><Link to='/'>Home</Link></li>
+            <li className='hover:scale-95 duration-150 ease-out'><Link to='/portfolio'>Portfolio</Link></li>
+            <li className='hover:scale-95 duration-150 ease-out'><Link to='/skills'>Skills</Link></li>
+            <li className='hover:scale-95 duration-150 ease-out'><Link to='/contact'>Contact</Link></li>
         </ul>
     </div>
   )

@@ -2,32 +2,4 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-    font-family: satoshi;
-    src: url(./assets/Satoshi-Regular.otf);
-  }
 
-@font-face {
-    font-family: satoshiBold;
-    src: url(./assets/Satoshi-Bold.otf);
-}
-
-@font-face {
-    font-family: satoshiBlack;
-    src: url(./assets/Satoshi-Black.otf);
-}
-
-@font-face {
-    font-family: satoshiItalic;
-    src: url(./assets/Satoshi-Italic.otf);
-}
-
-@layer base {
-    body{
-        font-family: satoshi;
-    }
-
-    li:hover{
-        font-family: satoshiBold;
-    }
-}
