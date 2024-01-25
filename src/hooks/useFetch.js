@@ -27,4 +27,4 @@ const useFetch = (url) => {
     return { loading, error, data }
 }
 
-export default useEffect
+export default useFetch

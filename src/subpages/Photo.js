@@ -1,17 +1,35 @@
 import React from 'react'
-import useFetch from '../hooks/useFetch'
+import { useQuery, gql } from '@apollo/client'
 
-export default function Photo() {
-  const { loading, error, data } = useFetch('http://localhost:1337/images')
+
+
+const IMAGES = gql`
+  query GetImages {
+    images {
+      text,
+      photo
+    }
+  }
+`
+
+function Photo() {
+  const { loading, error, data } = useQuery(IMAGES)
+  console.log(data)
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error</p>
 
   return (
-    <div>
-        {data.map(image => (
-            <div key={image.photo}></div>
+    
+      <div>
+        {data.images.map(image => (
+          <div key={image.id} className=' w-full h-full' >
+            <img src={image.photo} />
+            {image.title}
+          </div>
         ))}
-    </div>
+      </div>
   )
 }
+
+export default Photo
