@@ -68,3 +68,30 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+
+
+## Notes
+
+`rfce` - for start up from blank
+`rocs`
+
+### Strapi:
+If graphql and Apollo client doesn’t work, error with duplicity:
+{https://www.apollographql.com/tutorials/side-quest-as4/02-updating-dependencies}
+
+`npm run strapi install graphql @apollo/client`
+
+### Problem with installing node:
+{ https://stackoverflow.com/questions/21250849/npm-install-doesnt-create-node-modules-directory }
+
+{ https://stackoverflow.com/questions/12866494/how-do-you-reinstall-an-apps-dependencies-using-npm }
+
+delete node_modules, package.json; `npm init`; `npm install —force`; `npm install strapi`
+
+`npm cache clean`
+
+### Graphql problem:
+{ https://forum.strapi.io/t/graphql-not-showing/16660 }
