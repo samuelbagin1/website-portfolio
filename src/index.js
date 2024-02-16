@@ -11,18 +11,19 @@ import Graphic from './subpages/Graphic'
 import Photo from './subpages/Photo'
 import Video from './subpages/Video'
 
-import { ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client'
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
 } from "react-router-dom";
 
 const client = new ApolloClient({
-  url: 'http://localhost:1337/graphql',
-  cache: new InMemoryCache()
-})
+  uri: 'http://localhost:1337/graphql',
+  cache: new InMemoryCache(),
+});
+
+
 
 const router = createBrowserRouter([
   {

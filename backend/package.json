@@ -10,14 +10,14 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@apollo/client": "^3.8.10",
+    "@apollo/client": "^3.9.5",
+    "@strapi/plugin-": "file:apollo/client@4.19.0",
     "@strapi/plugin-cloud": "4.19.0",
     "@strapi/plugin-graphql": "^4.19.0",
     "@strapi/plugin-i18n": "4.19.0",
     "@strapi/plugin-users-permissions": "4.19.0",
     "@strapi/strapi": "4.19.0",
     "better-sqlite3": "8.6.0",
-    "graphql": "^16.8.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "5.3.4",
@@ -27,7 +27,7 @@
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "abacb8f3-a501-4fb4-898a-ad4c5bfc9b2b"
+    "uuid": "2e556919-4b3c-4ac5-af0b-cbcdeb7a61cb"
   },
   "engines": {
     "node": ">=18.0.0 <=20.x.x",

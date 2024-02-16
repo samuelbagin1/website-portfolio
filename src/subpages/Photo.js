@@ -6,11 +6,23 @@ import { useQuery, gql } from '@apollo/client'
 const IMAGES = gql`
   query GetImages {
     images {
-      text,
+      text
       photo
     }
   }
-`
+`;
+
+/* const GET_LOCATIONS = gql`
+  query GetLocations {
+    locations {
+      id
+      name
+      description
+      photo
+    }
+  }
+`; */
+
 
 function Photo() {
   const { loading, error, data } = useQuery(IMAGES)
@@ -19,17 +31,29 @@ function Photo() {
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error</p>
 
-  return (
-    
-      <div>
-        {data.images.map(image => (
-          <div key={image.id} className=' w-full h-full' >
-            <img src={image.photo} />
-            {image.title}
-          </div>
-        ))}
-      </div>
-  )
+  return data.images.map(({ text, photo }) => (
+    <div>
+      <img alt="photo" src={`${photo}`} />
+    </div>
+  ))
 }
+
+/* function DisplayLocations() {
+  const { loading, error, data } = useQuery(GET_LOCATIONS);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error : {error.message}</p>;
+
+  return data.locations.map(({ id, name, description, photo }) => (
+    <div key={id}>
+      <h3>{name}</h3>
+      <img width="400" height="250" alt="location-reference" src={`${photo}`} />
+      <br />
+      <b>About this location:</b>
+      <p>{description}</p>
+      <br />
+    </div>
+  ));
+} */
 
 export default Photo

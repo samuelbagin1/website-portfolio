@@ -16,14 +16,10 @@
     },
     "photo": {
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
       ],
       "type": "media",
-      "multiple": true,
-      "required": true
+      "multiple": false
     }
   }
 }
