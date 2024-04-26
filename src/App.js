@@ -1,12 +1,23 @@
-import Logo from './assets/sign samuelbagin-black.png'
+import logo from './logo.svg';
+import './App.css';
 
 function App() {
   return (
-    <div className="bg-[#FEFEFA] text-zinc-900 relative w-screen h-dvh justify-center items-center flex">
-        <div className='grid justify-items-center gap-1'>
-          <div className='md:text-lg'>website under development</div>
-        </div>
-        <img src={Logo} alt="" className='md:w-[120px] w-[90px] absolute bottom-3' />
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
 }
