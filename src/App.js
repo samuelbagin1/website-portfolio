@@ -3,12 +3,12 @@ import backImage from './assets/umbra-11.jpeg'
 
 function App() {
   return (
-    <div className="bg-[#FEFEFA] text-[#FEFEFA] relative w-screen h-dvh justify-center items-center flex">
-        <img src={backImage} alt="image at the back" className='absolute h-dvh object-cover z-0 w-full' />
-        <div className='grid justify-items-center gap-1 z-10'>
-          <div className='md:text-lg text-sm'>website under development</div>
+    <div className="bg-[#000000] text-[#FEFEFA]">
+      <img src={backImage} alt="at the back" className='absolute h-dvh w-dvw object-cover z-0' />
+        <div className='justify-center items-center flex h-dvh w-dvw relative' >
+          <div className='md:text-lg text-sm relative'>website under development</div>
+          <img src={Logo} alt="aaa" className='md:w-[100px] w-[60px] absolute bottom-3 opacity-80' />
         </div>
-        <img src={Logo} alt="aaa" className='md:w-[120px] w-[60px] absolute bottom-3 z-10 opacity-80' />
     </div>
   );
 }
