@@ -1,6 +1,5 @@
 import Logo from './assets/sign samuelbagin-white.png'
 import backImage from './assets/umbra-11.jpeg'
-import { SpeedInsights } from "@vercel/speed-insights/react"
 
 function App() {
   return (
