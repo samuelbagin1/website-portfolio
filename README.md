@@ -98,5 +98,5 @@ delete node_modules, package.json; `npm init`; `npm install —force`; `npm inst
 
 ### GitHub:
 to change branch: 
-  1. git branch branch_name
-  2. git checkout branch_name
+  1. `git branch branch_name`
+  2. `git checkout branch_name`
