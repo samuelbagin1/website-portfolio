@@ -12,7 +12,7 @@ function App() {
         <img src={backImage} alt='imagee' className="absolute h-screen object-cover z-0 w-full" />
         <div className="h-screen w-full absolute bg-[#111111] opacity-80 justify-center"></div>
         <div className="opacity-80">
-          <div className='font-fraunces lg:text-[230px] md:text-[180px] text-6xl '>Welcome</div>
+          <div className='font-black lg:text-[230px] md:text-[180px] text-6xl '>Welcome</div>
           <div className="flex justify-center text-xs lg:text-sm">to portfolio of Samuel Bagín</div>
         </div>
       </div>

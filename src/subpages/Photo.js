@@ -1,13 +1,26 @@
 import React from 'react'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 import { useQuery, gql } from '@apollo/client'
 
-
+const api = "http://localhost:1337"
 
 const IMAGES = gql`
   query GetImages {
     images {
-      text
-      photo
+      data {
+        id
+        attributes {
+          text
+          photo {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+      }
     }
   }
 `;
@@ -24,18 +37,28 @@ const IMAGES = gql`
 `; */
 
 
+
+
 function Photo() {
   const { loading, error, data } = useQuery(IMAGES)
-  console.log(data)
+
+
 
   if (loading) return <p>Loading...</p>
-  if (error) return <p>Error</p>
+  if (error) return <p>Error: {error.message}</p>
 
-  return data.images.map(({ text, photo }) => (
-    <div>
-      <img alt="photo" src={`${photo}`} />
-    </div>
-  ))
+  return (
+    <>
+    <Navbar />
+      {data.images.data.map(({ id, attributes }) => (
+        <div key={id}>
+          <img alt={id} src={api + attributes.photo.data.attributes.url} />
+          <p>{attributes.text}</p>
+        </div>
+      ))}
+      <Footer />
+    </>
+  );
 }
 
 /* function DisplayLocations() {
