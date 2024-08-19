@@ -95,3 +95,8 @@ delete node_modules, package.json; `npm init`; `npm install —force`; `npm inst
 
 ### Graphql problem:
 { https://forum.strapi.io/t/graphql-not-showing/16660 }
+
+### GitHub:
+to change branch: 
+  1. git branch branch_name
+  2. git checkout branch_name
