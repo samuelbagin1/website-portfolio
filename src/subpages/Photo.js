@@ -49,14 +49,19 @@ function Photo() {
 
   return (
     <>
+    <body className='bg-[#111111] h-full -my-10' >
     <Navbar />
+    
       {data.images.data.map(({ id, attributes }) => (
         <div key={id}>
-          <img alt={id} src={api + attributes.photo.data.attributes.url} />
-          <p>{attributes.text}</p>
+          <img alt={id} src={api + attributes.photo.data.attributes.url} className='w-3/4 rounded-xl mx-auto my-10' />
+          {/* <p>{attributes.text}</p> */}
         </div>
       ))}
+      
       <Footer />
+      </body>
+      
     </>
   );
 }
