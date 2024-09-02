@@ -2,6 +2,8 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { useQuery, gql } from '@apollo/client'
+import { Blur } from 'transitions-kit'
+import { AsyncImage } from 'loadable-image'
 
 const api = "http://localhost:1337"
 
@@ -25,16 +27,6 @@ const IMAGES = gql`
   }
 `;
 
-/* const GET_LOCATIONS = gql`
-  query GetLocations {
-    locations {
-      id
-      name
-      description
-      photo
-    }
-  }
-`; */
 
 
 
@@ -49,39 +41,32 @@ function Photo() {
 
   return (
     <>
-    <body className='bg-[#111111] h-full -my-10' >
-    <Navbar />
-    
-      {data.images.data.map(({ id, attributes }) => (
-        <div key={id}>
-          <img alt={id} src={api + attributes.photo.data.attributes.url} className='w-3/4 rounded-xl mx-auto my-10' />
-          {/* <p>{attributes.text}</p> */}
-        </div>
-      ))}
-      
-      <Footer />
+      <body className='bg-[#111111] h-full -my-10' >
+        <Navbar />
+
+        {data.images.data.map(({ id, attributes }) => (
+          <div key={id}>
+            {/*<img alt={id} src={api + attributes.photo.data.attributes.url} className='w-3/4 rounded-xl mx-auto my-10' loading='lazy' />
+            {/* <p>{attributes.text}</p> */}
+            <AsyncImage
+              alt={id}
+              src={api + attributes.photo.data.attributes.url}
+              style={{ height: "auto", aspectRatio: 1/1 }}
+              loader={<div style={{ background: '#888' }}/>}
+              error={<div style={{ background: '#eee' }}/>}
+              Transition={props => <Blur radius={10} {...props}/>}
+              className='w-3/4 rounded-xl mx-auto my-10'
+            />
+          </div>
+        ))}
+
+        <Footer />
       </body>
-      
+
     </>
   );
 }
 
-/* function DisplayLocations() {
-  const { loading, error, data } = useQuery(GET_LOCATIONS);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error : {error.message}</p>;
-
-  return data.locations.map(({ id, name, description, photo }) => (
-    <div key={id}>
-      <h3>{name}</h3>
-      <img width="400" height="250" alt="location-reference" src={`${photo}`} />
-      <br />
-      <b>About this location:</b>
-      <p>{description}</p>
-      <br />
-    </div>
-  ));
-} */
 
 export default Photo
