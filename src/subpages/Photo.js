@@ -5,7 +5,7 @@ import { useQuery, gql } from '@apollo/client'
 import { Blur } from 'transitions-kit'
 import { AsyncImage } from 'loadable-image'
 
-const api = "http://localhost:1337"
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:1337';
 
 const IMAGES = gql`
   query GetImages {
@@ -27,14 +27,8 @@ const IMAGES = gql`
   }
 `;
 
-
-
-
-
 function Photo() {
   const { loading, error, data } = useQuery(IMAGES)
-
-
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error: {error.message}</p>
@@ -46,11 +40,9 @@ function Photo() {
 
         {data.images.data.map(({ id, attributes }) => (
           <div key={id}>
-            {/*<img alt={id} src={api + attributes.photo.data.attributes.url} className='w-3/4 rounded-xl mx-auto my-10' loading='lazy' />
-            {/* <p>{attributes.text}</p> */}
             <AsyncImage
               alt={id}
-              src={api + attributes.photo.data.attributes.url}
+              src={`${API_URL}${attributes.photo.data.attributes.url}`}
               style={{ height: "auto", aspectRatio: 1/1 }}
               loader={<div style={{ background: '#888' }}/>}
               error={<div style={{ background: '#eee' }}/>}
@@ -62,11 +54,8 @@ function Photo() {
 
         <Footer />
       </body>
-
     </>
   );
 }
-
-
 
 export default Photo

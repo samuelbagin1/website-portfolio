@@ -18,8 +18,10 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:1337';
+
 const client = new ApolloClient({
-  uri: 'http://localhost:1337/graphql',
+  uri: `${API_URL}/graphql`,
   cache: new InMemoryCache(),
 });
 
