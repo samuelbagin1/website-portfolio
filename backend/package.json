@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@apollo/client": "3.7.17",
-    "@strapi/plugin-": "file:@apollo/client@3.17.7",
     "@strapi/plugin-cloud": "4.19.0",
     "@strapi/plugin-graphql": "^4.19.0",
     "@strapi/plugin-i18n": "4.19.0",
@@ -35,7 +34,7 @@
     "uuid": "2e556919-4b3c-4ac5-af0b-cbcdeb7a61cb"
   },
   "engines": {
-    "node": ">=10.16.0 <=14.x.x",
+    "node": ">=14.19.1 <=18.x.x",
     "npm": ">=6.0.0"
   },
   "license": "MIT"
