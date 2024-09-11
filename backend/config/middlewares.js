@@ -1,3 +1,4 @@
+// Path: ./config/middleware.js
 module.exports = ({ env }) => [
   'strapi::logger',
   'strapi::errors',
@@ -19,7 +20,7 @@ module.exports = ({ env }) => [
     name: 'strapi::cors',
     config: {
       enabled: true,
-      origin: ['https://website-portfolio-head.vercel.app', 'https://website-portfolio-backend.onrender.com'],
+      origin: ['*'],  // Be careful with this in production
       headers: ['*'],
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS', 'HEAD'],
     }
