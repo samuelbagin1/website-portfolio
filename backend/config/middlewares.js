@@ -19,7 +19,7 @@ module.exports = ({ env }) => [
     name: 'strapi::cors',
     config: {
       enabled: true,
-      origin: ['https://website-portfolio-head.vercel.app', 'https://website-portfolio-backend.onrender.com'],
+      origin: ['https://website-portfolio-head.vercel.app'],
       headers: ['*'],
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS', 'HEAD'],
     }
