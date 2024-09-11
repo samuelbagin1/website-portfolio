@@ -42,7 +42,7 @@ function Photo() {
           <div key={id}>
             <AsyncImage
               alt={id}
-              src={`${API_URL}${attributes.photo.data.attributes.url}`}
+              src={`${attributes.photo.data.attributes.url}`}
               style={{ height: "auto", aspectRatio: 1/1 }}
               loader={<div style={{ background: '#888' }}/>}
               error={<div style={{ background: '#eee' }}/>}
