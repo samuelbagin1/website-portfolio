@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "develops",
+  "info": {
+    "singularName": "develop",
+    "pluralName": "develops",
+    "displayName": "develop",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "link": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    }
+  }
+}

@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="bg-[#776C5F] text-[#FEFEFA] relative z-10 w-full">
       <Navbar />
-      <div className="relative w-full h-screen justify-center items-center flex">
+      <div className="relative w-full h-svh justify-center items-center flex">
         <img src={backImage} alt='imagee' className="absolute h-screen object-cover z-0 w-full" />
         <div className="h-screen w-full absolute bg-[#111111] opacity-80 justify-center"></div>
         <div className="opacity-80">
