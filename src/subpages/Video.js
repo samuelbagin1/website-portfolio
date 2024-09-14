@@ -29,7 +29,7 @@ function Video() {
 
   return (
     <>
-      <body className='bg-[#111111]' >
+      <body className='bg-[#111111] min-h-screen' >
         <Navbar />
 
         <div className=' relative md:top-[100px] min-h-screen'>

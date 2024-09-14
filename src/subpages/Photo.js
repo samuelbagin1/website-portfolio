@@ -35,7 +35,7 @@ function Photo() {
 
   return (
     <>
-      <body className='bg-[#111111] h-full -my-10' >
+      <body className='bg-[#111111] min-h-screen h-full -my-10' >
         <Navbar />
 
         <div className=' relative top-[100px] '>
