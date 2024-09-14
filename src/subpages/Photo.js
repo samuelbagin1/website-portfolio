@@ -35,10 +35,11 @@ function Photo() {
 
   return (
     <>
-      <body className='bg-[#111111] min-h-screen h-full -my-10' >
+      <body className='bg-[#111111] min-h-screen' >
         <Navbar />
 
-        <div className=' relative top-[100px] '>
+        <div className='h-[100px]'></div>
+        <div className=' relative '>
           {data.images.data.map(({ id, attributes }) => (
             <div key={id}>
               <AsyncImage

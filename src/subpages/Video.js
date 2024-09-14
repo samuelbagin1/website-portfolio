@@ -31,7 +31,7 @@ function Video() {
     <>
       <body className='bg-[#111111] min-h-screen' >
         <Navbar />
-
+        
         <div className=' relative md:top-[100px] min-h-screen'>
           {data.videos.data.map(({ id, attributes }) => (
             <div key={id} className='h-screen flex md:h-full md:relative justify-center items-center'>
