@@ -81,14 +81,17 @@ function Develop() {
         <div className=' md:hidden min-h-screen '>
           {data.develops.data.map(({ id, attributes }) => (
             <div className='h-svh '>
-              <div key={id} className='w-3/4 h-[80%] mx-auto bg-[#e0e2e4] rounded-xl relative '>
-                  <div className=' font-boldd text-xl p-4 '>{attributes.title}</div>
-                  <div className=' text-sm p-4 '>{attributes.text}</div>
+              <div key={id} className='w-[90%] h-[80%] mx-auto bg-[#e0e2e4] rounded-xl relative '>
+                  
+                  <div className='bg-inherit top-0 absolute w-full h-full -translate-x-20 '></div>
+
+                  <div className=' font-boldd text-xl p-4 relative top-4 '>{attributes.title}</div>
+                  <div className=' text-xs p-4 relative '>{attributes.text}</div>
                   
                   <AsyncImage
                     alt={id}
                     src={`${API_URL}${attributes.photo.data.attributes.url}`}   //${API_URL} pre local dev
-                    style={{ height: "60%", aspectRatio: 3 / 4 }}
+                    style={{ height: "auto", aspectRatio: 16/9 }}
                     loader={<div style={{ background: '#888' }} />}
                     error={<div style={{ background: '#eee' }} />}
                     Transition={props => <Blur radius={10} {...props} />}
@@ -96,8 +99,9 @@ function Develop() {
                   />
 
                 <div className='absolute bottom-5 w-full'>
-                  <div className='flex justify-center items-center'><button href={attributes.link} className=' border border-[#111111] border-solid rounded-full h-8 w-36 text-sm '>see the project</button></div>
+                  <div className='flex justify-center items-center'><a href={attributes.link} className=' flex justify-center items-center border border-[#111111] border-solid rounded-full h-8 w-36 text-sm '>see the project</a></div>
                 </div>
+
 
               </div>
             </div>
