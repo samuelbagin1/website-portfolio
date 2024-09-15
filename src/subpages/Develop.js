@@ -60,7 +60,7 @@ function Develop() {
                 <span className='justify-center items-center flex translate-x-12 '>
                   <AsyncImage
                     alt={id}
-                    src={`${API_URL}${attributes.photo.data.attributes.url}`}   //${API_URL} pre local dev
+                    src={`${attributes.photo.data.attributes.url}`}   //${API_URL} pre local dev
                     style={{ height: "90%", aspectRatio: 3 / 4 }}
                     loader={<div style={{ background: '#888' }} />}
                     error={<div style={{ background: '#eee' }} />}
@@ -90,7 +90,7 @@ function Develop() {
                   
                   <AsyncImage
                     alt={id}
-                    src={`${API_URL}${attributes.photo.data.attributes.url}`}   //${API_URL} pre local dev
+                    src={`${attributes.photo.data.attributes.url}`}   //${API_URL} pre local dev
                     style={{ height: "auto", aspectRatio: 16/9 }}
                     loader={<div style={{ background: '#888' }} />}
                     error={<div style={{ background: '#eee' }} />}
