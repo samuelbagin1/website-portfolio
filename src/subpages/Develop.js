@@ -40,7 +40,7 @@ function Develop() {
       <body className='bg-[#111111]' >
         <Navbar />
 
-        <div className='h-[100px]'></div>
+        <div className='h-[100px] lg:h-[120px]'></div>
 
         {/* at medium screen */}
         <div className=' hidden md:table-row min-h-screen '>
@@ -57,15 +57,15 @@ function Develop() {
                     </a>
                   </div>
                 </span>
-                <span className='justify-center items-center flex translate-x-12 '>
+                <span className='justify-center items-center flex translate-x-12 lg:translate-x-24 '>
                   <AsyncImage
                     alt={id}
                     src={`${attributes.photo.data.attributes.url}`}   //${API_URL} pre local dev
-                    style={{ height: "90%", aspectRatio: 3 / 4 }}
+                    style={{ aspectRatio: 3 / 4 }}
                     loader={<div style={{ background: '#888' }} />}
                     error={<div style={{ background: '#eee' }} />}
                     Transition={props => <Blur radius={10} {...props} />}
-                    className=' rounded-xl '
+                    className=' rounded-xl h-[90%] lg:h-[110%]'
                   />
                 </span>
               </div>
@@ -91,15 +91,15 @@ function Develop() {
                   <AsyncImage
                     alt={id}
                     src={`${attributes.photo.data.attributes.url}`}   //${API_URL} pre local dev
-                    style={{ height: "auto", aspectRatio: 16/9 }}
+                    style={{ aspectRatio: 4/5 }}
                     loader={<div style={{ background: '#888' }} />}
                     error={<div style={{ background: '#eee' }} />}
                     Transition={props => <Blur radius={10} {...props} />}
-                    className=' mx-auto rounded-xl w-full '
+                    className=' rounded-xl w-auto h-[60%] translate-x-16 absolute'
                   />
 
                 <div className='absolute bottom-5 w-full'>
-                  <div className='flex justify-center items-center'><a href={attributes.link} className=' flex justify-center items-center border border-[#111111] border-solid rounded-full h-8 w-36 text-sm '>see the project</a></div>
+                  <div className='flex justify-center items-center'><a href={attributes.link} className=' flex justify-center items-center border bg-[#7400F9] text-[#43EEB6] border-solid rounded-full h-9 w-36 text-sm font-black '>see the project</a></div>
                 </div>
 
 
