@@ -16,15 +16,7 @@ module.exports = ({ env }) => [
       },
     },
   },
-  {
-    name: 'strapi::cors',
-    config: {
-      enabled: true,
-      origin: ['*'],  // Be careful with this in production
-      headers: ['*'],
-      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS', 'HEAD'],
-    }
-  },
+ 
   'strapi::poweredBy',
   'strapi::query',
   'strapi::body',
