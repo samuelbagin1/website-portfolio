@@ -28,7 +28,7 @@ function App() {
 
           <div className="left-5 relative top-10">You might never heard of me, but when it comes to good-quality worth work, I am the <span className="font-boldd">one</span> you need to find.</div>
 
-          <div className="left-5 relative top-20 md:flex items-center w-full">I am not going to waste your time. Here is my portfolio you might to look at <Link to='/portfolio' className=" font-black text-sm border border-solid border-[#fefefa7e] opacity-75 hover:opacity-100 hover:border-[#fefefabc] rounded-lg w-24 h-8 relative flex items-center justify-center mx-auto md:mx-5 top-5 md:top-0 ease-in duration-150 ">Portfolio</Link></div>
+          <div className="left-5 relative top-20 md:flex items-center w-full">I am not going to waste your time. Here is my portfolio you might to look at<Link to='/portfolio' className=" font-black text-sm border border-solid border-[#fefefa7e] opacity-75 hover:opacity-100 hover:border-[#fefefabc] rounded-lg w-24 h-8 relative flex items-center justify-center mx-auto md:mx-5 top-5 md:top-0 ease-in duration-150 ">Portfolio</Link></div>
         </div>
       </div>
 
