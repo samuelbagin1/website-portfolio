@@ -1,6 +1,6 @@
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import backImage from "./assets/backgroundImage.png";
+import backImage from "./assets/backgroundImage.jpeg";
 import { Link } from "react-router-dom"
 
 
@@ -12,7 +12,7 @@ function App() {
 
       <div className="relative w-full h-svh justify-center items-center flex">
         <img src={backImage} alt='imagee' className="absolute h-screen object-cover z-0 w-full" />
-        <div className="h-screen w-full absolute bg-[#111111] opacity-80 justify-center"></div>
+        <div className="h-screen w-full absolute opacity-80 justify-center"></div>
         <div className="opacity-80">
           <div className='font-black lg:text-[230px] md:text-[180px] text-6xl '>Welcome</div>
           <div className="flex justify-center text-xs lg:text-sm">to portfolio of Samuel Bagín</div>
@@ -28,7 +28,7 @@ function App() {
 
           <div className="left-5 relative top-10">You might never heard of me, but when it comes to good-quality worth work, I am the <span className="font-boldd">one</span> you need to find.</div>
 
-          <div className="left-5 relative top-20">I am not going to waste your time. Here`s my portfolio you might to look at: <Link to='/portfolio' className=" font-black border border-solid border-[#FEFEFA] rounded-full w-24 h-10 ">Portfolio</Link></div>
+          <div className="left-5 relative top-20 md:flex items-center">I am not going to waste your time. Here is my portfolio you might to look at <Link to='/portfolio' className=" font-black text-sm border border-solid border-[#fefefa7e] opacity-75 hover:opacity-100 hover:border-[#fefefabc] rounded-lg w-24 h-8 relative flex items-center justify-center mx-auto md:mx-5 top-5 md:top-0 ease-in duration-150 ">Portfolio</Link></div>
         </div>
       </div>
 
