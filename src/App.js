@@ -1,6 +1,6 @@
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import backImage from "./assets/background.GIF";
+import backImage from "./assets/background.gif";
 import { Link } from "react-router-dom"
 
 
