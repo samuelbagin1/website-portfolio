@@ -1,41 +1,21 @@
 {
   "name": "backend",
-  "private": true,
-  "version": "0.1.0",
-  "description": "A Strapi application",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "develop": "strapi develop",
-    "start": "strapi start",
-    "build": "strapi build",
-    "strapi": "strapi"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "@apollo/client": "3.7.17",
-    "@strapi/plugin-cloud": "4.19.0",
-    "@strapi/plugin-graphql": "^4.19.0",
-    "@strapi/plugin-i18n": "4.19.0",
-    "@strapi/plugin-users-permissions": "4.19.0",
-    "@strapi/provider-upload-cloudinary": "^4.25.10",
-    "@strapi/strapi": "4.19.0",
-    "better-sqlite3": "8.6.0",
-    "pg": "^8.12.0",
-    "pg-connection-string": "^2.6.4",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-router-dom": "5.3.4",
-    "strapi-plugin-vercel-deploy": "^1.4.0",
-    "strapi-provider-upload-aws-s3": "^3.6.11",
-    "styled-components": "5.3.3"
-  },
-  "author": {
-    "name": "A Strapi developer"
-  },
-  "strapi": {
-    "uuid": "2e556919-4b3c-4ac5-af0b-cbcdeb7a61cb"
-  },
-  "engines": {
-    "node": ">=14.19.1 <=18.x.x",
-    "npm": ">=6.0.0"
-  },
-  "license": "MIT"
+    "cloudinary": "^2.5.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongodb": "^6.12.0",
+    "mongoose": "^8.9.5",
+    "multer": "^1.4.5-lts.1"
+  }
 }

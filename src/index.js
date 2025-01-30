@@ -11,6 +11,8 @@ import Graphic from './subpages/Graphic'
 import Photo from './subpages/Photo'
 import Video from './subpages/Video'
 
+import Upload from './components/ImageUploadForm'
+
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 
 import {
@@ -66,6 +68,11 @@ const router = createBrowserRouter([
   {
     path: "/portfolio/video",
     element: <Video />,
+  },
+
+  {
+    path: "/upload",
+    element: <Upload />,
   },
 ]);
 
