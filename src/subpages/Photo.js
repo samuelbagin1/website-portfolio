@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import { Blur } from 'transitions-kit';
 import { AsyncImage } from 'loadable-image';
 
-const API_URL = '/api';
+const API_URL = 'https://head.samuelbagin.xyz/api';
 
 function Photo() {
   const [images, setImages] = useState([]);
@@ -14,7 +14,7 @@ function Photo() {
   // Function to fetch images
   const fetchImages = async () => {
     try {
-      const response = await fetch(`${API_URL}/api/images`);
+      const response = await fetch('https://head.samuelbagin.xyz/api/images');
       if (!response.ok) {
         throw new Error('Failed to fetch images');
       }

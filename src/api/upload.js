@@ -1,7 +1,7 @@
-// src/api/upload.js
 import { IncomingForm } from 'formidable';
 import cloudinary from 'cloudinary';
 import streamifier from 'streamifier';
+import { connectToDatabase } from '../../lib/mongodb';
 
 export const config = {
   api: {
@@ -13,28 +13,34 @@ export default async function handler(req, res) {
   if (req.method === 'POST') {
     const form = new IncomingForm();
 
-    form.parse(req, (err, fields, files) => {
+    form.parse(req, async (err, fields, files) => {
       if (err) {
         return res.status(500).json({ error: err.message });
       }
 
+      // Connect to MongoDB
+      const { db } = await connectToDatabase();
+
       // Create a stream from the file buffer
       const stream = cloudinary.v2.uploader.upload_stream(
         { folder: 'portfolio' }, // Optional: Organize files in a folder
-        (error, result) => {
+        async (error, result) => {
           if (error) {
             return res.status(500).json({ error: error.message });
           }
 
           // Save the image URL to MongoDB
-          const image = new Image({
+          const image = {
             text: fields.text,
             photo: result.secure_url,
-          });
+          };
 
-          image.save()
-            .then(() => res.status(201).json(image))
-            .catch((err) => res.status(500).json({ error: err.message }));
+          try {
+            await db.collection('images').insertOne(image);
+            res.status(201).json(image);
+          } catch (err) {
+            res.status(500).json({ error: err.message });
+          }
         }
       );
 

@@ -1,4 +1,4 @@
-import { connectToDatabase } from '../../lib/mongodb'; // Helper to connect to MongoDB
+import { connectToDatabase } from '../../lib/mongodb';
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {

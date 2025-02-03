@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const API_URL = '/api';
+const API_URL = process.env.REACT_APP_API_URL || 'https://head.samuelbagin.xyz/api';
 
 const ImageUploadForm = ({ onUploadSuccess }) => {
   const [text, setText] = useState('');
