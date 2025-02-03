@@ -5,7 +5,7 @@ import { useQuery, gql } from '@apollo/client'
 import { Blur } from 'transitions-kit'
 import { AsyncImage } from 'loadable-image'
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:1337';
+const API_URL = '/api';
 
 const VIDEOS = gql`
   query GetVideos{
