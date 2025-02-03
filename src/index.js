@@ -11,7 +11,7 @@ import Graphic from './subpages/Graphic'
 import Photo from './subpages/Photo'
 import Video from './subpages/Video'
 
-import Upload from './components/ImageUploadForm'
+import Upload from './subpages/Upload'
 
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 

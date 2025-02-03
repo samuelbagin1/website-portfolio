@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import ImageUploadForm from '../components/ImageUploadForm';
 import { Blur } from 'transitions-kit';
 import { AsyncImage } from 'loadable-image';
 
-const API_URL = 'http://localhost:5001';
+const API_URL = '/api';
 
 function Photo() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Function to fetch images
   const fetchImages = async () => {
     try {
       const response = await fetch(`${API_URL}/api/images`);
@@ -27,6 +27,7 @@ function Photo() {
     }
   };
 
+  // Fetch images on component mount
   useEffect(() => {
     fetchImages();
   }, []);
@@ -40,11 +41,6 @@ function Photo() {
         <Navbar />
 
         <div className='h-[100px]'></div>
-
-        {/* Pass fetchImages as a callback */}
-        <div className="container mx-auto px-4">
-          <ImageUploadForm onUploadSuccess={fetchImages} />
-        </div>
 
         <div className='relative'>
           {images.map((image) => (
