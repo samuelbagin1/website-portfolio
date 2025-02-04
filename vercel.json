@@ -13,11 +13,17 @@
     "routes": [
       {
         "src": "/api/(.*)",
-        "dest": "/src/api/$1"
+        "dest": "/src/api/$1",
+        "headers": {
+          "Cache-Control": "no-cache"
+        }
       },
       {
         "src": "/(.*)",
-        "dest": "/src/index.js"
+        "dest": "/src/index.js",
+        "headers": {
+          "Cache-Control": "public, max-age=31536000, immutable"
+        }
       }
     ]
   }
