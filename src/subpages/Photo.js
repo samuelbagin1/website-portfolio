@@ -6,7 +6,6 @@ import { AsyncImage } from 'loadable-image';
 
 const API_URL = 'https://head.samuelbagin.xyz/api';
 
-
 function Photo() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,7 +14,7 @@ function Photo() {
   // Function to fetch images
   const fetchImages = async () => {
     try {
-      const response = await fetch({API_URL});
+      const response = await fetch(`${API_URL}/images`);
       if (!response.ok) {
         throw new Error('Failed to fetch images');
       }
@@ -29,7 +28,6 @@ function Photo() {
     }
   };
 
-
   // Fetch images on component mount
   useEffect(() => {
     fetchImages();
@@ -37,7 +35,6 @@ function Photo() {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
-  
 
   return (
     <>
