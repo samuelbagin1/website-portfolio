@@ -1,38 +1,11 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import { useQuery, gql } from '@apollo/client'
 import { Blur } from 'transitions-kit'
 import { AsyncImage } from 'loadable-image'
 
-const API_URL = '/api';
-
-const GRAPHICS = gql`
-  query GetGraphics{
-    graphics {
-      data {
-        id
-        attributes {
-          text
-          photo {
-            data {
-              attributes {
-                url
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
 
 function Graphic() {
-  const { loading, error, data } = useQuery(GRAPHICS)
-
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error: {error.message}</p>
-
   return (
     <>
       <body className='bg-[#111111] min-h-screen ' >
@@ -40,7 +13,7 @@ function Graphic() {
 
         <div className='h-[100px]'></div>
         <div className=' relative '>
-          {data.graphics.data.map(({ id, attributes }) => (
+          {/*
             <div key={id}>
               <AsyncImage
                 alt={id}
@@ -52,7 +25,7 @@ function Graphic() {
                 className='w-3/4 rounded-xl mx-auto my-10'
               />
             </div>
-          ))}
+            */}
         </div>
 
         <Footer />

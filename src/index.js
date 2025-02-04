@@ -13,19 +13,11 @@ import Video from './subpages/Video'
 
 import Upload from './subpages/Upload'
 
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-
-const API_URL = '/api';
-
-const client = new ApolloClient({
-  uri: `${API_URL}/graphql`,
-  cache: new InMemoryCache(),
-});
 
 
 
@@ -78,8 +70,6 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <ApolloProvider client={client} >
     <RouterProvider router={router} />
-  </ApolloProvider>
 );
 

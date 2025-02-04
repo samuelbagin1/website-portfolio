@@ -1,39 +1,11 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import { useQuery, gql } from '@apollo/client'
 import { Blur } from 'transitions-kit'
 import { AsyncImage } from 'loadable-image'
 
-const API_URL = '/api';
-
-const DEVELOPS = gql`
-query GetDevelops{
-  develops {
-    data {
-      id
-      attributes {
-        title
-        link
-        text
-        photo {
-          data {
-            attributes {
-              url
-            }
-          }
-        }
-      }
-    }
-  }
-}
-`;
 
 function Develop() {
-  const { loading, error, data } = useQuery(DEVELOPS)
-
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error: {error.message}</p>
 
   return (
     <>
@@ -42,7 +14,10 @@ function Develop() {
 
         <div className='h-[100px] lg:h-[120px]'></div>
 
+
         {/* at medium screen */}
+
+        {/*
         <div className=' hidden md:table-row min-h-screen '>
           {data.develops.data.map(({ id, attributes }) => (
             <div className='h-svh '>
@@ -73,11 +48,13 @@ function Develop() {
           ))}
         </div>
 
+          */}
 
 
 
 
         {/* small screens */}
+        {/*
         <div className=' md:hidden min-h-screen '>
           {data.develops.data.map(({ id, attributes }) => (
             <div className='h-svh '>
@@ -107,6 +84,8 @@ function Develop() {
             </div>
           ))}
         </div>
+          */}
+        
 
         <Footer />
       </body>
