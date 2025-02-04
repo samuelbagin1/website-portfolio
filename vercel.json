@@ -13,6 +13,6 @@
     "routes": [
       { "src": "/api/images", "dest": "/src/api/images.js" },
       { "src": "/api/upload", "dest": "/src/api/upload.js" },
-      { "src": "/", "dest": "/src/index.js" }
+      { "src": "/", "dest": "/index.html" }
     ]
   }
