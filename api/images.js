@@ -1,7 +1,10 @@
-// Correct import path
 import { connectToDatabase } from '../lib/mongodb';
 
-export default async function handler(req, res) {
+export const config = {
+  maxDuration: 15,
+};
+
+export default async (req, res) => {
   if (req.method === 'GET') {
     try {
       const { db } = await connectToDatabase();
@@ -13,4 +16,4 @@ export default async function handler(req, res) {
   } else {
     res.status(405).json({ error: 'Method not allowed' });
   }
-}
+};

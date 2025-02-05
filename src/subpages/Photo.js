@@ -14,7 +14,9 @@ function Photo() {
   // Function to fetch images
   const fetchImages = async () => {
     try {
-      const response = await fetch(`${API_URL}/images`);
+      const response = await fetch('https://head.samuelbagin.xyz/api/images', {
+        method: 'GET', // Ensure this matches the serverless function
+      });
       if (!response.ok) {
         throw new Error('Failed to fetch images');
       }
