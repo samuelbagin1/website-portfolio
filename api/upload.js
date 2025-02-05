@@ -1,7 +1,7 @@
 import { IncomingForm } from 'formidable';
 import cloudinary from 'cloudinary';
 import streamifier from 'streamifier';
-import { connectToDatabase } from '../../lib/mongodb';
+import { connectToDatabase } from '../lib/mongodb';
 
 export const config = { api: { bodyParser: false } };
 
