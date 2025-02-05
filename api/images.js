@@ -1,4 +1,5 @@
-import { connectToDatabase } from '../../lib/mongodb';
+// Correct import path
+import { connectToDatabase } from '../lib/mongodb';
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
