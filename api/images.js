@@ -1,25 +1,25 @@
 import { connectToDatabase } from '../lib/mongodb';
 
-export const config = { maxDuration: 15 }; // Extend timeout
+export const config = { maxDuration: 15 };
 
 export default async (req, res) => {
+  // Add CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET');
+
   if (req.method === 'GET') {
     try {
       const { db } = await connectToDatabase();
-      
-      // Get pagination parameters from query
-      const page = parseInt(req.query.page) || 1; // Default: page 1
-      const limit = parseInt(req.query.limit) || 1; // Load 1 image per request
+      const page = parseInt(req.query.page) || 1;
+      const limit = parseInt(req.query.limit) || 1;
       const skip = (page - 1) * limit;
 
-      // Fetch images with pagination
       const images = await db.collection('images')
         .find({})
         .skip(skip)
         .limit(limit)
         .toArray();
 
-      // Get total number of images (for calculating total pages)
       const totalImages = await db.collection('images').countDocuments();
       const totalPages = Math.ceil(totalImages / limit);
 
