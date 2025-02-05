@@ -6,6 +6,7 @@ export const config = {
 
 export default async (req, res) => {
   if (req.method === 'GET') {
+    // Handle GET request
     try {
       const { db } = await connectToDatabase();
       const images = await db.collection('images').find({}).toArray();
@@ -14,6 +15,7 @@ export default async (req, res) => {
       res.status(500).json({ error: error.message });
     }
   } else {
+    // Reject unsupported methods (e.g., POST, PUT)
     res.status(405).json({ error: 'Method not allowed' });
   }
 };
