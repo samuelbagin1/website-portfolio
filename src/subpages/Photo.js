@@ -4,6 +4,8 @@ import Footer from '../components/Footer';
 import { Blur } from 'transitions-kit';
 import { AsyncImage } from 'loadable-image';
 
+const REACT_APP_URL = process.env.APP_URL || 'http://localhost:3000';
+
 function Photo() {
   const [images, setImages] = useState([]);
   const [error, setError] = useState(null);
@@ -11,7 +13,7 @@ function Photo() {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/images');
+        const response = await fetch(`${REACT_APP_URL}/api/images`);
         
         if (!response.ok) {
           const errorData = await response.json();
