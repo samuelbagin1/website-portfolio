@@ -68,6 +68,16 @@ const router = createBrowserRouter([
   },
 ]);
 
+// In your main index.js file
+if ('storage' in navigator && 'estimate' in navigator.storage) {
+  navigator.storage.estimate().then(estimate => {
+    console.log('Storage estimate:', estimate);
+  });
+}
+
+// Set SameSite cookie attribute
+document.cookie = `session=YOUR_SESSION_ID; Secure; SameSite=None; Path=/`;
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <RouterProvider router={router} />
