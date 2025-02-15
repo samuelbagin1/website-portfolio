@@ -41,11 +41,11 @@ const ImageUploadForm = ({ onUploadSuccess }) => {
   };
 
   return (
-    <div className="p-4 bg-[#222222] rounded-lg shadow-md">
-      <h2 className="text-xl font-bold mb-4 text-white">Upload Image</h2>
-      <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4">
+    <div className="p-4 md:p-10 bg-[#181818] text-[#FEFEFA] rounded-2xl shadow-md md:h-full h-3/5">
+      <h2 className="text-2xl font-boldd mb-4 md:mb-10 text-center md:text-left">Upload Image</h2>
+      <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-2 ml-2 mb-4">
         <div>
-          <label htmlFor="text" className="block text-sm font-medium text-gray-300">
+          <label htmlFor="text" className="block text-sm font-medium ">
             Text
           </label>
           <input
@@ -53,31 +53,33 @@ const ImageUploadForm = ({ onUploadSuccess }) => {
             id="text"
             value={text}
             onChange={(e) => setText(e.target.value)}
-            className="mt-1 p-2 w-full rounded-md bg-[#333333] text-white"
+            className="mt-1 p-2 w-full md:w-1/2 rounded-md bg-[#333333] "
             required
           />
         </div>
         <div>
-          <label htmlFor="photo" className="block text-sm font-medium text-gray-300">
+          <label htmlFor="photo" className="block text-sm font-medium ">
             Photo
           </label>
           <input
             type="file"
             id="photo"
             onChange={(e) => setPhoto(e.target.files[0])}
-            className="mt-1 p-2 w-full rounded-md bg-[#333333] text-white"
+            className="mt-1 w-full "
             required
           />
         </div>
-        <button
-          type="submit"
-          disabled={loading}
-          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-blue-400"
-        >
-          {loading ? 'Uploading...' : 'Upload'}
-        </button>
-        {error && <p className="text-red-500 mt-2">{error}</p>}
-        {success && <p className="text-green-500 mt-2">Upload successful!</p>}
+        <div className='flex items-center gap-4 h-full top-6 relative' >
+          <button
+            type="submit"
+            disabled={loading}
+            className="min-w-24 h-10 bg-[#03C03C] rounded-full hover:bg-[#02a332] transition-colors"
+          >
+            {loading ? 'Uploading...' : 'Upload'}
+          </button>
+          {error && <p className="text-[#FF0800] ">{error}</p>}
+          {success && <p className="text-[#03C03C] ">Upload successful!</p>}
+        </div>
       </form>
     </div>
   );

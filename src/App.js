@@ -11,7 +11,7 @@ function App() {
       <Navbar />
 
       <div className="relative w-full h-svh justify-center items-center flex">
-        <img src={backImage} alt='imagee' className="absolute h-screen object-cover z-0 w-full" />
+        <img src={backImage} alt='imagee' className="absolute h-screen object-cover z-0 w-full blur-sm" />
         <div className="h-screen w-full absolute opacity-60 bg-black justify-center"></div>
         <div className="opacity-80">
           <div className='font-black lg:text-[230px] md:text-[180px] text-6xl '>Welcome</div>

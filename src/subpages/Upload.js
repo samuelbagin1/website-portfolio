@@ -7,7 +7,7 @@ import ImageManager from '../components/ImageManager';
 function Upload() {
 
   const [refreshKey, setRefreshKey] = useState(0);
-    // Function to refresh images after upload (optional, if needed)
+  // Function to refresh images after upload (optional, if needed)
   const handleUploadSuccess = () => {
     console.log('Image uploaded successfully!');
     setRefreshKey(prev => prev + 1);
@@ -16,14 +16,13 @@ function Upload() {
 
   return (
     <>
-      <div className='bg-[#111111] min-h-screen' >
+      <div className='bg-[#111111] min-h-lvh ' >
         <Navbar />
-        
-        <div className=' relative top-[100px] min-h-screen'>
-            <div className="container mx-auto px-4">
-                <ImageUploadForm onUploadSuccess={handleUploadSuccess} />
-                <ImageManager key={refreshKey} />
-            </div>
+
+        <div className='h-[100px]'></div>
+        <div className=" container mx-auto px-4 gap-10 grid min-h-screen">
+          <ImageUploadForm onUploadSuccess={handleUploadSuccess} />
+          <ImageManager key={refreshKey} />
         </div>
 
         <Footer />

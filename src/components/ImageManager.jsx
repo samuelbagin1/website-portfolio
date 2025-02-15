@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { TbError404 } from "react-icons/tb";
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
 
@@ -69,23 +70,23 @@ const ImageManager = () => {
       };
 
     if (loading) return <div className="text-white">Loading images...</div>;
-    if (error) return <div className="text-red-500">Error: {error}</div>;
+    if (error) return <div className="text-[#FF0800] flex justify-center gap-2"><TbError404 size='24'/>Error: {error}</div>;
 
     return (
-        <div className="p-4 bg-[#222222] rounded-lg shadow-md">
-            <h2 className="text-xl font-bold mb-4 text-white">Manage Images</h2>
+        <div className="p-4 text-[#111111]">
+            <h2 className="text-3xl text-[#FEFEFA] mb-6 text-center font-boldd">Manage Images</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {images.map(image => (
-                    <div key={image._id} className="relative group bg-[#333333] rounded-lg p-4">
+                    <div key={image._id} className="grid justify-items-stretch bg-[#dadada] rounded-xl p-4 ">
                         <img
                             src={image.photo}
                             alt={image.text}
                             className="w-full h-48 object-cover rounded-md mb-2"
                         />
-                        <p className="text-white mb-2">{image.text}</p>
+                        {/*<p className=" mb-2">{image.text}</p>*/}
                         <button
                             onClick={() => handleDelete(image._id, image.publicId)}
-                            className="w-full py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
+                            className="justify-self-center mt-2 py-2 bg-[#FF0800] rounded-full w-1/2 hover:bg-[#e40800] transition-colors"
                         >
                             Delete
                         </button>

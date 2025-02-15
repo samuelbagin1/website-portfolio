@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import Logo from '../assets/sign samuelbagin-white.png'
-import {FaBars, FaTimes} from 'react-icons/fa'
+import { FaBars } from "react-icons/fa6"
+import { IoClose } from "react-icons/io5"
 import { Link } from "react-router-dom"
 
 
@@ -24,13 +25,13 @@ const Navbar = () => {
 
         {/* menu nav bar when screen mobile/md */}
         <div onClick={handleClick} className='md:hidden z-10'>
-            {nav ? <FaTimes size='20'/> : <FaBars size='20' />}
+            {nav ? <IoClose size='30'/> : <FaBars size='20' />}
         </div>
-        <ul className={nav ? 'absolute top-0 left-0 w-full h-dvh flex flex-col justify-center items-center bg-[#111111] backdrop-blur-md gap-1' : 'hidden'}>
-            <li className='hover:scale-95 duration-150 ease-out'><Link to='/'>Home</Link></li>
-            <li className='hover:scale-95 duration-150 ease-out'><Link to='/portfolio'>Portfolio</Link></li>
-            <li className='hover:scale-95 duration-150 ease-out'><Link to='/skills'>Skills</Link></li>
-            <li className='hover:scale-95 duration-150 ease-out'><Link to='/contact'>Contact</Link></li>
+        <ul className={nav ? 'absolute top-0 left-0 w-full h-dvh flex flex-col justify-center items-center bg-[#111111] gap-3 text-lg ' : 'hidden'}>
+            <li className=''><Link to='/'>Home</Link></li>
+            <li className=''><Link to='/portfolio'>Portfolio</Link></li>
+            <li className=''><Link to='/skills'>Skills</Link></li>
+            <li className=''><Link to='/contact'>Contact</Link></li>
         </ul>
     </div>
   )
