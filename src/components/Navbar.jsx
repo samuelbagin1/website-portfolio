@@ -10,12 +10,12 @@ const Navbar = () => {
     const handleClick = () => setNav(!nav)
 
   return (
-    <div className='fixed w-full h-[80px] items-center flex justify-end text-[#FEFEFA] bg-[#000000ba] backdrop-blur-md z-50'>
-        <div className='w-screen absolute  items-center'>
-            <Link to='/'><img src={Logo} alt="" className=' w-[150px] justify-self-center ' /></Link>
+    <div className='fixed w-full h-[80px] items-center flex justify-end text-[#FEFEFA] bg-[#000000ba] backdrop-blur-md z-40'>
+        <div className='w-screen absolute flex justify-center translate-y-[2px]'>
+            <Link to='/'><img src={Logo} alt="" className=' md:w-[150px] w-[130px] justify-self-center ' /></Link>
         </div>
 
-        <ul className='hidden md:flex space-x-5 px-7 '>
+        <ul className='hidden md:flex space-x-5 px-7 z-50'>
             <li className='hover:scale-95 duration-150 ease-out'><Link to='/'>Home</Link></li>
             <li className='hover:scale-95 duration-150 ease-out'><Link to='/portfolio'>Portfolio</Link></li>
             <li className='hover:scale-95 duration-150 ease-out'><Link to='/skills'>Skills</Link></li>

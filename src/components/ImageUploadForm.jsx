@@ -41,11 +41,11 @@ const ImageUploadForm = ({ onUploadSuccess }) => {
   };
 
   return (
-    <div className="p-4 md:p-10 bg-[#181818] text-[#FEFEFA] rounded-2xl shadow-md md:h-full h-3/5">
+    <div className="p-4 md:p-10 bg-[#181818] text-[#FEFEFA] rounded-2xl">
       <h2 className="text-2xl font-boldd mb-4 md:mb-10 text-center md:text-left">Upload Image</h2>
-      <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-2 ml-2 mb-4">
+      <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-2 ml-2 md:mb-4 mb-8">
         <div>
-          <label htmlFor="text" className="block text-sm font-medium ">
+          <label htmlFor="text" className="block text-sm ">
             Text
           </label>
           <input
@@ -53,12 +53,12 @@ const ImageUploadForm = ({ onUploadSuccess }) => {
             id="text"
             value={text}
             onChange={(e) => setText(e.target.value)}
-            className="mt-1 p-2 w-full md:w-1/2 rounded-md bg-[#333333] "
+            className="mt-1 p-2 w-full md:w-1/2 rounded-lg bg-[#333333] "
             required
           />
         </div>
         <div>
-          <label htmlFor="photo" className="block text-sm font-medium ">
+          <label htmlFor="photo" className=" text-sm ">
             Photo
           </label>
           <input
@@ -69,11 +69,11 @@ const ImageUploadForm = ({ onUploadSuccess }) => {
             required
           />
         </div>
-        <div className='flex items-center gap-4 h-full top-6 relative' >
+        <div className='flex items-center gap-4 top-6 relative ' >
           <button
             type="submit"
             disabled={loading}
-            className="min-w-24 h-10 bg-[#03C03C] rounded-full hover:bg-[#02a332] transition-colors"
+            className="min-w-24 h-9 bg-[#03C03C] rounded-full hover:bg-[#02a332] transition-colors"
           >
             {loading ? 'Uploading...' : 'Upload'}
           </button>

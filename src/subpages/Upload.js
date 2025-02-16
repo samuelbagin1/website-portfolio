@@ -20,9 +20,11 @@ function Upload() {
         <Navbar />
 
         <div className='h-[100px]'></div>
-        <div className=" container mx-auto px-4 gap-10 grid min-h-screen">
-          <ImageUploadForm onUploadSuccess={handleUploadSuccess} />
-          <ImageManager key={refreshKey} />
+        <div className='min-h-lvh ' >
+          <div className=" container mx-auto px-4 gap-10 grid">
+            <ImageUploadForm onUploadSuccess={handleUploadSuccess} />
+            <ImageManager key={refreshKey} />
+          </div>
         </div>
 
         <Footer />

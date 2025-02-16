@@ -9,6 +9,8 @@ const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
 function Photo() {
   const [images, setImages] = useState([]);
   const [error, setError] = useState(null);
+  const [nav, setNav] = useState(true);
+  const handleClick = () => setNav(!nav);
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -37,22 +39,23 @@ function Photo() {
     </div>
   );
 
+
   return (
-    <div className='bg-[#111111] min-h-screen'>
+    <div className='bg-[#111111]'>
       <Navbar />
       <div className='h-[100px]' />
 
-      <div className='relative'>
+      <div className='relative min-h-lvh'>
         {images.map((image) => (
-          <div key={image._id} className='my-10'>
+          <div key={image._id} className='my-10' onClick={handleClick}>
             <AsyncImage
               alt={image.text}
               src={image.photo}
               style={{ height: 'auto', aspectRatio: 1 / 1 }}
-              loader={<div className="bg-gray-800 animate-pulse rounded-xl" />}
-              error={<div className="bg-red-900 rounded-xl" />}
+              loader={<div className="bg-[#959595] rounded-xl" />}
+              error={<div className="bg-red-500 rounded-xl" />}
               Transition={(props) => <Blur radius={10} {...props} />}
-              className='w-3/4 rounded-xl mx-auto'
+              className='w-3/4 rounded-xl mx-auto aspect-square'
             />
           </div>
         ))}

@@ -69,15 +69,15 @@ const ImageManager = () => {
         }
       };
 
-    if (loading) return <div className="text-white">Loading images...</div>;
+    if (loading) return <div className="text-[#FEFEFA] flex justify-center gap-2">Loading images...</div>;
     if (error) return <div className="text-[#FF0800] flex justify-center gap-2"><TbError404 size='24'/>Error: {error}</div>;
 
     return (
-        <div className="p-4 text-[#111111]">
-            <h2 className="text-3xl text-[#FEFEFA] mb-6 text-center font-boldd">Manage Images</h2>
+        <div className="p-4 text-[#FEFEFA]">
+            <h2 className="text-2xl md:text-3xl text-[#FEFEFA] mb-6 text-center font-boldd">Manage Images</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {images.map(image => (
-                    <div key={image._id} className="grid justify-items-stretch bg-[#dadada] rounded-xl p-4 ">
+                    <div key={image._id} className="grid justify-items-stretch bg-[#dadada15] rounded-xl p-4 ">
                         <img
                             src={image.photo}
                             alt={image.text}
@@ -86,7 +86,7 @@ const ImageManager = () => {
                         {/*<p className=" mb-2">{image.text}</p>*/}
                         <button
                             onClick={() => handleDelete(image._id, image.publicId)}
-                            className="justify-self-center mt-2 py-2 bg-[#FF0800] rounded-full w-1/2 hover:bg-[#e40800] transition-colors"
+                            className="justify-self-center mt-2 py-2 bg-[#FF0800] rounded-full w-1/2 hover:bg-[#cb0700] transition-colors"
                         >
                             Delete
                         </button>
