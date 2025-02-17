@@ -8,7 +8,6 @@ import { Link } from "react-router-dom"
 function Footer() {
     return (
         <div className='w-full lg:h-[250px] h-[500px] bg-[#111111] text-[#FEFEFA] justify-center items-center flex'>
-
             {/* on small screen footer */}
             <div className='justify-center items-center lg:hidden grid grid-rows-5 h-3/5 gap-5'>
                 <div className='row-span-2 justify-center items-center flex'><Link to='/'><img src={Logo} alt="logo" style={{ width: '160px' }} /></Link></div>
@@ -31,7 +30,7 @@ function Footer() {
 
 
             <div className='justify-center items-center w-1/2 hidden lg:grid gap-5'>
-                <div className='justify-center items-center flex'><Link to='/'><img src={Logo} alt="logo" style={{ width: '150px' }} /></Link></div>
+                <div className='justify-center items-center flex hover:animate-pulse'><Link to='/'><img src={Logo} alt="logo" style={{ width: '150px' }} /></Link></div>
                 <div className='lg:grid-cols-5 flex gap-7'>
                     <div className='flex justify-center items-center'>
                         <FaLinkedin size={25} className='m-2 hover:scale-95 duration-150 ease-out' />

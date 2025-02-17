@@ -9,14 +9,13 @@ const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
 function Photo() {
   const [images, setImages] = useState([]);
   const [error, setError] = useState(null);
-  const [nav, setNav] = useState(true);
-  const handleClick = () => setNav(!nav);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     const fetchImages = async () => {
       try {
         const response = await fetch(`${API_URL}/api/images`);
-        
+
         if (!response.ok) {
           const errorData = await response.json();
           throw new Error(errorData.message || 'HTTP error');
@@ -40,14 +39,26 @@ function Photo() {
   );
 
 
+
+  // Add error logging for images
+  console.log('Images array:', images);
+
   return (
     <div className='bg-[#111111]'>
       <Navbar />
       <div className='h-[100px]' />
 
+      {/* Image Grid */}
       <div className='relative min-h-lvh'>
-        {images.map((image) => (
-          <div key={image._id} className='my-10' onClick={handleClick}>
+        {images?.map((image) => (
+          <div
+            key={image._id}
+            className='my-10 cursor-pointer'
+            onClick={() => {
+              console.log('Clicked image:', image); // Add click logging
+              setSelectedImage(image);
+            }}
+          >
             <AsyncImage
               alt={image.text}
               src={image.photo}
@@ -60,6 +71,21 @@ function Photo() {
           </div>
         ))}
       </div>
+
+      {/* Image Modal */}
+      {selectedImage && (
+        <div
+          className='fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 '
+          onClick={() => setSelectedImage(null)}
+        >
+          <img
+            alt={selectedImage.text}
+            src={selectedImage.photo}
+            className='max-w-5/6 h-full max-h-[90vh] object-contain rounded-xl'
+          />
+          <div className='absolute bottom-3 text-[#2f2f2f] text-xs'>click anywhere to close</div>
+        </div>
+      )}
 
       <Footer />
     </div>

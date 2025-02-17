@@ -12,12 +12,12 @@ function App() {
 
       <div className="relative w-full h-svh justify-center items-center flex">
         <img src={backImage} alt='imagee' className="absolute h-screen object-cover w-full " />
-        <div className="h-screen w-full absolute bg-[#00000097] justify-center backdrop-blur-sm"></div>
+        <div className="h-screen w-full absolute bg-[#00000097] justify-center backdrop-blur-md"></div>
         <div className="opacity-80">
           <div className='font-black lg:text-[230px] md:text-[180px] text-6xl '>Welcome</div>
           <div className="flex justify-center text-xs lg:text-sm">to portfolio of Samuel Bagín</div>
         </div>
-        <div className="h-32 w-screen z-50 absolute bottom-0 bg-gradient-to-t from-[#111111] via-[#111111a1] to-[#11111100]"></div>
+        
       </div>
 
       <div className="lg:w-1/2 w-2/3 relative min-h-screen text-sm lg:text-lg">

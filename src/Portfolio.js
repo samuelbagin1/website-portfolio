@@ -11,10 +11,10 @@ function Portfolio() {
       <Navbar />
       <div className='h-svh md:h-screen w-full justify-center items-center flex bg-[#111111] text-[#FEFEFA] font-boldd text-xs md:text-lg'>
         <div className=' grid grid-cols-2 grid-rows-2 gap-5 w-3/4 h-3/5 text-center items-center '>
-          <Link to='/portfolio/photo' className='ease-in duration-150 border-[#FEFEFA] border-solid border hover:bg-[#FEFEFA] hover:text-[#111111] rounded-xl h-5/6 justify-center items-center flex'>Photo</Link>
-          <Link to='/portfolio/video' className='ease-in duration-150 border-[#FEFEFA] border-solid border hover:bg-[#FEFEFA] hover:text-[#111111] rounded-xl h-5/6 justify-center items-center flex'>Video</Link>
-          <Link to='/portfolio/graphic' className='ease-in duration-150 border-[#FEFEFA] border-solid border hover:bg-[#FEFEFA] hover:text-[#111111] rounded-xl h-5/6 justify-center items-center flex'>Graphic Design</Link>
-          <Link to='/portfolio/develop' className='ease-in duration-150 border-[#FEFEFA] border-solid border hover:bg-[#FEFEFA] hover:text-[#111111] rounded-xl h-5/6 justify-center items-center flex'>Develop Projects</Link>
+          <Link to='/portfolio/photo' className='ease-in duration-150 border-[#fefefa1a] border-solid border-2 hover:bg-[#FEFEFA] hover:text-[#111111] rounded-xl h-5/6 justify-center items-center flex'>Photo</Link>
+          <Link to='/portfolio/video' className='ease-in duration-150 border-[#fefefa1a] border-solid border-2 hover:bg-[#FEFEFA] hover:text-[#111111] rounded-xl h-5/6 justify-center items-center flex'>Video</Link>
+          <Link to='/portfolio/graphic' className='ease-in duration-150 border-[#fefefa1a] border-solid border-2 hover:bg-[#FEFEFA] hover:text-[#111111] rounded-xl h-5/6 justify-center items-center flex'>Graphic Design</Link>
+          <Link to='/portfolio/develop' className='ease-in duration-150 border-[#fefefa1a] border-solid border-2 hover:bg-[#FEFEFA] hover:text-[#111111] rounded-xl h-5/6 justify-center items-center flex'>Develop Projects</Link>
         </div>
       </div>
       <Footer />
