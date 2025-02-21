@@ -40,8 +40,6 @@ function Photo() {
 
 
 
-  // Add error logging for images
-  console.log('Images array:', images);
 
   return (
     <div className='bg-[#111111]'>
@@ -55,7 +53,6 @@ function Photo() {
             key={image._id}
             className='my-10 cursor-pointer'
             onClick={() => {
-              console.log('Clicked image:', image); // Add click logging
               setSelectedImage(image);
             }}
           >
@@ -75,15 +72,15 @@ function Photo() {
       {/* Image Modal */}
       {selectedImage && (
         <div
-          className='fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 '
+          className='fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 max-w-5/6 '
           onClick={() => setSelectedImage(null)}
         >
           <img
             alt={selectedImage.text}
             src={selectedImage.photo}
-            className='max-w-5/6 h-full max-h-[90vh] object-contain rounded-xl'
+            className=' w-auto h-full max-h-[90vh] object-contain rounded-xl'
           />
-          <div className='absolute bottom-3 text-[#2f2f2f] text-xs'>click anywhere to close</div>
+          <div className='absolute bottom-4 text-[#2f2f2f] text-xs'>click anywhere to close</div>
         </div>
       )}
 
