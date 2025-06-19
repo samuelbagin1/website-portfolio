@@ -65,7 +65,7 @@ const ImageUploadForm = ({ onUploadSuccess }) => {
             type="file"
             id="photo"
             onChange={(e) => setPhoto(e.target.files[0])}
-            className="mt-1 w-full "
+            className="mt-1 w-full appearance-none0 "
             required
           />
         </div>

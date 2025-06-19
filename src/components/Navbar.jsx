@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return (
     <div className='fixed w-full h-[80px] items-center flex justify-end text-[#FEFEFA] bg-[#000000ba] backdrop-blur-md z-40'>
-        <div className='w-screen absolute flex justify-center translate-y-[2px]'>
+        <div className='w-screen absolute flex justify-center translate-y-[2px] translate-x-[-2px]'>
             <Link to='/'><img src={Logo} alt="" className=' md:w-[150px] w-[130px] justify-self-center ' /></Link>
         </div>
 
@@ -24,10 +24,10 @@ const Navbar = () => {
 
 
         {/* menu nav bar when screen mobile/md */}
-        <div onClick={handleClick} className='md:hidden z-10 px-7'>
+        <div onClick={handleClick} className='md:hidden z-10 px-4'>
             {nav ? <IoClose size='30'/> : <FaBars size='20' />}
         </div>
-        <ul className={nav ? 'absolute top-0 left-0 w-full h-dvh flex flex-col justify-center items-center bg-[#111111] gap-3 text-lg ' : 'hidden'}>
+        <ul className={nav ? 'absolute top-0 left-0 w-full h-dvh flex flex-col justify-center items-center bg-[#0e0e0e] gap-3 text-lg ' : 'hidden'}>
             <li className=''><Link to='/'>Home</Link></li>
             <li className=''><Link to='/portfolio'>Portfolio</Link></li>
             <li className=''><Link to='/skills'>Skills</Link></li>

@@ -7,10 +7,10 @@ import { Link } from "react-router-dom"
 
 function Footer() {
     return (
-        <div className='w-full lg:h-[250px] h-[500px] bg-[#111111] text-[#FEFEFA] justify-center items-center flex'>
+        <div className='w-full lg:h-[250px] h-[500px] bg-[#0d0d0d] text-[#FEFEFA] justify-center items-center flex'>
             {/* on small screen footer */}
             <div className='justify-center items-center lg:hidden grid grid-rows-5 h-3/5 gap-5'>
-                <div className='row-span-2 justify-center items-center flex'><Link to='/'><img src={Logo} alt="logo" style={{ width: '160px' }} /></Link></div>
+                <div className='row-span-2 justify-center items-center flex translate-x-[-2px]'><Link to='/'><img src={Logo} alt="logo" style={{ width: '160px' }} /></Link></div>
                 <div className='flex justify-center items-center gap-4'>
                     <FaLinkedin size={27} className=' hover:scale-95 duration-150 ease-out' />
                     <FaGithub size={27} className=' hover:scale-95 duration-150 ease-out' />
@@ -18,7 +18,7 @@ function Footer() {
                     <FaTwitter size={27} className=' hover:scale-95 duration-150 ease-out' />
                 </div>
                 <div className='flex justify-center items-center '>
-                    <button className=" font-boldd text-sm border border-solid border-[#fefefa7e] opacity-90 rounded-lg w-40 h-10 align-middle flex items-center justify-center ">leave an email <FaArrowRightLong className='ml-2' /></button>
+                    <button className=" font-boldd text-sm border border-solid border-[#fefefa7e] opacity-90 rounded-lg w-36 h-9 align-middle flex items-center justify-center ">leave an email <FaArrowRightLong className='ml-2' /></button>
                 </div>
                 <ul className='flex justify-center items-center gap-5'>
                     <li className='hover:scale-95 duration-150 ease-out'><Link to='/portfolio'>Portfolio</Link></li>
