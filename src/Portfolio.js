@@ -10,7 +10,7 @@ function Portfolio() {
   return (
     <div>
       <Navbar />
-      <div className='h-svh md:h-screen w-full justify-center items-center flex bg-[#000000] text-[#FEFEFA] font-bold text-3xl md:text-8xl'>
+      <div className='h-svh md:h-screen w-full justify-center items-center flex bg-[#000000] text-[#FEFEFA] font-bold text-3xl md:text-9xl'>
         <div className=' grid grid-rows-4 gap-5 w-3/4 h-3/5 items-center '>
           <Link to='/portfolio/photo' className='ease-in duration-150 hover:opacity-70 hover:translate-x-1'><GradientText gradient='gradient38' >Photo</GradientText></Link>
           <Link to='/portfolio/video' className='ease-in duration-150 hover:opacity-70 hover:translate-x-1'><GradientText gradient='gradient64'>Video</GradientText></Link>

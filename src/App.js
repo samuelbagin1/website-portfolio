@@ -4,6 +4,10 @@ import Footer from "./components/Footer";
 import backImage from "./assets/background.GIF";
 import Button from "./components/Button";
 import BeholdWidget from './components/BeholdWidget';
+import SimpleTransitionEffect from './components/SimpleTransitionEffect';
+import Lenis from '@studio-freight/lenis';
+
+import adjn from './transition-opt-3840.png'
 
 import { Grid } from 'ldrs/react'
 import 'ldrs/react/Grid.css'
@@ -11,6 +15,34 @@ import 'ldrs/react/Grid.css'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Initialize Lenis smooth scrolling
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      gestureDirection: 'vertical',
+      smooth: true,
+      mouseMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    // Cleanup
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
 
   useEffect(() => {
     // Preload the background image
@@ -56,7 +88,7 @@ function App() {
   // flex justify-center items-center
 
   return (
-    <div className="bg-[#111111] text-[#FEFEFA] relative z-10 w-full">
+    <div className="bg-[#111111] text-[#FEFEFA] relative z-10 w-full scroll-smooth">
       <Navbar />
 
       <div className="relative w-full h-lvh justify-center items-center flex">
@@ -78,9 +110,9 @@ function App() {
 
 
         <div className="relative w-full flex justify-center px-4">
-          <div className="w-full lg:w-3/4 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 ">
+          <div className="w-full lg:w-1/2 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 ">
             <span className='flex-1 flex flex-col justify-center order-2 lg:order-1'>
-              <div className='mb-2'><span className='font-bold'>Hi,</span> I'm Sam.</div>
+              <div className='mb-2 font-bold'>Hi, I'm Sam.</div>
               <div>Photographer. Videographer. Developer.</div>
               <div>Based in Slovakia.</div>
               <div>Currently studying at Slovak Technical University.</div>
@@ -106,9 +138,9 @@ function App() {
 
       </div>
 
-      <div className='min-h-screen flex justify-center items-center'>
-        fluid transition
-      </div>
+
+
+      <SimpleTransitionEffect imageSrc='https://res.cloudinary.com/dqktedlja/image/upload/v1750454438/njsfbhjref_wmyz5i.webp' />
 
 
       <div className='w-5/6 right-1/2 mx-auto hidden lg:flex'>
@@ -122,7 +154,7 @@ function App() {
       <div className='h-20'></div>
 
 
-      <div className='relative lg:left-40 left-10 justify-center lg:w-1/2 w-2/3'>
+      <div className='relative lg:left-40 left-10 justify-center lg:w-1/2 w-2/3 bg-gradient-to-r from-[#1a1919] to-[#111111] p-10 rounded-xl'>
         <div>I create clean visuals and digital experiences.</div>
         <div>From concept to final output — photo, video, or code.</div>
         <br></br>
@@ -130,9 +162,12 @@ function App() {
         <div>Let’s make something meaningful.</div>
       </div>
 
+      <div className='h-20'></div>
+
       <Footer />
     </div>
   );
 }
 
 export default App;
+
