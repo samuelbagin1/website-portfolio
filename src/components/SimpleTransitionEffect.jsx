@@ -1,10 +1,23 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const SimpleTransitionEffect = ({ 
   imageSrc = "/your-transition-image.webp"
 }) => {
   const containerRef = useRef(null);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  
+  // Track screen size
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth < 1024); // lg breakpoint in Tailwind
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
   
   // Track scroll progress within the container
   const { scrollYProgress } = useScroll({
@@ -12,11 +25,11 @@ const SimpleTransitionEffect = ({
     offset: ["start end", "end start"]
   });
   
-  // Transform scroll progress to scale value - starts very small, grows big
+  // Transform scroll progress to scale value - responsive scaling
   const scaleY = useTransform(
     scrollYProgress,
     [0, 1.5], 
-    [0.001, 8] // Start at 1vh equivalent, grow to 8x
+    [0.001, isSmallScreen ? 16 : 8] // 16x for small screens, 8x for large screens
   );
   
   return (
