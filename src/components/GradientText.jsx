@@ -3,11 +3,10 @@ const GradientText = ({
   className = "", 
   gradient = "default",
   direction = "default",
-  padding = "p-2",
   ...props 
 }) => {
   // Base styles for gradient text
-  const baseStyles = "inline-block h-full text-transparent bg-clip-text";
+  const baseStyles = " text-transparent bg-clip-text py-4";
   
   // Direction mappings
   const directions = {
@@ -221,7 +220,7 @@ const GradientText = ({
   
   // Combine all classes
   const gradientClass = gradient === "custom" ? "" : `${getDirectionClass()} ${gradients[gradient]}`;
-  const textClasses = `${baseStyles} ${gradientClass} ${padding} ${className}`;
+  const textClasses = `${baseStyles} ${gradientClass} ${className}`;
   
   return (
     <div className={textClasses} {...props}>

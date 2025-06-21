@@ -7,8 +7,6 @@ import BeholdWidget from './components/BeholdWidget';
 import SimpleTransitionEffect from './components/SimpleTransitionEffect';
 import Lenis from '@studio-freight/lenis';
 
-import adjn from './transition-opt-3840.png'
-
 import { Grid } from 'ldrs/react'
 import 'ldrs/react/Grid.css'
 
@@ -154,12 +152,17 @@ function App() {
       <div className='h-20'></div>
 
 
-      <div className='relative lg:left-40 left-10 justify-center lg:w-1/2 w-2/3 bg-gradient-to-r from-[#1a1919] to-[#111111] p-10 rounded-xl'>
-        <div>I create clean visuals and digital experiences.</div>
-        <div>From concept to final output — photo, video, or code.</div>
-        <br></br>
-        <div>Always learning. Always building.</div>
-        <div>Let’s make something meaningful.</div>
+      <div className='w-3/4 left-10 lg:left-1/4 relative bg-gradient-to-r from-[#1a1919] to-[#111111] p-10 rounded-xl md:flex'>
+        <span className='text-sm'>
+          <div>I create clean visuals and digital experiences.</div>
+          <div>From concept to final output — photo, video, or code.</div>
+          <br></br>
+          <div>Always learning. Always building.</div>
+          <div>Let's make something meaningful.</div>
+        </span>
+        <span className='relative flex items-center justify-center md:left-1/4 mt-10 md:mt-0 animate-pulse hover:animate-none'>
+          <Button to="/contact" size='large'>Contact Me</Button>
+        </span>
       </div>
 
       <div className='h-20'></div>

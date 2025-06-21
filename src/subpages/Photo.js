@@ -4,9 +4,13 @@ import Footer from '../components/Footer';
 import { Blur } from 'transitions-kit';
 import { AsyncImage } from 'loadable-image';
 
+import { Grid } from 'ldrs/react'
+import 'ldrs/react/Grid.css'
+
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
 
 function Photo() {
+  const [isLoading, setIsLoading] = useState(true);
   const [images, setImages] = useState([]);
   const [error, setError] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -23,23 +27,43 @@ function Photo() {
 
         const data = await response.json();
         setImages(data);
+        setIsLoading(false);
       } catch (error) {
         setError(`Failed to load images: ${error.message}`);
+        setIsLoading(false);
         console.error('Fetch error:', error);
       }
     };
 
     fetchImages();
+
+    // Fallback in case loading takes too long
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 10000); // 10 seconds for API calls
+
+    return () => clearTimeout(timeout);
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 bg-[#111111] flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <Grid
+            size="60"
+            speed="1.5"
+            color="#69eae4"
+          />
+        </div>
+      </div>
+    );
+  }
 
   if (error) return (
     <div className='bg-[#111111] min-h-screen text-red-500 text-center p-8'>
       {error}
     </div>
   );
-
-
-
 
   return (
     <div className='bg-[#111111]'>
