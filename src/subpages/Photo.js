@@ -18,7 +18,7 @@ function Photo() {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await fetch(`${API_URL}/api/images`);
+        const response = await fetch(`${API_URL}/api/photo`);
 
         if (!response.ok) {
           const errorData = await response.json();
