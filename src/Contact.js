@@ -4,8 +4,6 @@ import Footer from './components/Footer'
 import { useState, useEffect } from 'react';
 import { FaEnvelope, FaLinkedin, FaInstagram, FaDiscord } from 'react-icons/fa'
 
-import dajkwn from './gif.GIF'
-import desjf from './gif2.gif'
 
 import { Grid } from 'ldrs/react'
 import 'ldrs/react/Grid.css'
@@ -38,8 +36,8 @@ const [isLoading, setIsLoading] = useState(true);
             }
         };
 
-        img1.src = dajkwn;
-        img2.src = desjf;
+        img1.src = 'https://res.cloudinary.com/dqktedlja/image/upload/v1750886097/gif-ezgif.com-gif-to-webp-converter_ehrexv.webp';
+        img2.src = 'https://res.cloudinary.com/dqktedlja/image/upload/v1750885754/gif2-ezgif.com-gif-to-webp-converter_ogavbp.webp';
 
         img1.onload = handleImageLoad;
         img1.onerror = handleImageError;
@@ -100,11 +98,11 @@ const [isLoading, setIsLoading] = useState(true);
 
 
     return (
-        <div>
+        <div className='overflow-x-hidden'>
             <Navbar />
 
-            <div className="absolute w-full h-lvh justify-center items-center flex -z-10">
-                <img src={isSmallScreen ? dajkwn : desjf} alt='background' className="absolute h-screen object-cover w-full md:scale-105" />
+            <div className="absolute w-full h-lvh justify-center items-center flex -z-10 overflow-hidden">
+                <img src={isSmallScreen ? 'https://res.cloudinary.com/dqktedlja/image/upload/v1750886097/gif-ezgif.com-gif-to-webp-converter_ehrexv.webp' : 'https://res.cloudinary.com/dqktedlja/image/upload/v1750885754/gif2-ezgif.com-gif-to-webp-converter_ogavbp.webp'} alt='background' className="absolute h-screen object-cover w-full md:scale-105" />
                 <div className="h-screen w-full absolute bg-[#00000097] justify-center backdrop-blur-md "></div>
             </div>
 
@@ -113,8 +111,8 @@ const [isLoading, setIsLoading] = useState(true);
 
                     <a className='h-36 w-full md:h-96 md:w-1/5 rounded-xl bg-[#bababa11] backdrop-blur-xl p-4 md:p-10 cursor-pointer hover:bg-[#bababa3b] transition-all duration-200'
                         href='https://www.instagram.com/samuelbagin/' target='_blank' rel='noopener noreferrer'>
-                        <div className='font-bold text-3xl mb-2'>Instagram</div>
-                        <div className='text-sm'>@samuelbagin</div>
+                        <div className='font-bold text-2xl md:text-3xl mb-2'>Instagram</div>
+                        <div className='text-sm opacity-80'>@samuelbagin</div>
                         <div className='md:flex justify-center items-center md:h-3/4 '>
                             <FaInstagram size={isSmallScreen ? 70 : 150} className='absolute right-4 bottom-4 md:static hover:scale-95 duration-150 ease-out' />
                         </div>
@@ -124,8 +122,8 @@ const [isLoading, setIsLoading] = useState(true);
                         href="mailto:samuel.bagin1@gmail.com?subject=Hello%20Samuel&body=Hi%20Samuel,%0D%0A%0D%0AI%20would%20like%20to%20get%20in%20touch%20with%20you.%0D%0A%0D%0ABest%20regards"
                         className='h-36 w-full md:h-96 md:w-1/5 rounded-xl bg-[#bababa11] backdrop-blur-xl p-4 md:p-10 cursor-pointer hover:bg-[#bababa3b] transition-all duration-200'
                     >
-                        <div className='font-bold text-3xl mb-2'>Email</div>
-                        <div className='text-sm'>samuel.bagin1@gmail.com</div>
+                        <div className='font-bold text-2xl md:text-3xl mb-2'>Email</div>
+                        <div className='text-sm opacity-80'>samuel.bagin1@gmail.com</div>
                         <div className='flex justify-center items-center h-3/4 '>
                             <FaEnvelope size={isSmallScreen ? 65 : 150} className='absolute right-4 bottom-4 md:static hover:scale-95 duration-150 ease-out' />
                         </div>
@@ -137,8 +135,8 @@ const [isLoading, setIsLoading] = useState(true);
                         className='h-36 w-full md:h-96 md:w-1/5 rounded-xl bg-[#bababa11] backdrop-blur-xl p-4 md:p-10 cursor-pointer hover:bg-[#bababa3b] transition-all duration-200 relative group'
                         onClick={handleCopyToClipboard}
                     >
-                        <div className='font-bold text-3xl mb-2'>Discord</div>
-                        <div className={`transition-all duration-200 text-sm ${copied ? 'text-[#50D18D]' : ''}`}>
+                        <div className='font-bold text-2xl md:text-3xl mb-2'>Discord</div>
+                        <div className={`transition-all duration-200 text-sm ${copied ? 'text-[#50D18D]' : 'opacity-80'}`}>
                             {copied ? 'Copied!' : 'apollo446'}
                         </div>
                         <div className='flex justify-center items-center h-3/4'>
@@ -161,8 +159,8 @@ const [isLoading, setIsLoading] = useState(true);
 
                     <a className='h-36 w-full md:h-96 md:w-1/5 rounded-xl bg-[#bababa11] backdrop-blur-xl p-4 md:p-10 cursor-pointer hover:bg-[#bababa3b] transition-all duration-200'
                         href='https://www.linkedin.com/in/samuel-bag%C3%ADn/' target='_blank' rel='noopener noreferrer'>
-                        <div className='font-bold text-3xl mb-2'>LinkedIn</div>
-                        <div className='text-sm'>Samuel Bagin</div>
+                        <div className='font-bold text-2xl md:text-3xl mb-2'>LinkedIn</div>
+                        <div className='text-sm opacity-80'>Samuel Bagin</div>
                         <div className='flex justify-center items-center h-3/4 '>
                             <FaLinkedin size={isSmallScreen ? 70 : 150} className='absolute right-4 bottom-4 md:static hover:scale-95 duration-150 ease-out' />
                         </div>

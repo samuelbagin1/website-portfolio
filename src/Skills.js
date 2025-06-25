@@ -38,8 +38,9 @@ function Skills() {
   return (
     <div className='bg-[#0e0e0e] text-[#FEFEFA]'>
       <Navbar />
+      <div className='h-20'></div>
       <div className='h-[300vh] justify-center items-center flex py-8'>
-        <div className="grid grid-cols-3 grid-rows-12 gap-4 w-4/5 h-full py-28 font-bold text-md text-center lg:text-3xl">
+        <div className="grid grid-cols-3 grid-rows-12 gap-4 w-4/5 h-full font-bold text-md text-center lg:text-3xl">
           <div className="col-span-2 bg-[#00E6B3] text-[#312AF8] justify-center items-center flex rounded-2xl">Object Oriented Programming</div>
           <div className="row-span-2 col-start-3 bg-[#91FBC7] text-[#920089] justify-center items-center flex rounded-2xl">C++</div>
 
