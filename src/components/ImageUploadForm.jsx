@@ -130,12 +130,12 @@ const ImageUploadForm = ({ onUploadSuccess, contentType, endpoint, fields }) => 
             <label htmlFor="text" className="block text-sm">
               {contentType === 'develop' ? 'Description *' : 'Text *'}
             </label>
-            <input
+            <textarea
               type="text"
               id="text"
               value={formData.text}
               onChange={(e) => handleInputChange('text', e.target.value)}
-              className="mt-1 p-2 w-full md:w-1/2 rounded-lg bg-[#333333]"
+              className="mt-1 p-2 w-full md:w-1/2 rounded-lg bg-[#333333] field-sizing-input"
               required
             />
           </div>

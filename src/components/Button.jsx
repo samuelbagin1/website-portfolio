@@ -6,6 +6,7 @@ const Button = ({
   className = "", 
   variant = "default",
   size = "default",
+  href,
   ...props 
 }) => {
   // Base styles
@@ -39,7 +40,7 @@ const Button = ({
   }
   
   return (
-    <button className={buttonClasses} {...props}>
+    <button className={buttonClasses} href={href} target='_blank' rel='noopener noreferrer' {...props}>
       {children}
     </button>
   );

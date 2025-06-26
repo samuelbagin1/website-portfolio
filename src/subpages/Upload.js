@@ -19,7 +19,7 @@ function Upload() {
     { 
       id: 'photo', 
       label: 'Photo', 
-      endpoint: '/api/images',
+      endpoint: '/api/photo',
       fields: ['text', 'photo'] 
     },
     { 

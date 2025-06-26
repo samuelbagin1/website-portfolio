@@ -82,7 +82,7 @@ function Graphic() {
           >
             <AsyncImage
               alt={image.text}
-              src={image.photo}
+              src={image.image}
               style={{ height: 'auto', aspectRatio: 1 / 1 }}
               loader={<div className="bg-[#959595] rounded-xl" />}
               error={<div className="bg-red-500 rounded-xl" />}
@@ -101,7 +101,7 @@ function Graphic() {
         >
           <img
             alt={selectedImage.text}
-            src={selectedImage.photo}
+            src={selectedImage.image}
             className=' w-auto h-full max-h-[90vh] object-contain rounded-xl'
           />
           <div className='absolute bottom-4 text-[#2f2f2f] text-xs'>click anywhere to close</div>
