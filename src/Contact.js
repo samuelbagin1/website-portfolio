@@ -102,7 +102,7 @@ const [isLoading, setIsLoading] = useState(true);
             <Navbar />
 
             <div className="absolute w-full h-lvh justify-center items-center flex -z-10 overflow-hidden">
-                <img src={isSmallScreen ? 'https://res.cloudinary.com/dqktedlja/image/upload/v1750886097/gif-ezgif.com-gif-to-webp-converter_ehrexv.webp' : 'https://res.cloudinary.com/dqktedlja/image/upload/v1750885754/gif2-ezgif.com-gif-to-webp-converter_ogavbp.webp'} alt='background' className="absolute h-screen object-cover w-full md:scale-105" />
+                <img src='https://res.cloudinary.com/dqktedlja/image/upload/v1751065519/vgh-ezgif.com-gif-to-webp-converter_rssfrn.webp' alt='background' className="absolute h-screen object-cover w-full md:scale-105" />
                 <div className="h-screen w-full absolute bg-[#00000097] justify-center backdrop-blur-md "></div>
             </div>
 
@@ -114,7 +114,7 @@ const [isLoading, setIsLoading] = useState(true);
                         <div className='font-bold text-2xl md:text-3xl mb-2'>Instagram</div>
                         <div className='text-sm opacity-80'>@samuelbagin</div>
                         <div className='md:flex justify-center items-center md:h-3/4 '>
-                            <FaInstagram size={isSmallScreen ? 70 : 150} className='absolute right-4 bottom-4 md:static hover:scale-95 duration-150 ease-out' />
+                            <FaInstagram size={isSmallScreen ? 70 : 150} className='absolute right-4 bottom-4 md:static hover:scale-95 duration-150 ease-out opacity-90' />
                         </div>
                     </a>
 
@@ -125,7 +125,7 @@ const [isLoading, setIsLoading] = useState(true);
                         <div className='font-bold text-2xl md:text-3xl mb-2'>Email</div>
                         <div className='text-sm opacity-80'>samuel.bagin1@gmail.com</div>
                         <div className='flex justify-center items-center h-3/4 '>
-                            <FaEnvelope size={isSmallScreen ? 65 : 150} className='absolute right-4 bottom-4 md:static hover:scale-95 duration-150 ease-out' />
+                            <FaEnvelope size={isSmallScreen ? 65 : 150} className='absolute right-4 bottom-4 md:static hover:scale-95 duration-150 ease-out opacity-90' />
                         </div>
                     </a>
 
@@ -142,7 +142,7 @@ const [isLoading, setIsLoading] = useState(true);
                         <div className='flex justify-center items-center h-3/4'>
                             <FaDiscord
                                 size={isSmallScreen ? 70 : 150}
-                                className={`absolute right-4 bottom-4 md:static hover:scale-95 duration-150 ease-out transition-all ${copied ? 'text-[#50D18D]' : ''}`}
+                                className={`absolute right-4 bottom-4 md:static hover:scale-95 duration-150 ease-out transition-all opacity-90 ${copied ? 'text-[#50D18D]' : ''}`}
                             />
                         </div>
 
@@ -162,7 +162,7 @@ const [isLoading, setIsLoading] = useState(true);
                         <div className='font-bold text-2xl md:text-3xl mb-2'>LinkedIn</div>
                         <div className='text-sm opacity-80'>Samuel Bagin</div>
                         <div className='flex justify-center items-center h-3/4 '>
-                            <FaLinkedin size={isSmallScreen ? 70 : 150} className='absolute right-4 bottom-4 md:static hover:scale-95 duration-150 ease-out' />
+                            <FaLinkedin size={isSmallScreen ? 70 : 150} className='absolute right-4 bottom-4 md:static hover:scale-95 duration-150 ease-out opacity-90' />
                         </div>
                     </a>
 

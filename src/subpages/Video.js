@@ -66,12 +66,12 @@ function Video() {
   return (
     <div className='bg-[#111111]'>
       <Navbar />
-      <div className='h-5' />
+      <div className='h-28' />
 
-      <div className=' relative md:top-[100px] min-h-screen'>
+      <div className=''>
         {images?.map((image) => (
-          <div key={image._id} className='h-screen flex md:h-full md:relative justify-center items-center'>
-            <iframe src={image.linkText} className='w-3/4 h-auto md:aspect-video aspect-square rounded-xl mx-auto ' title='a video' allowFullScreen></iframe>
+          <div key={image._id} className=' mx-auto mb-12 md:mb-20'>
+            <iframe src={image.linkText} className='w-3/4 h-auto aspect-video rounded-xl mx-auto ' title='a video' allowFullScreen></iframe>
           
           </div>
         ))}

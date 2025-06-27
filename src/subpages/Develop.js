@@ -70,18 +70,17 @@ function Develop() {
 
   return (
     <>
-      <body className='bg-[#111111]' >
+      <body className='bg-[#111111] ' >
         <Navbar />
 
-        <div className='h-5'></div>
+        <div className='h-20'></div>
 
-        {/* Mobile/Small screen layout */}
-        <div className='md:hidden min-h-screen px-4 py-8'>
-          <div className='h-10'></div>
+
+        <div className='md:w-3/4 mx-auto min-h-screen px-4 py-8 text-[#FEFEFA]'>
           {images?.map((image, index) => (
-            <div className='mb-12 last:mb-0' key={image._id}>
+            <div className='mb-20 last:mb-0' key={image._id}>
               
-              <div className='w-full relative rounded-xl overflow-hidden drop-shadow-[0_20px_20px_rgba(255,255,255,0.1)]'>
+              <div className='w-full relative rounded-xl overflow-hidden border-solid border-[#353535] border'>
                 
                 {/* Main Image */}
                 <div className='w-full h-64 relative'>
@@ -102,77 +101,19 @@ function Develop() {
                 </div>
 
                 {/* Content Section */}
-                <div className='bg-white/90 backdrop-blur-sm p-6'>
+                <div className=' p-6'>
                   {/* Title */}
-                  <h2 className='text-2xl font-bold text-[#111111] mb-3'>{image.title}</h2>
+                  <h2 className='text-2xl font-bold text-[#FEFEFA] mb-3'>{image.title}</h2>
                   
                   {/* Description */}
-                  <p className='text-[#111111] text-base leading-relaxed mb-6'>{image.text}</p>
+                  <p className='text-[#FEFEFA] text-base leading-relaxed mb-6'>{image.text}</p>
                   
                   {/* Button */}
-                  <div className='w-full flex justify-center'>
-                    <Button href={image.linkText} size='large' className='border-[#1111119f] hover:border-[#111111] mt-5'>
-                      view project <FaArrowRightLong className='inline ml-2' />
-                    </Button>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-          ))}
-        </div>
-
-        {/* Medium+ screen layout (existing) */}
-        <div className='hidden md:block min-h-screen'>
-          {images?.map((image) => (
-            <div className='h-screen w-full flex justify-center items-center' key={image._id}>
-              
-              <div className='w-3/4 h-3/4 relative rounded-xl overflow-hidden flex drop-shadow-[0_35px_35px_rgba(255,255,255,0.2)] '>
-                
-                {/* Background Image - Blurred and Lightened */}
-                <div 
-                  className='absolute inset-0 w-full h-full bg-cover bg-center filter blur-xl brightness-130 opacity-60'
-                  style={{
-                    backgroundImage: `url(${image.image})`,
-                  }}
-                ></div>
-                
-                {/* Content Overlay */}
-                <div className='absolute inset-0 bg-[#ffffff7f] bg-opacity-80'></div>
-                
-                {/* Left side - Content */}
-                <div className='w-1/2 p-10 flex flex-col justify-between relative z-10'>
-                  <div>
-                    {/* Title at top, bold */}
-                    <p className='text-3xl font-bold text-[#111111]'>{image.title}</p>
-                    
-                    {/* Text with margin top 5 */}
-                    <p className='mt-5 text-[#111111] text-lg'>{image.text}</p>
-                  </div>
-                  
-                  {/* Button at bottom left */}
                   <div className='w-full flex justify-center items-center'>
-                    <Button href={image.linkText} size='large' className='border-[#1111119f] hover:border-[#111111]'>
+                    <Button href={image.linkText} size='large' className=' mt-5'>
                       view project <FaArrowRightLong className='inline ml-2' />
                     </Button>
                   </div>
-                </div>
-
-                {/* Right side - Image (overlapping, 20% bigger) */}
-                <div className='absolute right-0 top-0 w-[50%] h-[120%] -translate-y-[10%] translate-x-[10%]'>
-                  <AsyncImage
-                    alt={image.title}
-                    src={image.image}
-                    style={{ 
-                      height: '100%', 
-                      width: '100%',
-                      objectFit: 'cover',
-                      borderRadius: '12px'
-                    }}
-                    loader={<div className="bg-[#959595] rounded-xl w-full h-full" />}
-                    error={<div className="bg-red-500 rounded-xl w-full h-full" />}
-                  />
                 </div>
 
               </div>
@@ -180,6 +121,8 @@ function Develop() {
             </div>
           ))}
         </div>
+
+        
 
         <Footer />
       </body>

@@ -9,6 +9,7 @@ import Lenis from '@studio-freight/lenis';
 
 import { Grid } from 'ldrs/react'
 import 'ldrs/react/Grid.css'
+import { Link } from 'react-router-dom';
 
 
 function App() {
@@ -133,6 +134,53 @@ function App() {
         <div className="relative flex justify-center items-center w-full mt-6">
           <Button to="/portfolio" size='large'>View My Work</Button>
         </div>
+
+      </div>
+
+
+
+
+
+      <div className='md:flex justify-center items-center w-3/4 mx-auto mt-20 gap-4'>
+
+        <Link to="/portfolio/video" className='w-1/2 h-full'>
+          <video
+            autoPlay loop muted playsInline data-wf-ignore="true" data-object-fit="cover"
+            className='rounded-xl w-full h-full object-cover mb-10 md:mb-0'
+          >
+            <source
+              src="https://res.cloudinary.com/dqktedlja/video/upload/v1751067722/jdhgdjkg_stdrr0.mp4"
+              type="video/mp4"
+              data-wf-ignore="true"
+            />
+            <source
+              src="https://res.cloudinary.com/dqktedlja/video/upload/v1751066979/jdhgdjkg_hh7vco.webm"
+              type="video/webm"
+              data-wf-ignore="true"
+            />
+            Your browser does not support the video tag.
+          </video>
+        </Link>
+
+
+        <Link to="/portfolio/develop" className='w-1/2 h-full'>
+          <video
+            autoPlay loop muted playsInline data-wf-ignore="true" data-object-fit="cover"
+            className='rounded-xl w-full h-full object-cover'
+          >
+            <source
+              src="https://res.cloudinary.com/dqktedlja/video/upload/v1751068211/schoolmap_1_oeapc4.mp4"
+              type="video/mp4"
+              data-wf-ignore="true"
+            />
+            <source
+              src="https://res.cloudinary.com/dqktedlja/video/upload/v1751068141/schoolmap_avep8s.webm"
+              type="video/webm"
+              data-wf-ignore="true"
+            />
+            Your browser does not support the video tag.
+          </video>
+        </Link>
 
       </div>
 
