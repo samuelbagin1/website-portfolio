@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import { Link } from 'react-router-dom'
@@ -7,6 +7,11 @@ import GradientText from './components/GradientText'
 
 
 function Portfolio() {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div>
       <Navbar />

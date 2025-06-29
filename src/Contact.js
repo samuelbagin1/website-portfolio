@@ -4,6 +4,7 @@ import Footer from './components/Footer'
 import { useState, useEffect } from 'react';
 import { FaEnvelope, FaLinkedin, FaInstagram, FaDiscord } from 'react-icons/fa'
 
+import kfrk from './assets/adk.webm'
 
 import { Grid } from 'ldrs/react'
 import 'ldrs/react/Grid.css'
@@ -12,37 +13,33 @@ import 'ldrs/react/Grid.css'
 
 function Contact() {
 
-const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const [copied, setCopied] = useState(false);
 
     // Preload images
     useEffect(() => {
         const img1 = new Image();
-        const img2 = new Image();
         let loadedCount = 0;
 
         const handleImageLoad = () => {
             loadedCount++;
-            if (loadedCount === 2) {
+            if (loadedCount === 1) {
                 setIsLoading(false);
             }
         };
 
         const handleImageError = () => {
             loadedCount++;
-            if (loadedCount === 2) {
+            if (loadedCount === 1) {
                 setIsLoading(false);
             }
         };
 
-        img1.src = 'https://res.cloudinary.com/dqktedlja/image/upload/v1750886097/gif-ezgif.com-gif-to-webp-converter_ehrexv.webp';
-        img2.src = 'https://res.cloudinary.com/dqktedlja/image/upload/v1750885754/gif2-ezgif.com-gif-to-webp-converter_ogavbp.webp';
+        img1.src = 'https://res.cloudinary.com/dqktedlja/image/upload/v1751065519/vgh-ezgif.com-gif-to-webp-converter_rssfrn.webp';
 
         img1.onload = handleImageLoad;
         img1.onerror = handleImageError;
-        img2.onload = handleImageLoad;
-        img2.onerror = handleImageError;
 
         // Fallback in case loading takes too long
         const timeout = setTimeout(() => {
@@ -102,7 +99,13 @@ const [isLoading, setIsLoading] = useState(true);
             <Navbar />
 
             <div className="absolute w-full h-lvh justify-center items-center flex -z-10 overflow-hidden">
-                <img src='https://res.cloudinary.com/dqktedlja/image/upload/v1751065519/vgh-ezgif.com-gif-to-webp-converter_rssfrn.webp' alt='background' className="absolute h-screen object-cover w-full md:scale-105" />
+                <video autoPlay loop muted playsInline data-wf-ignore="true" data-object-fit="cover"
+                    className=' w-full h-full object-cover'>
+                    <source src={kfrk}
+                        type="video/webm"
+                        data-wf-ignore="true" />
+                </video>
+                
                 <div className="h-screen w-full absolute bg-[#00000097] justify-center backdrop-blur-md "></div>
             </div>
 

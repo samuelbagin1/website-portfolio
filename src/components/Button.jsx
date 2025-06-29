@@ -40,9 +40,9 @@ const Button = ({
   }
   
   return (
-    <button className={buttonClasses} href={href} target='_blank' rel='noopener noreferrer' {...props}>
+    <a className={buttonClasses} href={href} target='_blank' rel='noopener noreferrer' {...props}>
       {children}
-    </button>
+    </a>
   );
 };
 

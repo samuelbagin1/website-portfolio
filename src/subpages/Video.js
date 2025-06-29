@@ -71,7 +71,7 @@ function Video() {
       <div className=''>
         {images?.map((image) => (
           <div key={image._id} className=' mx-auto mb-12 md:mb-20'>
-            <iframe src={image.linkText} className='w-3/4 h-auto aspect-video rounded-xl mx-auto ' title='a video' allowFullScreen></iframe>
+            <iframe src={image.linkText} className='w-[90%] md:w-3/4 h-auto aspect-video rounded-xl mx-auto ' title='a video' allowFullScreen></iframe>
           
           </div>
         ))}
