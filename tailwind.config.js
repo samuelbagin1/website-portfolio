@@ -24,85 +24,18 @@ module.exports = {
     // Import Satoshi font from CDN Fonts
     plugin(function ({ addBase }) {
       addBase({
-        '@import': 'url("https://fonts.cdnfonts.com/css/satoshi")',
+        '@import': 'url("https://fonts.cdnfonts.com/css/satoshi?styles=135009,135005,135007,135002,135000")',
       })
     }),
-    
-    // Define Satoshi font faces
+
+    // Import Instruments
     plugin(function ({ addBase }) {
       addBase({
-        '@font-face': [
-          {
-            fontFamily: 'Satoshi',
-            fontWeight: '300',
-            fontStyle: 'normal',
-            src: 'url("https://fonts.cdnfonts.com/s/19808/Satoshi-Light.woff") format("woff")',
-          },
-          {
-            fontFamily: 'Satoshi',
-            fontWeight: '400',
-            fontStyle: 'normal',
-            src: 'url("https://fonts.cdnfonts.com/s/19808/Satoshi-Regular.woff") format("woff")',
-          },
-          {
-            fontFamily: 'Satoshi',
-            fontWeight: '500',
-            fontStyle: 'normal',
-            src: 'url("https://fonts.cdnfonts.com/s/19808/Satoshi-Medium.woff") format("woff")',
-          },
-          {
-            fontFamily: 'Satoshi',
-            fontWeight: '700',
-            fontStyle: 'normal',
-            src: 'url("https://fonts.cdnfonts.com/s/19808/Satoshi-Bold.woff") format("woff")',
-          },
-          {
-            fontFamily: 'Satoshi',
-            fontWeight: '900',
-            fontStyle: 'normal',
-            src: 'url("https://fonts.cdnfonts.com/s/19808/Satoshi-Black.woff") format("woff")',
-          },
-          {
-            fontFamily: 'Satoshi',
-            fontWeight: '400',
-            fontStyle: 'italic',
-            src: 'url("https://fonts.cdnfonts.com/s/19808/Satoshi-Italic.woff") format("woff")',
-          },
-          {
-            fontFamily: 'Satoshi',
-            fontWeight: '700',
-            fontStyle: 'italic',
-            src: 'url("https://fonts.cdnfonts.com/s/19808/Satoshi-BoldItalic.woff") format("woff")',
-          },
-          {
-            fontFamily: 'Satoshi',
-            fontWeight: '900',
-            fontStyle: 'italic',
-            src: 'url("https://fonts.cdnfonts.com/s/19808/Satoshi-BlackItalic.woff") format("woff")',
-          }
-        ]
+        '@import': 'url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap")',
       })
     }),
 
 
-    // Define Instrument Serif font faces
-    plugin(function ({ addBase }) {
-      addBase({
-        '@font-face': [
-          {
-            fontFamily: 'Instrument Serif',
-            fontWeight: '400',
-            fontStyle: 'normal',
-            src: 'url("https://fonts.gstatic.com/s/instrumentserif/v1/jxHHdHHq1sWZ9YDYHSJnqYKHdjI7uzVOkIbj.woff2") format("woff2")',
-          },
-          {
-            fontFamily: 'Instrument Serif',
-            fontWeight: '400',
-            fontStyle: 'italic',
-            src: 'url("https://fonts.gstatic.com/s/instrumentserif/v1/jxHDdHHq1sWZ9YDYHSJnqYKHdiZ8lzHDNwPdBa8.woff2") format("woff2")',
-          }
-        ]
-      })
-    }),
+
   ],
 }

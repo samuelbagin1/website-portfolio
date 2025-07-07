@@ -9,12 +9,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import 'ldrs/react/Grid.css';
 
+
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
 
-function Graphic() {
+function Photo() {
   const [isLoading, setIsLoading] = useState(true);
   const [images, setImages] = useState([]);
   const [error, setError] = useState(null);
@@ -63,30 +64,40 @@ function Graphic() {
 
   // Initialize GSAP ScrollSmoother and parallax effects
   useEffect(() => {
+    // Ensure the component is not loading and images are present
     if (!isLoading && images.length > 0) {
-      // Small delay to ensure DOM is ready
-      const timer = setTimeout(() => {
+      // Use a matchMedia to handle GSAP logic, ensuring it runs after DOM is ready
+      const ctx = gsap.context(() => {
         // Create ScrollSmoother
         scrollSmootherRef.current = ScrollSmoother.create({
           wrapper: smoothWrapperRef.current,
           content: smoothContentRef.current,
-          smooth: 2, // Smoothness level (higher = smoother but less responsive)
-          effects: true, // Enable data-speed effects
-          normalizeScroll: true, // Normalize scroll across devices
+          smooth: 2,
+          effects: true,
+          normalizeScroll: true,
           ignoreMobileResize: true,
         });
 
-        // Ratio calculation function like in the reference
-        const getRatio = (el) => window.innerHeight / (window.innerHeight + el.offsetHeight);
-
         // Create advanced parallax effects for each image section
         imageRefs.current.forEach((section, i) => {
-          if (section) {
-            // Apply parallax effect to the image container
+          if (section && section.parentElement) {
+            const container = section.parentElement;
+
+            // The ratio determines how much the image "sticks" or "slides".
+            // We base it on the container's height for a responsive effect
+            // that works on both mobile (h-96) and desktop (h-screen).
+            const getRatio = (el) => container.offsetHeight / (container.offsetHeight + el.offsetHeight);
+            const ratio = getRatio(section);
+
+            // The animation moves the section vertically.
+            // The values are calculated to prevent gaps on any screen size
+            // by using the container's height as the basis for movement.
             gsap.fromTo(section, {
-              y: () => i ? -window.innerHeight * getRatio(section) : 0
+              y: () => i ? -container.offsetHeight * ratio : 0,
+              scale: () => window.innerWidth<768 ? 1.5 : 1
             }, {
-              y: () => window.innerHeight * (1 - getRatio(section)),
+              y: container.offsetHeight * (1 - ratio),
+              scale: () => window.innerWidth<768 ? 1.5 : 1,
               ease: "none",
               scrollTrigger: {
                 trigger: section,
@@ -98,14 +109,9 @@ function Graphic() {
             });
           }
         });
+      }, smoothWrapperRef); // scope the context to the main wrapper
 
-        // Refresh ScrollTrigger to recalculate positions
-        ScrollTrigger.refresh();
-      }, 100);
-
-      return () => {
-        clearTimeout(timer);
-      };
+      return () => ctx.revert(); // cleanup GSAP animations and ScrollSmoother
     }
   }, [isLoading, images]);
 
@@ -163,30 +169,29 @@ function Graphic() {
       <div id="smooth-wrapper" ref={smoothWrapperRef} className='bg-[#111111]'>
         <div id="smooth-content" ref={smoothContentRef}>
 
-          <div className='h-[100px]' />
 
           {/* Image Grid */}
           <div className='relative'>
             {images?.map((image, index) => (
               <div
                 key={image._id}
-                className='relative h-screen flex items-center justify-center cursor-pointer overflow-hidden'
+                className='relative cursor-pointer overflow-hidden'
+                // h-96 md:h-screen flex items-center justify-center cursor-pointer overflow-hidden
                 onClick={() => {
                   setSelectedImage(image);
                 }}
               >
                 <div
                   ref={(el) => addToRefs(el, index)}
-                  className='w-full'
+                  className='w-full h-full overflow-hidden'
                 >
                   <AsyncImage
-                    alt={image.text}
                     src={image.image}
-                    style={{ height: 'auto', aspectRatio: 1 / 1 }}
-                    loader={<div className="bg-[#959595] rounded-xl aspect-square" />}
-                    error={<div className="bg-red-500 rounded-xl aspect-square" />}
+                    style={{ height: 'auto', aspectRatio: 16 / 9 }}
+                    loader={<div className="bg-[#959595] aspect-video" />}
+                    error={<div className="bg-red-500 aspect-video" />}
                     Transition={(props) => <Blur radius={10} {...props} />}
-                    className='w-full rounded-xl aspect-square object-cover'
+                    className='w-full h-[150%] object-cover aspect-video'
                   />
                 </div>
               </div>
@@ -202,4 +207,4 @@ function Graphic() {
   );
 }
 
-export default Graphic;
+export default Photo;

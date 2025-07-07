@@ -29,6 +29,8 @@ function App() {
   const videosRef = useRef(null);
   const widgetRef = useRef(null);
   const ctaSectionRef = useRef(null);
+  const parallaxRef = useRef(null);
+  const contactRef = useRef(null);
 
   // Track screen size for responsive transition effect
   useEffect(() => {
@@ -205,6 +207,29 @@ function App() {
           }
         );
 
+
+        gsap.fromTo(
+          contactRef.current,
+          {
+            opacity: 0,
+            y: 30,
+            scale: 0.8,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: "back.out(1.7)",
+            delay: 0.4, // Added 0.2s delay
+            scrollTrigger: {
+              trigger: contactRef.current,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+
         // Videos animation - stagger both videos
         gsap.fromTo(
           videosRef.current?.children,
@@ -274,6 +299,24 @@ function App() {
         );
 
       });
+
+      gsap.fromTo(
+        parallaxRef.current.children[0],
+        {
+          y: -100,
+        },
+        {
+          y: 100, // Adjust this value for the parallax effect
+          ease: "none",
+          scrollTrigger: {
+            trigger: parallaxRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+        }
+      )
 
       // Cleanup
       return () => {
@@ -387,6 +430,12 @@ function App() {
 
           <div className='h-40' />
 
+          <div className='w-screen h-[80vh] relative overflow-hidden' ref={parallaxRef}>
+            <img src='https://res.cloudinary.com/dqktedlja/image/upload/v1751052585/test/f15eef31795b4e26bfb626803_tadpfx.webp' className=' h-[150%] w-full object-cover absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' alt='background' />
+          </div>
+
+          <div className='h-40' />
+
           <div ref={widgetRef}>
             <div className='w-5/6 right-1/2 mx-auto hidden lg:flex'>
               <BeholdWidget id='7eJB3FwDt4Ahpq9N9X1v' className='hidden' />
@@ -398,7 +447,7 @@ function App() {
 
           <div className='h-20'></div>
 
-          <div ref={ctaSectionRef} className='w-3/4 left-10 lg:left-1/4 relative bg-gradient-to-r from-[#1a1919] to-[#111111] p-10 rounded-xl md:flex'>
+          <div ref={contactRef} className='w-3/4 left-10 lg:left-1/4 relative bg-gradient-to-r from-[#1a1919] to-[#111111] p-10 rounded-xl md:flex'>
             <span className='text-sm'>
               <div>I create clean visuals and digital experiences.</div>
               <div>From concept to final output — photo, video, or code.</div>
