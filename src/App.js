@@ -212,19 +212,19 @@ function App() {
           contactRef.current,
           {
             opacity: 0,
-            y: 30,
+            y: -100,
             scale: 0.8,
           },
           {
             opacity: 1,
             y: 0,
             scale: 1,
-            duration: 0.8,
+            duration: 1.2,
             ease: "back.out(1.7)",
-            delay: 0.4, // Added 0.2s delay
+            delay: 0.2, // Added 0.2s delay
             scrollTrigger: {
               trigger: contactRef.current,
-              start: "top 80%",
+              start: "top 40%",
               toggleActions: "play none none reverse",
             },
           }
@@ -349,7 +349,7 @@ function App() {
       <div id="smooth-wrapper">
         <div id="smooth-content" className="bg-[#111111] text-[#FEFEFA] relative z-10 w-full">
 
-          <div className="relative w-full h-lvh justify-center items-center flex">
+          <div className="relative w-full h-svh justify-center items-center flex">
             <img src={backImage} alt='background' className="absolute h-screen object-cover w-full " />
 
             <div className="h-screen w-full absolute bg-[#00000097] justify-center backdrop-blur-md"></div>

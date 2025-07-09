@@ -6,7 +6,7 @@ const GradientText = ({
   ...props 
 }) => {
   // Base styles for gradient text
-  const baseStyles = " text-transparent bg-clip-text py-4";
+  const baseStyles = " text-transparent bg-clip-text py-4 w-fit";
   
   // Direction mappings
   const directions = {
