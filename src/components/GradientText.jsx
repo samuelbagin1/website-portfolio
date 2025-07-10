@@ -23,7 +23,7 @@ const GradientText = ({
   
   // WebGradients Collection - All 180 gradients with exact CSS conversions
   const gradients = {
-    default: "from-blue-600 to-indigo-200",
+    default: "",
     
     // WebGradients Collection (001-180) - Colors only, direction will be applied separately
     gradient1: "from-[#ff9a9e] to-[#fad0c4]", // Warm Flame

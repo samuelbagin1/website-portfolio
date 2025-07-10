@@ -221,7 +221,7 @@ function App() {
             scale: 1,
             duration: 1.2,
             ease: "back.out(1.7)",
-            delay: 0.2, // Added 0.2s delay
+            delay: 0.4, // Added 0.2s delay
             scrollTrigger: {
               trigger: contactRef.current,
               start: "top 40%",
@@ -436,7 +436,7 @@ function App() {
 
           <div className='h-40' />
 
-          <div ref={widgetRef}>
+          <div ref={widgetRef} >
             <div className='w-5/6 right-1/2 mx-auto hidden lg:flex'>
               <BeholdWidget id='7eJB3FwDt4Ahpq9N9X1v' className='hidden' />
             </div>
