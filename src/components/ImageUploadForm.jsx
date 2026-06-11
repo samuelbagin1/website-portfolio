@@ -100,7 +100,7 @@ export default function ImageUploadForm({ onUploadSuccess, contentType, endpoint
             <div className="space-y-2">
               <Label htmlFor="shortText">Short summary</Label>
               <Textarea id="shortText" className="min-h-24" value={formData.shortText} onChange={(event) => updateField("shortText", event.target.value)} required />
-              <p className="text-xs text-zinc-500">Displayed on the develop listing card.</p>
+              <p className="text-xs text-muted-foreground">Displayed on the develop listing card.</p>
             </div>
           )}
 
@@ -116,8 +116,8 @@ export default function ImageUploadForm({ onUploadSuccess, contentType, endpoint
                   <Textarea id="text" className="min-h-80 font-mono leading-6" value={formData.text} onChange={(event) => updateField("text", event.target.value)} required />
                 </TabsContent>
                 <TabsContent value="preview">
-                  <div className="min-h-80 rounded-3xl border border-zinc-800 bg-[#111111] p-6">
-                    {formData.text ? <MarkdownRenderer css={markdownCss}>{formData.text}</MarkdownRenderer> : <p className="text-sm text-zinc-500">Write Markdown to preview it here.</p>}
+                  <div className="min-h-80 rounded-3xl border border-border bg-background p-6">
+                    {formData.text ? <MarkdownRenderer css={markdownCss}>{formData.text}</MarkdownRenderer> : <p className="text-sm text-muted-foreground">Write Markdown to preview it here.</p>}
                   </div>
                 </TabsContent>
               </Tabs>

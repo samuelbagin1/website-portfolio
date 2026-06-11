@@ -110,7 +110,7 @@ export default function MarkdownThemeEditor({ css, token, onChange, onUnauthoriz
           <CardDescription>The saved theme will apply to every develop detail page.</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="rounded-3xl border border-zinc-800 bg-[#111111] p-6 md:p-8">
+          <div className="rounded-3xl border border-border bg-background p-6 md:p-8">
             <MarkdownRenderer css={validation.errors.length ? css : draft}>{PREVIEW_MARKDOWN}</MarkdownRenderer>
           </div>
         </CardContent>

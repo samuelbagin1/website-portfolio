@@ -78,7 +78,7 @@ export default function DevelopDetailed() {
 
         <div className="mx-auto max-w-3xl">
           <MarkdownRenderer css={css}>{project.text}</MarkdownRenderer>
-          <div className="mt-12 border-t border-zinc-800 pt-8">
+          <div className="mt-12 flex justify-center border-t border-zinc-800 pt-8">
             <Button asChild size="lg">
               <a href={project.linkText} target="_blank" rel="noopener noreferrer">View project <ArrowUpRight size={17} /></a>
             </Button>

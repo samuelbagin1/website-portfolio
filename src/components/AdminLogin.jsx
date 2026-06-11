@@ -40,10 +40,10 @@ export default function AdminLogin({ onLogin }) {
   };
 
   return (
-    <main className="flex min-h-screen items-center justify-center  px-4 py-20 text-zinc-100">
+    <main className="flex min-h-screen items-center justify-center bg-background px-4 py-20 text-foreground">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-2xl bg-gray-300 text-zinc-950">
+          <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
             <LockKeyhole size={20} />
           </div>
           <CardTitle>Admin access</CardTitle>
@@ -67,7 +67,7 @@ export default function AdminLogin({ onLogin }) {
             )}
             <Button
               type="submit"
-              className="w-full rounded-full bg-gray-300 text-zinc-950 hover:bg-gray-200"
+              className="w-full"
               disabled={loading}
             >
               {loading && <LoaderCircle className="animate-spin" size={16} />}

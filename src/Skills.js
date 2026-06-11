@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
@@ -10,7 +10,6 @@ import { ScrollSmoother } from 'gsap/ScrollSmoother';
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 function Skills() {
-  const [isLoading, setIsLoading] = useState(true);
   const skillsGridRef = useRef(null);
   const disclaimerRef = useRef(null);
 

@@ -7,7 +7,7 @@ export const Alert = React.forwardRef(({ className, variant = "default", ...prop
     role="alert"
     className={cn(
       "relative w-full rounded-2xl border p-4 text-sm",
-      variant === "destructive" ? "border-red-900 bg-red-950/50 text-red-200" : "border-zinc-700 bg-zinc-900 text-zinc-200",
+      variant === "destructive" ? "border-destructive bg-destructive-muted text-destructive-foreground" : "border-border bg-muted text-foreground",
       className
     )}
     {...props}

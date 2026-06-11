@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ExternalLink, LoaderCircle, Trash2 } from "lucide-react";
+import DevelopEditDialog from "./DevelopEditDialog";
 import { API_URL, authorizationHeaders, getApiError } from "../lib/api";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
 import {
@@ -12,7 +13,7 @@ import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
 import { Skeleton } from "./ui/skeleton";
 
-export default function ImageManager({ contentType, endpoint, token, onUnauthorized }) {
+export default function ImageManager({ contentType, endpoint, token, onUnauthorized, markdownCss }) {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState("");
@@ -66,6 +67,10 @@ export default function ImageManager({ contentType, endpoint, token, onUnauthori
     }
   };
 
+  const handleUpdated = (updatedItem) => {
+    setItems((current) => current.map((item) => item._id === updatedItem._id ? updatedItem : item));
+  };
+
   const renderContent = (item) => {
     const imageUrl = item.photo || item.image;
     return (
@@ -82,7 +87,7 @@ export default function ImageManager({ contentType, endpoint, token, onUnauthori
         </CardHeader>
         {item.linkText && (
           <CardContent>
-            <a href={item.linkText} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-gray-300 hover:text-white">
+            <a href={item.linkText} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary-hover">
               Open link <ExternalLink size={14} />
             </a>
           </CardContent>
@@ -94,8 +99,8 @@ export default function ImageManager({ contentType, endpoint, token, onUnauthori
   return (
     <section className="space-y-5">
       <div>
-        <h2 className="text-2xl font-semibold text-zinc-100">Manage {contentType}</h2>
-        <p className="mt-1 text-sm text-zinc-400">Review and remove existing public entries.</p>
+        <h2 className="text-2xl font-semibold text-foreground">Manage {contentType}</h2>
+        <p className="mt-1 text-sm text-muted-foreground">Review and remove existing public entries.</p>
       </div>
 
       {error && <Alert variant="destructive"><AlertTitle>Content manager error</AlertTitle><AlertDescription>{error}</AlertDescription></Alert>}
@@ -105,13 +110,22 @@ export default function ImageManager({ contentType, endpoint, token, onUnauthori
           {[0, 1, 2].map((item) => <Skeleton key={item} className="h-80" />)}
         </div>
       ) : items.length === 0 ? (
-        <Card><CardContent className="py-12 text-center text-zinc-400">No {contentType} items found.</CardContent></Card>
+        <Card><CardContent className="py-12 text-center text-muted-foreground">No {contentType} items found.</CardContent></Card>
       ) : (
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {items.map((item) => (
             <Card key={item._id} className="overflow-hidden">
               {renderContent(item)}
-              <CardFooter>
+              <CardFooter className="flex-col gap-3">
+                {contentType === "develop" && (
+                  <DevelopEditDialog
+                    item={item}
+                    token={token}
+                    markdownCss={markdownCss}
+                    onUpdated={handleUpdated}
+                    onUnauthorized={onUnauthorized}
+                  />
+                )}
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
                     <Button variant="destructive" className="w-full" disabled={deletingId === item._id}>

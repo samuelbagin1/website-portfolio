@@ -134,7 +134,8 @@ function Contact() {
 
 
 
-                    <a
+                    <button
+                        type="button"
                         className='h-36 w-full md:h-96 md:w-1/5 rounded-xl bg-[#bababa11] backdrop-blur-xl p-4 md:p-10 cursor-pointer hover:bg-[#bababa3b] transition-all duration-200 relative group'
                         onClick={handleCopyToClipboard}
                     >
@@ -154,7 +155,7 @@ function Contact() {
                             Click to copy
                             <div className='absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-[#e8e8e845]'></div>
                         </div>
-                    </a>
+                    </button>
 
 
 

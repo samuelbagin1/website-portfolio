@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
@@ -51,19 +50,20 @@ export default function Develop() {
           <div className="grid gap-6 md:grid-cols-2">
             {projects.map((project) => (
               <Link key={project._id} to={`/portfolio/develop/${getDevelopSlug(project)}`} className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300">
-                <Card className="h-full overflow-hidden border-zinc-800 bg-[#151515] transition duration-300 group-hover:-translate-y-1 group-hover:border-zinc-600">
+                <Card className="flex h-full flex-col overflow-hidden border-zinc-800 bg-[#151515] transition duration-300 group-hover:-translate-y-1 group-hover:border-zinc-600">
                   <div className="relative h-64 overflow-hidden">
                     <img src={project.image} alt={project.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" loading="lazy" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                   </div>
                   <CardHeader>
-                    <div className="flex items-start justify-between gap-4">
-                      <CardTitle className="text-2xl">{project.title}</CardTitle>
-                      <ArrowUpRight className="shrink-0 text-zinc-500 transition group-hover:text-white" size={20} />
-                    </div>
-                    <CardDescription className="text-base leading-7">{project.shortText ?? ""}</CardDescription>
+                    <CardTitle className="text-2xl">{project.title}</CardTitle>
                   </CardHeader>
-                  <CardContent className="text-sm font-medium text-gray-300">Read project details</CardContent>
+                  <CardContent className="flex flex-1 flex-col">
+                    <CardDescription className="text-base leading-7">{project.shortText ?? ""}</CardDescription>
+                    <span className="mt-auto self-end rounded-full border border-border bg-transparent px-4 py-2 text-sm font-semibold text-foreground transition group-hover:border-primary group-hover:bg-accent">
+                      Get Details →
+                    </span>
+                  </CardContent>
                 </Card>
               </Link>
             ))}

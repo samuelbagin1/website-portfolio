@@ -43,15 +43,15 @@ export default function Upload() {
   const currentType = CONTENT_TYPES.find((type) => type.id === activeType);
 
   return (
-    <main className="min-h-screen bg-[#090909] text-zinc-100">
+    <main className="min-h-screen bg-background text-foreground">
       <div className="mx-auto max-w-7xl px-4 py-8 md:px-8">
-        <header className="mb-8 flex flex-col justify-between gap-5 border-b border-zinc-800 pb-6 sm:flex-row sm:items-center">
+        <header className="mb-8 flex flex-col justify-between gap-5 border-b border-border pb-6 sm:flex-row sm:items-center">
           <div>
-            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-gray-300">
+            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-primary">
               <ShieldCheck size={16} /> Authenticated admin
             </div>
             <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">Content management</h1>
-            <p className="mt-2 text-zinc-400">Upload portfolio entries and control Markdown presentation.</p>
+            <p className="mt-2 text-muted-foreground">Upload portfolio entries and control Markdown presentation.</p>
           </div>
           <Button variant="outline" onClick={logout}><LogOut size={16} /> Logout</Button>
         </header>
@@ -86,6 +86,7 @@ export default function Upload() {
               contentType={activeType}
               endpoint={currentType.endpoint}
               token={session.token}
+              markdownCss={markdownCss}
               onUnauthorized={logout}
             />
           </TabsContent>

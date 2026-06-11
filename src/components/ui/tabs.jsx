@@ -5,12 +5,12 @@ import { cn } from "../../lib/utils";
 export const Tabs = TabsPrimitive.Root;
 
 export const TabsList = React.forwardRef(({ className, ...props }, ref) => (
-  <TabsPrimitive.List ref={ref} className={cn("inline-flex h-10 items-center rounded-full bg-zinc-900 p-1 text-zinc-400", className)} {...props} />
+  <TabsPrimitive.List ref={ref} className={cn("inline-flex h-10 items-center rounded-full bg-muted p-1 text-muted-foreground", className)} {...props} />
 ));
 TabsList.displayName = TabsPrimitive.List.displayName;
 
 export const TabsTrigger = React.forwardRef(({ className, ...props }, ref) => (
-  <TabsPrimitive.Trigger ref={ref} className={cn("inline-flex items-center justify-center rounded-full px-3 py-1.5 text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300 data-[state=active]:bg-zinc-700 data-[state=active]:text-white", className)} {...props} />
+  <TabsPrimitive.Trigger ref={ref} className={cn("inline-flex items-center justify-center rounded-full px-3 py-1.5 text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring data-[state=active]:bg-accent data-[state=active]:text-accent-foreground", className)} {...props} />
 ));
 TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
 
