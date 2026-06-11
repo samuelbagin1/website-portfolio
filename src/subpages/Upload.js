@@ -1,104 +1,100 @@
-import React, { useState } from 'react';
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import ImageUploadForm from '../components/ImageUploadForm';
-import ImageManager from '../components/ImageManager';
+import React, { useEffect, useState } from "react";
+import { LogOut, ShieldCheck } from "lucide-react";
+import AdminLogin from "../components/AdminLogin";
+import ImageManager from "../components/ImageManager";
+import ImageUploadForm from "../components/ImageUploadForm";
+import MarkdownThemeEditor from "../components/MarkdownThemeEditor";
+import { Button } from "../components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
+import useMarkdownTheme from "../hooks/useMarkdownTheme";
+import { clearAuthSession, getAuthSession } from "../lib/auth";
 
-function Upload() {
-  const [activeTab, setActiveTab] = useState('photo');
+const CONTENT_TYPES = [
+  { id: "photo", label: "Photo", endpoint: "/api/photo", fields: ["text", "photo"] },
+  { id: "graphic", label: "Graphic", endpoint: "/api/graphic", fields: ["image"] },
+  { id: "develop", label: "Develop", endpoint: "/api/develop", fields: ["title", "shortText", "text", "linkText", "image"] },
+  { id: "video", label: "Video", endpoint: "/api/video", fields: ["linkText"] },
+];
+
+export default function Upload() {
+  const [session, setSession] = useState(() => getAuthSession());
+  const [activeType, setActiveType] = useState("photo");
   const [refreshKey, setRefreshKey] = useState(0);
+  const { css: markdownCss, setCss: setMarkdownCss } = useMarkdownTheme();
 
-  // Function to refresh images after upload
-  const handleUploadSuccess = () => {
-    console.log(`${activeTab} uploaded successfully!`);
-    setRefreshKey(prev => prev + 1);
+  const logout = () => {
+    clearAuthSession();
+    setSession(null);
   };
 
-  // Content type configuration
-  const contentTypes = [
-    { 
-      id: 'photo', 
-      label: 'Photo', 
-      endpoint: '/api/photo',
-      fields: ['text', 'photo'] 
-    },
-    { 
-      id: 'graphic', 
-      label: 'Graphic', 
-      endpoint: '/api/graphic',
-      fields: ['image'] 
-    },
-    { 
-      id: 'develop', 
-      label: 'Develop', 
-      endpoint: '/api/develop',
-      fields: ['title', 'text', 'linkText', 'image'] 
-    },
-    { 
-      id: 'video', 
-      label: 'Video', 
-      endpoint: '/api/video',
-      fields: ['linkText'] 
+  useEffect(() => {
+    if (!session) return undefined;
+    const remaining = session.expiresAt - Date.now();
+    if (remaining <= 0) {
+      logout();
+      return undefined;
     }
-  ];
+    const timer = window.setTimeout(logout, remaining);
+    return () => window.clearTimeout(timer);
+  }, [session]);
 
-  const currentType = contentTypes.find(type => type.id === activeTab);
+  if (!session) return <AdminLogin onLogin={setSession} />;
+
+  const currentType = CONTENT_TYPES.find((type) => type.id === activeType);
 
   return (
-    <>
-      <div className='bg-[#111111] min-h-lvh'>
-        <Navbar />
-        
-        <div className='h-[100px]'></div>
-        <div className='min-h-lvh'>
-          <div className="container mx-auto px-4 gap-10 grid">
-            
-            {/* Content Type Selection Bar */}
-            <div className="bg-[#181818] rounded-2xl p-4">
-              <h1 className="text-2xl md:text-3xl font-boldd text-[#FEFEFA] mb-6 text-center">
-                Content Management
-              </h1>
-              <div className="flex flex-wrap justify-center gap-2 md:gap-4">
-                {contentTypes.map((type) => (
-                  <button
-                    key={type.id}
-                    onClick={() => {
-                      setActiveTab(type.id);
-                      setRefreshKey(prev => prev + 1); // Reset manager when switching
-                    }}
-                    className={`px-4 md:px-6 py-2 md:py-3 rounded-full font-medium transition-all duration-200 ${
-                      activeTab === type.id
-                        ? 'bg-[#03C03C] text-[#FEFEFA] shadow-lg'
-                        : 'bg-[#333333] text-[#FEFEFA] hover:bg-[#444444]'
-                    }`}
-                  >
-                    {type.label}
-                  </button>
-                ))}
-              </div>
+    <main className="min-h-screen bg-[#090909] text-zinc-100">
+      <div className="mx-auto max-w-7xl px-4 py-8 md:px-8">
+        <header className="mb-8 flex flex-col justify-between gap-5 border-b border-zinc-800 pb-6 sm:flex-row sm:items-center">
+          <div>
+            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-cyan-300">
+              <ShieldCheck size={16} /> Authenticated admin
             </div>
+            <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">Content management</h1>
+            <p className="mt-2 text-zinc-400">Upload portfolio entries and control Markdown presentation.</p>
+          </div>
+          <Button variant="outline" onClick={logout}><LogOut size={16} /> Logout</Button>
+        </header>
 
-            {/* Upload Form */}
-            <ImageUploadForm 
-              onUploadSuccess={handleUploadSuccess}
-              contentType={activeTab}
+        <Tabs defaultValue="content">
+          <TabsList className="mb-6">
+            <TabsTrigger value="content">Content</TabsTrigger>
+            <TabsTrigger value="theme">Markdown theme</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="content" className="space-y-8">
+            <Tabs value={activeType} onValueChange={(value) => {
+              setActiveType(value);
+              setRefreshKey((key) => key + 1);
+            }}>
+              <TabsList className="mb-6 h-auto flex-wrap">
+                {CONTENT_TYPES.map((type) => <TabsTrigger key={type.id} value={type.id}>{type.label}</TabsTrigger>)}
+              </TabsList>
+            </Tabs>
+
+            <ImageUploadForm
+              contentType={activeType}
               endpoint={currentType.endpoint}
               fields={currentType.fields}
+              markdownCss={markdownCss}
+              token={session.token}
+              onUnauthorized={logout}
+              onUploadSuccess={() => setRefreshKey((key) => key + 1)}
             />
-
-            {/* Content Manager */}
-            <ImageManager 
-              key={`${activeTab}-${refreshKey}`}
-              contentType={activeTab}
+            <ImageManager
+              key={`${activeType}-${refreshKey}`}
+              contentType={activeType}
               endpoint={currentType.endpoint}
+              token={session.token}
+              onUnauthorized={logout}
             />
-          </div>
-        </div>
+          </TabsContent>
 
-        <Footer />
+          <TabsContent value="theme">
+            <MarkdownThemeEditor css={markdownCss} token={session.token} onChange={setMarkdownCss} onUnauthorized={logout} />
+          </TabsContent>
+        </Tabs>
       </div>
-    </>
+    </main>
   );
 }
-
-export default Upload;

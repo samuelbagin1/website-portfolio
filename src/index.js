@@ -7,6 +7,7 @@ import Portfolio from './Portfolio';
 import Skills from './Skills';
 
 import Develop from './subpages/Develop'
+import DevelopDetailed from './subpages/DevelopDetailed'
 import Graphic from './subpages/Graphic'
 import Photo from './subpages/Photo'
 import Video from './subpages/Video'
@@ -48,6 +49,11 @@ const router = createBrowserRouter([
   },
 
   {
+    path: "/portfolio/develop/:slugId",
+    element: <DevelopDetailed />,
+  },
+
+  {
     path: "/portfolio/graphic",
     element: <Graphic />,
   },
@@ -82,4 +88,3 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <RouterProvider router={router} />
 );
-

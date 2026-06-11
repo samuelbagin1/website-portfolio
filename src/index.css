@@ -2,4 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Satoshi";
+  src: url("./assets/Satoshi-Regular.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
 
+@font-face {
+  font-family: "Satoshi";
+  src: url("./assets/Satoshi-Bold.otf") format("opentype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("./assets/Satoshi-Black.otf") format("opentype");
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("./assets/Satoshi-Italic.otf") format("opentype");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@layer base {
+  html {
+    background: #111111;
+  }
+
+  body {
+    margin: 0;
+    background: #111111;
+    color: #fefefa;
+    font-family: Satoshi, sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}

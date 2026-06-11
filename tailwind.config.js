@@ -1,12 +1,10 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
-const plugin = require('tailwindcss/plugin');
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
@@ -20,22 +18,5 @@ module.exports = {
       }
     }
   },
-  plugins: [
-    // Import Satoshi font from CDN Fonts
-    plugin(function ({ addBase }) {
-      addBase({
-        '@import': 'url("https://fonts.cdnfonts.com/css/satoshi?styles=135009,135005,135007,135002,135000")',
-      })
-    }),
-
-    // Import Instruments
-    plugin(function ({ addBase }) {
-      addBase({
-        '@import': 'url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap")',
-      })
-    }),
-
-
-
-  ],
+  plugins: [],
 }

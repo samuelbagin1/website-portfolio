@@ -1,223 +1,166 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from "react";
+import { LoaderCircle, UploadCloud } from "lucide-react";
+import MarkdownRenderer from "./MarkdownRenderer";
+import { API_URL, authorizationHeaders, getApiError } from "../lib/api";
+import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
+import { Button } from "./ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { Textarea } from "./ui/textarea";
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
+const EMPTY_FORM = {
+  text: "",
+  shortText: "",
+  title: "",
+  linkText: "",
+  photo: null,
+  image: null,
+};
 
-const ImageUploadForm = ({ onUploadSuccess, contentType, endpoint, fields }) => {
-  // Form state
-  const [formData, setFormData] = useState({
-    text: '',
-    title: '',
-    linkText: '',
-    photo: null,
-    image: null
-  });
+export default function ImageUploadForm({ onUploadSuccess, contentType, endpoint, fields, token, onUnauthorized, markdownCss }) {
+  const [formData, setFormData] = useState(EMPTY_FORM);
+  const [fileKey, setFileKey] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
-  // Reset form when content type changes
   useEffect(() => {
-    setFormData({
-      text: '',
-      title: '',
-      linkText: '',
-      photo: null,
-      image: null
-    });
-    setError(null);
+    setFormData(EMPTY_FORM);
+    setFileKey((key) => key + 1);
+    setError("");
     setSuccess(false);
   }, [contentType]);
 
-  const handleInputChange = (field, value) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
-  };
+  const updateField = (field, value) => setFormData((current) => ({ ...current, [field]: value }));
 
-  const handleFileChange = (field, file) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: file
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     setLoading(true);
-    setError(null);
+    setError("");
     setSuccess(false);
 
     try {
       let response;
 
-      if (contentType === 'video') {
-        // Video only needs JSON data
+      if (contentType === "video") {
         response = await fetch(`${API_URL}${endpoint}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            linkText: formData.linkText
-          }),
+          method: "POST",
+          headers: authorizationHeaders(token, { "Content-Type": "application/json" }),
+          body: JSON.stringify({ linkText: formData.linkText }),
         });
       } else {
-        // Other types need FormData for file uploads
-        const submitFormData = new FormData();
-        
-        // Add fields based on content type
-        if (fields.includes('text')) submitFormData.append('text', formData.text);
-        if (fields.includes('title')) submitFormData.append('title', formData.title);
-        if (fields.includes('linkText')) submitFormData.append('linkText', formData.linkText);
-        if (fields.includes('photo') && formData.photo) submitFormData.append('photo', formData.photo);
-        if (fields.includes('image') && formData.image) submitFormData.append('image', formData.image);
+        const body = new FormData();
+        fields.forEach((field) => {
+          if (formData[field] !== null) body.append(field, formData[field]);
+        });
 
         response = await fetch(`${API_URL}${endpoint}`, {
-          method: 'POST',
-          body: submitFormData,
+          method: "POST",
+          headers: authorizationHeaders(token),
+          body,
         });
       }
 
       if (!response.ok) {
-        throw new Error(`Failed to upload ${contentType}`);
+        const uploadError = new Error(await getApiError(response, `Failed to upload ${contentType}.`));
+        uploadError.status = response.status;
+        throw uploadError;
       }
 
-      const data = await response.json();
-      console.log('Upload successful:', data);
       setSuccess(true);
+      setFormData(EMPTY_FORM);
+      setFileKey((key) => key + 1);
       onUploadSuccess();
-      
-      // Reset form after successful upload
-      setFormData({
-        text: '',
-        title: '',
-        linkText: '',
-        photo: null,
-        image: null
-      });
-
-    } catch (error) {
-      setError(error.message);
+    } catch (uploadError) {
+      if (uploadError.status === 401) onUnauthorized();
+      else setError(uploadError.message);
     } finally {
       setLoading(false);
     }
   };
 
-  const renderFormFields = () => {
-    return (
-      <>
-        {/* Title field - for Develop */}
-        {fields.includes('title') && (
-          <div>
-            <label htmlFor="title" className="block text-sm">
-              Title *
-            </label>
-            <input
-              type="text"
-              id="title"
-              value={formData.title}
-              onChange={(e) => handleInputChange('title', e.target.value)}
-              className="mt-1 p-2 w-full md:w-1/2 rounded-lg bg-[#333333]"
-              required
-            />
-          </div>
-        )}
-
-        {/* Text field - for Photo and Develop */}
-        {fields.includes('text') && (
-          <div>
-            <label htmlFor="text" className="block text-sm">
-              {contentType === 'develop' ? 'Description *' : 'Text *'}
-            </label>
-            <textarea
-              type="text"
-              id="text"
-              value={formData.text}
-              onChange={(e) => handleInputChange('text', e.target.value)}
-              className="mt-1 p-2 w-full md:w-1/2 rounded-lg bg-[#333333] field-sizing-input"
-              required
-            />
-          </div>
-        )}
-
-        {/* Link Text field - for Develop and Video */}
-        {fields.includes('linkText') && (
-          <div>
-            <label htmlFor="linkText" className="block text-sm">
-              {contentType === 'video' ? 'Video Link *' : 'Project Link *'}
-            </label>
-            <input
-              type="text"
-              id="linkText"
-              value={formData.linkText}
-              onChange={(e) => handleInputChange('linkText', e.target.value)}
-              className="mt-1 p-2 w-full md:w-1/2 rounded-lg bg-[#333333]"
-              placeholder={contentType === 'video' ? 'Enter video URL' : 'Enter project URL'}
-              required
-            />
-          </div>
-        )}
-
-        {/* Photo field - for Photo content type */}
-        {fields.includes('photo') && (
-          <div>
-            <label htmlFor="photo" className="text-sm">
-              Photo *
-            </label>
-            <input
-              type="file"
-              id="photo"
-              onChange={(e) => handleFileChange('photo', e.target.files[0])}
-              className="mt-1 w-full appearance-none"
-              accept="image/*"
-              required
-            />
-          </div>
-        )}
-
-        {/* Image field - for Graphic and Develop */}
-        {fields.includes('image') && (
-          <div>
-            <label htmlFor="image" className="text-sm">
-              Image *
-            </label>
-            <input
-              type="file"
-              id="image"
-              onChange={(e) => handleFileChange('image', e.target.files[0])}
-              className="mt-1 w-full appearance-none"
-              accept="image/*"
-              required
-            />
-          </div>
-        )}
-      </>
-    );
-  };
-
   return (
-    <div className="p-4 md:p-10 bg-[#181818] text-[#FEFEFA] rounded-2xl">
-      <h2 className="text-2xl font-boldd mb-4 md:mb-10 text-center md:text-left">
-        Upload {contentType.charAt(0).toUpperCase() + contentType.slice(1)}
-      </h2>
-      <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4 ml-2 md:mb-4 mb-8">
-        {renderFormFields()}
-        
-        <div className='flex items-center gap-4 top-6 relative'>
-          <button
-            type="submit"
-            disabled={loading}
-            className="min-w-24 h-9 bg-[#03C03C] rounded-full hover:bg-[#02a332] transition-colors disabled:opacity-50"
-          >
-            {loading ? 'Uploading...' : 'Upload'}
-          </button>
-          {error && <p className="text-[#FF0800]">{error}</p>}
-          {success && <p className="text-[#03C03C]">Upload successful!</p>}
-        </div>
-      </form>
-    </div>
-  );
-};
+    <Card>
+      <CardHeader>
+        <CardTitle>Upload {contentType.charAt(0).toUpperCase() + contentType.slice(1)}</CardTitle>
+        <CardDescription>Create a new public portfolio entry.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="space-y-5">
+          {fields.includes("title") && (
+            <div className="space-y-2">
+              <Label htmlFor="title">Title</Label>
+              <Input id="title" value={formData.title} onChange={(event) => updateField("title", event.target.value)} required />
+            </div>
+          )}
 
-export default ImageUploadForm;
+          {fields.includes("shortText") && (
+            <div className="space-y-2">
+              <Label htmlFor="shortText">Short summary</Label>
+              <Textarea id="shortText" className="min-h-24" value={formData.shortText} onChange={(event) => updateField("shortText", event.target.value)} required />
+              <p className="text-xs text-zinc-500">Displayed on the develop listing card.</p>
+            </div>
+          )}
+
+          {fields.includes("text") && contentType === "develop" && (
+            <div className="space-y-2">
+              <Label htmlFor="text">Project body</Label>
+              <Tabs defaultValue="write">
+                <TabsList>
+                  <TabsTrigger value="write">Write</TabsTrigger>
+                  <TabsTrigger value="preview">Preview</TabsTrigger>
+                </TabsList>
+                <TabsContent value="write">
+                  <Textarea id="text" className="min-h-80 font-mono leading-6" value={formData.text} onChange={(event) => updateField("text", event.target.value)} required />
+                </TabsContent>
+                <TabsContent value="preview">
+                  <div className="min-h-80 rounded-lg border border-zinc-800 bg-[#111111] p-6">
+                    {formData.text ? <MarkdownRenderer css={markdownCss}>{formData.text}</MarkdownRenderer> : <p className="text-sm text-zinc-500">Write Markdown to preview it here.</p>}
+                  </div>
+                </TabsContent>
+              </Tabs>
+            </div>
+          )}
+
+          {fields.includes("text") && contentType !== "develop" && (
+            <div className="space-y-2">
+              <Label htmlFor="text">Text</Label>
+              <Textarea id="text" value={formData.text} onChange={(event) => updateField("text", event.target.value)} required />
+            </div>
+          )}
+
+          {fields.includes("linkText") && (
+            <div className="space-y-2">
+              <Label htmlFor="linkText">{contentType === "video" ? "Video URL" : "Project URL"}</Label>
+              <Input id="linkText" type="url" value={formData.linkText} onChange={(event) => updateField("linkText", event.target.value)} required />
+            </div>
+          )}
+
+          {fields.includes("photo") && (
+            <div className="space-y-2">
+              <Label htmlFor="photo">Photo</Label>
+              <Input key={`photo-${fileKey}`} id="photo" type="file" accept="image/*" onChange={(event) => updateField("photo", event.target.files[0])} required />
+            </div>
+          )}
+
+          {fields.includes("image") && (
+            <div className="space-y-2">
+              <Label htmlFor="image">Image</Label>
+              <Input key={`image-${fileKey}`} id="image" type="file" accept="image/*" onChange={(event) => updateField("image", event.target.files[0])} required />
+            </div>
+          )}
+
+          {error && <Alert variant="destructive"><AlertTitle>Upload failed</AlertTitle><AlertDescription>{error}</AlertDescription></Alert>}
+          {success && <Alert><AlertDescription>Upload completed successfully.</AlertDescription></Alert>}
+
+          <Button type="submit" disabled={loading}>
+            {loading ? <LoaderCircle className="animate-spin" size={16} /> : <UploadCloud size={16} />}
+            {loading ? "Uploading..." : "Upload"}
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
+  );
+}
