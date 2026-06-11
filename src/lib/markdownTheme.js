@@ -4,13 +4,13 @@ export const DEFAULT_MARKDOWN_CSS = `h1 { font-size: 2.5rem; line-height: 1.1; m
 h2 { font-size: 2rem; line-height: 1.2; margin-top: 2.5rem; margin-bottom: 1rem; color: #fefefa; }
 h3 { font-size: 1.5rem; line-height: 1.3; margin-top: 2rem; margin-bottom: 0.75rem; color: #fefefa; }
 p { font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.25rem; color: #d4d4d4; }
-a { color: #69eae4; text-decoration: underline; }
+a { color: #d1d5db; text-decoration: underline; }
 ul { margin-bottom: 1.25rem; padding-left: 1.5rem; list-style-type: disc; }
 ol { margin-bottom: 1.25rem; padding-left: 1.5rem; list-style-type: decimal; }
 li { margin-bottom: 0.5rem; color: #d4d4d4; }
-blockquote { margin: 1.5rem 0; padding-left: 1rem; border-left: 3px solid #69eae4; color: #b8b8b8; }
+blockquote { margin: 1.5rem 0; padding-left: 1rem; border-left: 3px solid #d1d5db; color: #b8b8b8; }
 pre { margin: 1.5rem 0; padding: 1rem; border-radius: 0.75rem; background-color: #090909; overflow-x: auto; }
-code { font-family: monospace; color: #b7f7f3; }
+code { font-family: monospace; color: #e5e7eb; }
 img { max-width: 100%; margin: 2rem auto; border-radius: 0.75rem; }
 table { width: 100%; margin: 1.5rem 0; border-collapse: collapse; }
 th { padding: 0.75rem; border: 1px solid #3f3f46; text-align: left; color: #fefefa; }

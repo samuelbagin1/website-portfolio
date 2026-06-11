@@ -15,7 +15,7 @@ AlertDialogOverlay.displayName = AlertDialogPrimitive.Overlay.displayName;
 export const AlertDialogContent = React.forwardRef(({ className, ...props }, ref) => (
   <AlertDialogPortal>
     <AlertDialogOverlay />
-    <AlertDialogPrimitive.Content ref={ref} className={cn("fixed left-1/2 top-1/2 z-50 grid w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 rounded-xl border border-zinc-800 bg-zinc-950 p-6 text-zinc-100 shadow-xl", className)} {...props} />
+    <AlertDialogPrimitive.Content ref={ref} className={cn("fixed left-1/2 top-1/2 z-50 grid w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 rounded-3xl border border-zinc-800 bg-zinc-950 p-6 text-zinc-100 shadow-xl", className)} {...props} />
   </AlertDialogPortal>
 ));
 AlertDialogContent.displayName = AlertDialogPrimitive.Content.displayName;

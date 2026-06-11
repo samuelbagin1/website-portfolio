@@ -36,7 +36,7 @@ export default function Develop() {
       <Navbar />
       <main className="mx-auto min-h-screen max-w-6xl px-4 pb-24 pt-32 md:px-8">
         <header className="mb-12 max-w-3xl">
-          <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-[#69eae4]">Development</p>
+          <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-gray-300">Development</p>
           <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">Projects and technical work</h1>
           <p className="mt-5 text-lg leading-8 text-zinc-400">Open a project to read its full notes, implementation details, and links.</p>
         </header>
@@ -50,7 +50,7 @@ export default function Develop() {
         ) : (
           <div className="grid gap-6 md:grid-cols-2">
             {projects.map((project) => (
-              <Link key={project._id} to={`/portfolio/develop/${getDevelopSlug(project)}`} className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#69eae4]">
+              <Link key={project._id} to={`/portfolio/develop/${getDevelopSlug(project)}`} className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300">
                 <Card className="h-full overflow-hidden border-zinc-800 bg-[#151515] transition duration-300 group-hover:-translate-y-1 group-hover:border-zinc-600">
                   <div className="relative h-64 overflow-hidden">
                     <img src={project.image} alt={project.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" loading="lazy" />
@@ -59,11 +59,11 @@ export default function Develop() {
                   <CardHeader>
                     <div className="flex items-start justify-between gap-4">
                       <CardTitle className="text-2xl">{project.title}</CardTitle>
-                      <ArrowUpRight className="shrink-0 text-zinc-500 transition group-hover:text-[#69eae4]" size={20} />
+                      <ArrowUpRight className="shrink-0 text-zinc-500 transition group-hover:text-white" size={20} />
                     </div>
                     <CardDescription className="text-base leading-7">{project.shortText ?? ""}</CardDescription>
                   </CardHeader>
-                  <CardContent className="text-sm font-medium text-[#69eae4]">Read project details</CardContent>
+                  <CardContent className="text-sm font-medium text-gray-300">Read project details</CardContent>
                 </Card>
               </Link>
             ))}

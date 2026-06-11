@@ -116,7 +116,7 @@ export default function ImageUploadForm({ onUploadSuccess, contentType, endpoint
                   <Textarea id="text" className="min-h-80 font-mono leading-6" value={formData.text} onChange={(event) => updateField("text", event.target.value)} required />
                 </TabsContent>
                 <TabsContent value="preview">
-                  <div className="min-h-80 rounded-lg border border-zinc-800 bg-[#111111] p-6">
+                  <div className="min-h-80 rounded-3xl border border-zinc-800 bg-[#111111] p-6">
                     {formData.text ? <MarkdownRenderer css={markdownCss}>{formData.text}</MarkdownRenderer> : <p className="text-sm text-zinc-500">Write Markdown to preview it here.</p>}
                   </div>
                 </TabsContent>

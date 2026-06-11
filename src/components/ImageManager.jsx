@@ -82,7 +82,7 @@ export default function ImageManager({ contentType, endpoint, token, onUnauthori
         </CardHeader>
         {item.linkText && (
           <CardContent>
-            <a href={item.linkText} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-cyan-300 hover:text-cyan-200">
+            <a href={item.linkText} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-gray-300 hover:text-white">
               Open link <ExternalLink size={14} />
             </a>
           </CardContent>

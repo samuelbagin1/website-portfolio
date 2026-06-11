@@ -47,7 +47,7 @@ export default function Upload() {
       <div className="mx-auto max-w-7xl px-4 py-8 md:px-8">
         <header className="mb-8 flex flex-col justify-between gap-5 border-b border-zinc-800 pb-6 sm:flex-row sm:items-center">
           <div>
-            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-cyan-300">
+            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-gray-300">
               <ShieldCheck size={16} /> Authenticated admin
             </div>
             <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">Content management</h1>
