@@ -5,14 +5,14 @@ import { IoClose } from "react-icons/io5"
 import { Link } from "react-router-dom"
 
 
-const Navbar = () => {
+const Navbar = ({ onLogoReady }) => {
     const [nav, setNav] = useState(false)
     const handleClick = () => setNav(!nav)
 
   return (
     <div className='fixed w-full h-[80px] items-center flex justify-end text-[#FEFEFA] bg-[#000000ba] backdrop-blur-md z-40'>
         <div className='w-screen absolute flex justify-center translate-y-[2px] translate-x-[-2px]'>
-            <Link to='/'><img src={Logo} alt="" className=' md:w-[150px] w-[130px] justify-self-center ' /></Link>
+            <Link to='/'><img src={Logo} alt="" onLoad={onLogoReady} onError={onLogoReady} className=' md:w-[150px] w-[130px] justify-self-center ' /></Link>
         </div>
 
         <ul className='hidden md:flex space-x-5 px-7 z-50'>

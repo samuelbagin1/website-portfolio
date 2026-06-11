@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import backImage from "./assets/background.GIF";
+import backVideo from "./assets/background.webm";
 import Button from "./components/Button";
 import BeholdWidget from './components/BeholdWidget';
 import { gsap } from 'gsap';
@@ -19,8 +19,15 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [criticalReady, setCriticalReady] = useState({
+    heroVideo: false,
+    logo: false,
+    fonts: false,
+    firstPaint: false,
+  });
 
   // Refs for animation targets
+  const heroVideoRef = useRef(null);
   const heroTextRef = useRef(null);
   const aboutSectionRef = useRef(null);
   const profileImageRef = useRef(null);
@@ -31,6 +38,14 @@ function App() {
   const ctaSectionRef = useRef(null);
   const parallaxRef = useRef(null);
   const contactRef = useRef(null);
+
+  const markCriticalReady = useCallback((resource) => {
+    setCriticalReady((current) => (
+      current[resource] ? current : { ...current, [resource]: true }
+    ));
+  }, []);
+
+  const homepageReady = Object.values(criticalReady).every(Boolean);
 
   // Track screen size for responsive transition effect
   useEffect(() => {
@@ -69,25 +84,61 @@ function App() {
   }, [isLoading]);
 
   useEffect(() => {
-    // Preload the background image
-    const img = new Image();
-    img.src = backImage;
+    let active = true;
 
-    img.onload = () => {
-      setIsLoading(false);
+    const prepareFonts = async () => {
+      if (!document.fonts) {
+        markCriticalReady("fonts");
+        return;
+      }
+
+      await Promise.allSettled([
+        document.fonts.load("400 16px Satoshi"),
+        document.fonts.load("700 18px Satoshi"),
+        document.fonts.load("900 96px Satoshi"),
+      ]);
+
+      if (active) markCriticalReady("fonts");
     };
 
-    img.onerror = () => {
-      setIsLoading(false);
+    prepareFonts();
+
+    return () => {
+      active = false;
     };
+  }, [markCriticalReady]);
 
-    // Fallback in case loading takes too long
-    const timeout = setTimeout(() => {
-      setIsLoading(false);
-    }, 5000);
+  useEffect(() => {
+    let firstFrame;
+    let secondFrame;
 
+    firstFrame = requestAnimationFrame(() => {
+      secondFrame = requestAnimationFrame(() => markCriticalReady("firstPaint"));
+    });
+
+    return () => {
+      cancelAnimationFrame(firstFrame);
+      cancelAnimationFrame(secondFrame);
+    };
+  }, [markCriticalReady]);
+
+  useEffect(() => {
+    if (heroVideoRef.current?.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+      markCriticalReady("heroVideo");
+    }
+  }, [markCriticalReady]);
+
+  useEffect(() => {
+    if (homepageReady) setIsLoading(false);
+  }, [homepageReady]);
+
+  useEffect(() => {
+    // Prevent a failed browser media event from trapping visitors on the loader.
+    if (!isLoading) return undefined;
+
+    const timeout = setTimeout(() => setIsLoading(false), 15000);
     return () => clearTimeout(timeout);
-  }, []);
+  }, [isLoading]);
 
   useEffect(() => {
     if (isLoading) return;
@@ -328,29 +379,28 @@ function App() {
     return () => clearTimeout(timer);
   }, [isLoading, isSmallScreen]);
 
-  if (isLoading) {
-    return (
-      <div className="fixed inset-0 bg-[#000000] flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
-          <Grid
-            size="60"
-            speed="1.5"
-            color="#69eae4"
-          />
-        </div>
-      </div>
-    );
-  }
-
   return (
     <>
-      <Navbar />
+      <Navbar onLogoReady={() => markCriticalReady("logo")} />
 
       <div id="smooth-wrapper">
         <div id="smooth-content" className="bg-[#111111] text-[#FEFEFA] relative z-10 w-full">
 
           <div className="relative w-full h-svh justify-center items-center flex">
-            <img src={backImage} alt='background' className="absolute h-screen object-cover w-full " />
+            <video
+              ref={heroVideoRef}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              aria-hidden="true"
+              onLoadedData={() => markCriticalReady("heroVideo")}
+              onError={() => markCriticalReady("heroVideo")}
+              className="absolute h-screen w-full object-cover"
+            >
+              <source src={backVideo} type="video/webm" />
+            </video>
 
             <div className="h-screen w-full absolute bg-[#00000097] justify-center backdrop-blur-md"></div>
             <div ref={heroTextRef} className='font-black md:text-9xl text-6xl z-10 w-3/4 opacity-60'>
@@ -373,7 +423,7 @@ function App() {
                 </span>
 
                 <span ref={profileImageRef} className='flex flex-col items-center flex-shrink-0 order-1 lg:order-2'>
-                  <img src='https://res.cloudinary.com/dqktedlja/image/upload/v1750360702/yuyrtyff_Large_k2cr1a.jpg' className='h-36 rounded-full' alt='profile' />
+                  <img src='https://res.cloudinary.com/dqktedlja/image/upload/v1750360702/yuyrtyff_Large_k2cr1a.jpg' className='h-36 rounded-full' alt='profile' loading="lazy" decoding="async" />
                   <div className='font-thin text-xs mt-2'>Samuel Bagin</div>
                 </span>
               </div>
@@ -431,7 +481,7 @@ function App() {
           <div className='h-40' />
 
           <div className='w-screen h-[80vh] relative overflow-hidden' ref={parallaxRef}>
-            <img src='https://res.cloudinary.com/dqktedlja/image/upload/v1751052585/test/f15eef31795b4e26bfb626803_tadpfx.webp' className=' h-[150%] w-full object-cover absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' alt='background' />
+            <img src='https://res.cloudinary.com/dqktedlja/image/upload/v1751052585/test/f15eef31795b4e26bfb626803_tadpfx.webp' className=' h-[150%] w-full object-cover absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' alt='background' loading="lazy" decoding="async" />
           </div>
 
           <div className='h-40' />
@@ -465,6 +515,18 @@ function App() {
           <Footer />
         </div>
       </div>
+
+      {isLoading && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#000000]">
+          <div className="flex flex-col items-center gap-4">
+            <Grid
+              size="60"
+              speed="1.5"
+              color="#69eae4"
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 }
