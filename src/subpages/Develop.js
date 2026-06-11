@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import Seo, { createWebPageSchema, getAbsoluteUrl } from "../components/Seo";
 import { Alert, AlertDescription, AlertTitle } from "../components/ui/alert";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { Skeleton } from "../components/ui/skeleton";
@@ -12,6 +13,24 @@ export default function Develop() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const description = "AI engineering, data engineering, and web development projects by Samuel Bagin, with implementation details and technical notes.";
+  const pageSchema = useMemo(() => ({
+    ...createWebPageSchema({
+      path: "/portfolio/develop",
+      name: "AI, Data & Web Development Projects | Samuel Bagin",
+      description,
+      type: "CollectionPage",
+    }),
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: projects.map((project, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: project.title,
+        url: getAbsoluteUrl(`/portfolio/develop/${getDevelopSlug(project)}`),
+      })),
+    },
+  }), [description, projects]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -32,11 +51,17 @@ export default function Develop() {
 
   return (
     <div className="min-h-screen bg-[#111111] text-[#FEFEFA]">
+      <Seo
+        title="AI, Data & Web Development Projects | Samuel Bagin"
+        description={description}
+        path="/portfolio/develop"
+        schema={pageSchema}
+      />
       <Navbar />
       <main className="mx-auto min-h-screen max-w-6xl px-4 pb-24 pt-32 md:px-8">
         <header className="mb-12 max-w-3xl">
-          <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-gray-300">Development</p>
-          <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">Projects and technical work</h1>
+          <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-gray-300">AI, data, and web development</p>
+          <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">Engineering projects and technical work</h1>
           <p className="mt-5 text-lg leading-8 text-zinc-400">Open a project to read its full notes, implementation details, and links.</p>
         </header>
 

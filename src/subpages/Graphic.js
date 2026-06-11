@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Seo, { createWebPageSchema } from '../components/Seo';
 import { Blur } from 'transitions-kit';
 import { AsyncImage } from 'loadable-image';
 import { Grid } from 'ldrs/react';
@@ -26,6 +27,24 @@ function Photo() {
   const smoothContentRef = useRef(null);
   const imageRefs = useRef([]);
   const scrollSmootherRef = useRef(null);
+  const description = "Selected graphic design and visual work by Samuel Bagin.";
+  const pageSchema = React.useMemo(
+    () => createWebPageSchema({
+      path: "/portfolio/graphic",
+      name: "Graphic Design Portfolio | Samuel Bagin",
+      description,
+      type: "CollectionPage",
+    }),
+    [description]
+  );
+  const seo = (
+    <Seo
+      title="Graphic Design Portfolio | Samuel Bagin"
+      description={description}
+      path="/portfolio/graphic"
+      schema={pageSchema}
+    />
+  );
 
   // Add images to refs array
   const addToRefs = (el, index) => {
@@ -127,26 +146,33 @@ function Photo() {
 
   if (isLoading) {
     return (
-      <div className="fixed inset-0 bg-[#111111] flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
-          <Grid
-            size="60"
-            speed="1.5"
-            color="#69eae4"
-          />
+      <>
+        {seo}
+        <div className="fixed inset-0 bg-[#111111] flex items-center justify-center">
+          <div className="flex flex-col items-center gap-4">
+            <Grid
+              size="60"
+              speed="1.5"
+              color="#69eae4"
+            />
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 
   if (error) return (
-    <div className='bg-[#111111] min-h-screen text-red-500 text-center p-8'>
-      {error}
-    </div>
+    <>
+      {seo}
+      <div className='bg-[#111111] min-h-screen text-red-500 text-center p-8'>
+        {error}
+      </div>
+    </>
   );
 
   return (
     <>
+      {seo}
       <Navbar />
       {/* Image Modal */}
       {selectedImage && (
@@ -155,7 +181,7 @@ function Photo() {
           onClick={() => setSelectedImage(null)}
         >
           <img
-            alt={selectedImage.text}
+            alt={selectedImage.text || "Graphic design project by Samuel Bagin"}
             src={selectedImage.image}
             className=' h-auto max-h-[90vh] max-w-[90vw] rounded-xl'
           />
@@ -168,6 +194,12 @@ function Photo() {
 
       <div id="smooth-wrapper" ref={smoothWrapperRef} className='bg-[#111111]'>
         <div id="smooth-content" ref={smoothContentRef}>
+          <header className="mx-auto max-w-6xl px-4 pb-12 pt-32 text-[#FEFEFA] md:px-8">
+            <h1 className="text-4xl font-black tracking-[-0.04em] md:text-6xl">Graphic design</h1>
+            <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-400 md:text-lg">
+              Selected visual and graphic projects by Samuel Bagin.
+            </p>
+          </header>
 
 
           {/* Image Grid */}
@@ -186,6 +218,7 @@ function Photo() {
                   className='w-full h-full overflow-hidden'
                 >
                   <AsyncImage
+                    alt={image.text || "Graphic design project by Samuel Bagin"}
                     src={image.image}
                     style={{ height: 'auto', aspectRatio: 16 / 9 }}
                     loader={<div className="bg-[#959595] aspect-video" />}

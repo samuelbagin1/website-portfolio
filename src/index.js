@@ -5,6 +5,7 @@ import App from './App';
 import Contact from './Contact';
 import Portfolio from './Portfolio';
 import Skills from './Skills';
+import NotFound from './NotFound';
 
 import Develop from './subpages/Develop'
 import DevelopDetailed from './subpages/DevelopDetailed'
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
   {
     path: "/upload",
     element: <Upload />,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 

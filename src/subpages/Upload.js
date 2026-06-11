@@ -4,6 +4,7 @@ import AdminLogin from "../components/AdminLogin";
 import ImageManager from "../components/ImageManager";
 import ImageUploadForm from "../components/ImageUploadForm";
 import MarkdownThemeEditor from "../components/MarkdownThemeEditor";
+import Seo from "../components/Seo";
 import { Button } from "../components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
 import useMarkdownTheme from "../hooks/useMarkdownTheme";
@@ -21,6 +22,15 @@ export default function Upload() {
   const [activeType, setActiveType] = useState("photo");
   const [refreshKey, setRefreshKey] = useState(0);
   const { css: markdownCss, setCss: setMarkdownCss } = useMarkdownTheme();
+  const seo = (
+    <Seo
+      title="Content management | Samuel Bagin"
+      description="Private portfolio content management."
+      path="/upload"
+      robots="noindex,nofollow,noarchive"
+      canonical={false}
+    />
+  );
 
   const logout = () => {
     clearAuthSession();
@@ -38,12 +48,13 @@ export default function Upload() {
     return () => window.clearTimeout(timer);
   }, [session]);
 
-  if (!session) return <AdminLogin onLogin={setSession} />;
+  if (!session) return <>{seo}<AdminLogin onLogin={setSession} /></>;
 
   const currentType = CONTENT_TYPES.find((type) => type.id === activeType);
 
   return (
     <main className="min-h-screen bg-background text-foreground">
+      {seo}
       <div className="mx-auto max-w-7xl px-4 py-8 md:px-8">
         <header className="mb-8 flex flex-col justify-between gap-5 border-b border-border pb-6 sm:flex-row sm:items-center">
           <div>

@@ -1,0 +1,50 @@
+# Samuel Bagin portfolio: expanded summary
+
+## About Samuel Bagin
+
+Samuel Bagin is an AI and data engineer based in Slovakia, with web development as his secondary focus. His public portfolio covers intelligent systems, data work, web applications, visual production, editing, and graphic design. He is currently studying at Slovak Technical University.
+
+## Work categories
+
+### Photography
+
+The photography portfolio presents selected images with titles or descriptions where available.
+
+### Video
+
+The video portfolio presents selected video and motion work through embedded public videos.
+
+### Graphic design
+
+The graphic design portfolio presents selected visual and graphic projects.
+
+### AI, data engineering, and web development
+
+The development portfolio contains AI, data engineering, and web development project pages with project summaries, implementation notes, and relevant external links.
+
+## Skills represented on the site
+
+- AI and data engineering: AI, Python, MySQL, MongoDB, NoSQL, Matlab, and data-focused software development
+- Web development: React, Next.js, JavaScript, HTML, CSS, Vercel Serverless, and backend technologies
+- Creative: photography, photo editing, video production, video editing, Photoshop, Lightroom, and DaVinci Resolve
+
+## Public pages
+
+- [Home](/)
+- [Portfolio directory](/portfolio)
+- [Photography portfolio](/portfolio/photo)
+- [Video portfolio](/portfolio/video)
+- [Graphic design portfolio](/portfolio/graphic)
+- [Development portfolio](/portfolio/develop)
+- [Skills](/skills)
+- [Contact](/contact)
+
+## Contact and identity
+
+- Email: samuel.bagin1@gmail.com
+- GitHub: https://github.com/samuelbagin1
+- LinkedIn: https://www.linkedin.com/in/samuel-bag%C3%ADn/
+- Instagram: https://www.instagram.com/samuelbagin/
+- X: https://x.com/samuelbagin
+
+This file summarizes public portfolio content only. Private administrative routes are intentionally excluded.

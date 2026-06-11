@@ -1,11 +1,13 @@
 import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { FaDiscord, FaEnvelope, FaInstagram, FaLinkedin } from "react-icons/fa";
 import Navbar from "./components/Navbar";
+import Seo, { createWebPageSchema } from "./components/Seo";
 import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
 
 const ContactShaderBackground = lazy(() => import("./components/ContactShaderBackground"));
 
 const EMAIL_LINK = "mailto:samuel.bagin1@gmail.com?subject=Hello%20Samuel&body=Hi%20Samuel,%0D%0A%0D%0AI%20would%20like%20to%20get%20in%20touch%20with%20you.%0D%0A%0D%0ABest%20regards";
+const CONTACT_DESCRIPTION = "Contact Samuel Bagin for AI engineering, data engineering, web development, and creative collaborations.";
 
 const contactCards = [
   {
@@ -75,6 +77,15 @@ function ContactCard({ title, value, action, href, icon: Icon }) {
 function Contact() {
   const [copied, setCopied] = useState(false);
   const copiedTimerRef = useRef(null);
+  const contactSchema = React.useMemo(
+    () => createWebPageSchema({
+      path: "/contact",
+      name: "Contact Samuel Bagin",
+      description: CONTACT_DESCRIPTION,
+      type: "ContactPage",
+    }),
+    []
+  );
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -103,6 +114,12 @@ function Contact() {
 
   return (
     <div className="relative min-h-dvh overflow-x-hidden bg-[#160812] text-white">
+      <Seo
+        title="Contact Samuel Bagin | AI, Data & Web Development"
+        description={CONTACT_DESCRIPTION}
+        path="/contact"
+        schema={contactSchema}
+      />
       <div className="fixed inset-0 z-0 bg-[#160812]" aria-hidden="true">
         <Suspense fallback={null}>
           <ContactShaderBackground />

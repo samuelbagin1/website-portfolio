@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import MarkdownRenderer from "../components/MarkdownRenderer";
 import Navbar from "../components/Navbar";
+import Seo, { createWebPageSchema, getAbsoluteUrl } from "../components/Seo";
 import { Alert, AlertDescription, AlertTitle } from "../components/ui/alert";
 import { Button } from "../components/ui/button";
 import { Skeleton } from "../components/ui/skeleton";
@@ -42,6 +43,45 @@ export default function DevelopDetailed() {
     [projects, shortId]
   );
   const project = matches.length === 1 ? matches[0] : null;
+  const invalidProject = !loading && !error && (!shortId || matches.length !== 1);
+  const canonicalPath = project
+    ? `/portfolio/develop/${getDevelopSlug(project)}`
+    : `/portfolio/develop/${slugId}`;
+  const seoTitle = project ? `${project.title} | Samuel Bagin` : "Development Project | Samuel Bagin";
+  const seoDescription = project?.shortText || "Read a software project case study and technical notes by Samuel Bagin.";
+  const projectSchema = useMemo(() => {
+    if (!project) return null;
+
+    const page = createWebPageSchema({
+      path: canonicalPath,
+      name: seoTitle,
+      description: seoDescription,
+      type: "WebPage",
+      image: project.image,
+    });
+    delete page["@context"];
+
+    return {
+      "@context": "https://schema.org",
+      "@graph": [
+        page,
+        {
+          "@type": "CreativeWork",
+          "@id": `${getAbsoluteUrl(canonicalPath)}#project`,
+          name: project.title,
+          description: seoDescription,
+          url: getAbsoluteUrl(canonicalPath),
+          image: project.image,
+          creator: {
+            "@type": "Person",
+            name: "Samuel Bagin",
+            url: getAbsoluteUrl("/"),
+          },
+          ...(project.linkText ? { sameAs: project.linkText } : {}),
+        },
+      ],
+    };
+  }, [canonicalPath, project, seoDescription, seoTitle]);
 
   useEffect(() => {
     if (!project) return;
@@ -90,6 +130,16 @@ export default function DevelopDetailed() {
 
   return (
     <div className="min-h-screen bg-[#111111] text-[#FEFEFA]">
+      <Seo
+        title={invalidProject ? "Project not found | Samuel Bagin" : seoTitle}
+        description={invalidProject ? "The requested development project could not be found." : seoDescription}
+        path={canonicalPath}
+        image={project?.image}
+        type={project ? "article" : "website"}
+        robots={invalidProject ? "noindex,nofollow,noarchive" : undefined}
+        canonical={!invalidProject}
+        schema={projectSchema}
+      />
       <Navbar />
       <main className="mx-auto min-h-screen max-w-6xl px-4 pb-24 pt-28 md:px-8">
         <Link to="/portfolio/develop" className="mb-8 inline-flex items-center gap-2 text-sm text-zinc-400 transition hover:text-white">

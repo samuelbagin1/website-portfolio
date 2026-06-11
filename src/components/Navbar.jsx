@@ -18,7 +18,7 @@ const Navbar = ({ onLogoReady, variant = "default" }) => {
   return (
     <div className={`fixed z-40 flex h-[80px] w-full items-center justify-end text-[#FEFEFA] ${navbarStyle}`}>
         <div className='w-screen absolute flex justify-center translate-y-[2px] translate-x-[-2px]'>
-            <Link to='/'><img src={Logo} alt="" onLoad={onLogoReady} onError={onLogoReady} className=' md:w-[150px] w-[130px] justify-self-center ' /></Link>
+            <Link to='/' aria-label="Samuel Bagin home"><img src={Logo} alt="Samuel Bagin" onLoad={onLogoReady} onError={onLogoReady} className=' md:w-[150px] w-[130px] justify-self-center ' /></Link>
         </div>
 
         <ul className='hidden md:flex space-x-5 px-7 z-50'>

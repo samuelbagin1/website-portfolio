@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Seo, { createWebPageSchema } from '../components/Seo';
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -26,6 +27,24 @@ function Video() {
   const smoothWrapperRef = useRef(null);
   const smoothContentRef = useRef(null);
   const scrollSmootherRef = useRef(null);
+  const description = "Selected video, motion, and editing work by Samuel Bagin.";
+  const pageSchema = React.useMemo(
+    () => createWebPageSchema({
+      path: "/portfolio/video",
+      name: "Video Portfolio | Samuel Bagin",
+      description,
+      type: "CollectionPage",
+    }),
+    [description]
+  );
+  const seo = (
+    <Seo
+      title="Video Portfolio | Samuel Bagin"
+      description={description}
+      path="/portfolio/video"
+      schema={pageSchema}
+    />
+  );
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -88,37 +107,49 @@ function Video() {
 
   if (isLoading) {
     return (
-      <div className="fixed inset-0 bg-[#111111] flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
-          <Grid
-            size="60"
-            speed="1.5"
-            color="#69eae4"
-          />
+      <>
+        {seo}
+        <div className="fixed inset-0 bg-[#111111] flex items-center justify-center">
+          <div className="flex flex-col items-center gap-4">
+            <Grid
+              size="60"
+              speed="1.5"
+              color="#69eae4"
+            />
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 
   if (error) return (
-    <div className='bg-[#111111] min-h-screen text-red-500 text-center p-8'>
-      {error}
-    </div>
+    <>
+      {seo}
+      <div className='bg-[#111111] min-h-screen text-red-500 text-center p-8'>
+        {error}
+      </div>
+    </>
   );
 
   return (
     <>
+      {seo}
       <Navbar />
 
 
       <div id="smooth-wrapper" ref={smoothWrapperRef} className='bg-[#111111]'>
         <div id="smooth-content" ref={smoothContentRef} className='bg-[#111111]'>
-          <div className='h-28' />
+          <header className="mx-auto max-w-6xl px-4 pb-12 pt-32 text-[#FEFEFA] md:px-8">
+            <h1 className="text-4xl font-black tracking-[-0.04em] md:text-6xl">Video and motion</h1>
+            <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-400 md:text-lg">
+              Selected video production, editing, and motion work by Samuel Bagin.
+            </p>
+          </header>
 
           <div className=''>
             {images?.map((image) => (
               <div key={image._id} className=' mx-auto mb-12 md:mb-20'>
-                <iframe src={image.linkText} className='w-[90%] md:w-3/4 h-auto aspect-video rounded-xl mx-auto ' title='a video' allowFullScreen></iframe>
+                <iframe src={image.linkText} className='w-[90%] md:w-3/4 h-auto aspect-video rounded-xl mx-auto ' title={image.text || "Video project by Samuel Bagin"} loading="lazy" allowFullScreen></iframe>
 
               </div>
             ))}

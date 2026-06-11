@@ -7,10 +7,10 @@ import { Link } from "react-router-dom"
 
 function Footer() {
     return (
-        <div className='w-full lg:h-[250px] h-[500px] bg-[#0d0d0d] text-[#FEFEFA] justify-center items-center flex'>
+        <footer className='w-full lg:h-[250px] h-[500px] bg-[#0d0d0d] text-[#FEFEFA] justify-center items-center flex'>
             {/* on small screen footer */}
             <div className='justify-center items-center lg:hidden grid grid-rows-5 h-3/5 gap-5'>
-                <div className='row-span-2 justify-center items-center flex translate-x-[-2px]'><Link to='/'><img src={Logo} alt="logo" style={{ width: '160px' }} /></Link></div>
+                <div className='row-span-2 justify-center items-center flex translate-x-[-2px]'><Link to='/' aria-label="Samuel Bagin home"><img src={Logo} alt="Samuel Bagin" style={{ width: '160px' }} /></Link></div>
                 <div className='flex justify-center items-center gap-4'>
                     
                     <a href='https://www.linkedin.com/in/samuel-bag%C3%ADn/' target='_blank' rel='noopener noreferrer'><FaLinkedin size={27} className=' hover:scale-95 duration-150 ease-out' /></a>
@@ -31,7 +31,7 @@ function Footer() {
 
 
             <div className='justify-center items-center w-1/2 hidden lg:grid gap-5'>
-                <div className='justify-center items-center flex hover:animate-pulse'><Link to='/'><img src={Logo} alt="logo" style={{ width: '150px' }} /></Link></div>
+                <div className='justify-center items-center flex hover:animate-pulse'><Link to='/' aria-label="Samuel Bagin home"><img src={Logo} alt="Samuel Bagin" style={{ width: '150px' }} /></Link></div>
                 <div className='lg:grid-cols-5 flex gap-7'>
                     <div className='flex justify-center items-center'>
                         <a href='https://www.linkedin.com/in/samuel-bag%C3%ADn/' target='_blank' rel='noopener noreferrer'><FaLinkedin size={25} className='m-2 hover:scale-95 duration-150 ease-out' /></a>
@@ -53,7 +53,7 @@ function Footer() {
                     </ul>
                 </div>
             </div>
-        </div>
+        </footer>
     )
 }
 

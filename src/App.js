@@ -1,6 +1,7 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Seo, { getAbsoluteUrl } from "./components/Seo";
 import backVideo from "./assets/background.webm";
 import Button from "./components/Button";
 import BeholdWidget from './components/BeholdWidget';
@@ -38,6 +39,55 @@ function App() {
   const ctaSectionRef = useRef(null);
   const parallaxRef = useRef(null);
   const contactRef = useRef(null);
+  const homeSchema = useMemo(() => {
+    const homeUrl = getAbsoluteUrl("/");
+    const personId = `${homeUrl}#samuel-bagin`;
+
+    return {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": `${homeUrl}#website`,
+          url: homeUrl,
+          name: "Samuel Bagin",
+          description: "AI engineering, data engineering, web development, and creative portfolio by Samuel Bagin.",
+          inLanguage: "en",
+          author: { "@id": personId },
+        },
+        {
+          "@type": "Person",
+          "@id": personId,
+          name: "Samuel Bagin",
+          url: homeUrl,
+          image: "https://res.cloudinary.com/dqktedlja/image/upload/v1750360702/yuyrtyff_Large_k2cr1a.jpg",
+          jobTitle: "AI and data engineer; web developer",
+          homeLocation: {
+            "@type": "Country",
+            name: "Slovakia",
+          },
+          knowsAbout: [
+            "Artificial intelligence",
+            "Data engineering",
+            "Web development",
+            "React",
+            "Python",
+            "Databases",
+            "Software development",
+            "Photography",
+            "Videography",
+            "Video editing",
+          ],
+          sameAs: [
+            "https://github.com/samuelbagin1",
+            "https://www.linkedin.com/in/samuel-bag%C3%ADn/",
+            "https://www.instagram.com/samuelbagin/",
+            "https://x.com/samuelbagin",
+          ],
+        },
+      ],
+    };
+  }, []);
 
   const markCriticalReady = useCallback((resource) => {
     setCriticalReady((current) => (
@@ -381,6 +431,12 @@ function App() {
 
   return (
     <>
+      <Seo
+        title="Samuel Bagin | AI & Data Engineer, Web Developer"
+        description="Portfolio of Samuel Bagin, a Slovakia-based AI and data engineer and web developer building intelligent systems, data solutions, and web applications."
+        image="https://res.cloudinary.com/dqktedlja/image/upload/v1750360702/yuyrtyff_Large_k2cr1a.jpg"
+        schema={homeSchema}
+      />
       <Navbar onLogoReady={() => markCriticalReady("logo")} />
 
       <div id="smooth-wrapper">
@@ -403,11 +459,11 @@ function App() {
             </video>
 
             <div className="h-screen w-full absolute bg-[#00000097] justify-center backdrop-blur-md"></div>
-            <div ref={heroTextRef} className='font-black md:text-9xl text-6xl z-10 w-3/4 opacity-60'>
-              <div>Capture.</div>
-              <div>Create.</div>
-              <div>Code.</div>
-            </div>
+            <h1 ref={heroTextRef} className='font-black md:text-9xl text-6xl z-10 w-3/4 opacity-60' aria-label="Samuel Bagin: capture, create, code">
+              <span className="block">Capture.</span>
+              <span className="block">Create.</span>
+              <span className="block">Code.</span>
+            </h1>
 
             <div className='absolute bottom-2 z-10 mix-blend-soft-light text-xs'>scroll down</div>
           </div>
@@ -417,7 +473,8 @@ function App() {
               <div className="w-full lg:w-1/2 flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
                 <span className='flex-1 flex flex-col justify-center order-2 lg:order-1'>
                   <div className='mb-2 font-bold'>Hi, I'm Sam.</div>
-                  <div>Photographer. Videographer. Developer.</div>
+                  <div>AI & Data Engineer. Web Developer.</div>
+                  <div>Photographer. Videographer.</div>
                   <div>Based in Slovakia.</div>
                   <div>Currently studying at Slovak Technical University.</div>
                 </span>

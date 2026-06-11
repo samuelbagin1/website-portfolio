@@ -1,5 +1,15 @@
 # Getting Started with Create React App
 
+## Production SEO configuration
+
+Set `REACT_APP_SITE_URL` to the deployed site origin before running the production build:
+
+```bash
+REACT_APP_SITE_URL=https://example.com npm run build
+```
+
+The prebuild step uses this origin to generate an absolute `sitemap.xml` and add its URL to `robots.txt`. Route-level canonical URLs also use this setting, with the browser origin as a runtime fallback.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

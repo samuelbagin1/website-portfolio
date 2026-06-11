@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import Seo, { createWebPageSchema } from './components/Seo'
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -12,6 +13,16 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 function Skills() {
   const skillsGridRef = useRef(null);
   const disclaimerRef = useRef(null);
+  const description = "AI engineering, data engineering, web development, and creative production skills used by Samuel Bagin.";
+  const skillsSchema = React.useMemo(
+    () => createWebPageSchema({
+      path: "/skills",
+      name: "Skills | Samuel Bagin",
+      description,
+      type: "WebPage",
+    }),
+    [description]
+  );
 
   useEffect(() => {
     // Initialize GSAP ScrollSmoother
@@ -132,11 +143,23 @@ function Skills() {
 
   return (
     <>
+      <Seo
+        title="Skills | Samuel Bagin"
+        description={description}
+        path="/skills"
+        schema={skillsSchema}
+      />
       <Navbar />
       <div id="smooth-wrapper">
         <div id="smooth-content" className='bg-[#0e0e0e] text-[#FEFEFA]'>
 
           <div className='h-20'></div>
+          <header className="mx-auto max-w-5xl px-4 pb-8 pt-12 md:px-8">
+            <h1 className="text-4xl font-black tracking-[-0.04em] md:text-6xl">AI, data, and web development skills</h1>
+            <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-400 md:text-lg">
+              AI, data, web development, visual production, editing, and design tools used across selected projects.
+            </p>
+          </header>
           <div className='h-[300vh] justify-center items-center flex py-8'>
             <div
               ref={skillsGridRef}

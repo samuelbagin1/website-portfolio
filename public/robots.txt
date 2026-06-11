@@ -1,3 +1,15 @@
-# https://www.robotstxt.org/robotstxt.html
+# Public portfolio pages are available to search engines and AI search crawlers.
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /upload
+
+User-agent: GPTBot
+Allow: /
+Disallow: /upload
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /upload
+
 User-agent: *
-Disallow:
+Allow: /
