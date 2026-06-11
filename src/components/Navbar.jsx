@@ -5,12 +5,18 @@ import { IoClose } from "react-icons/io5"
 import { Link } from "react-router-dom"
 
 
-const Navbar = ({ onLogoReady }) => {
+const Navbar = ({ onLogoReady, variant = "default" }) => {
     const [nav, setNav] = useState(false)
     const handleClick = () => setNav(!nav)
+    const navbarStyle = variant === "glass"
+      ? "border-b border-white/15 bg-white/[0.08] backdrop-blur-2xl"
+      : "bg-[#000000ba] backdrop-blur-md"
+    const mobileMenuStyle = variant === "glass"
+      ? "border-t border-white/15 bg-black/25 backdrop-blur-3xl"
+      : "bg-[#0e0e0e]"
 
   return (
-    <div className='fixed w-full h-[80px] items-center flex justify-end text-[#FEFEFA] bg-[#000000ba] backdrop-blur-md z-40'>
+    <div className={`fixed z-40 flex h-[80px] w-full items-center justify-end text-[#FEFEFA] ${navbarStyle}`}>
         <div className='w-screen absolute flex justify-center translate-y-[2px] translate-x-[-2px]'>
             <Link to='/'><img src={Logo} alt="" onLoad={onLogoReady} onError={onLogoReady} className=' md:w-[150px] w-[130px] justify-self-center ' /></Link>
         </div>
@@ -24,14 +30,20 @@ const Navbar = ({ onLogoReady }) => {
 
 
         {/* menu nav bar when screen mobile/md */}
-        <div onClick={handleClick} className='md:hidden z-10 px-4'>
+        <button
+            type="button"
+            onClick={handleClick}
+            className='z-10 flex h-11 w-11 items-center justify-center rounded-lg transition-transform duration-150 ease-out active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white md:hidden'
+            aria-label={nav ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={nav}
+        >
             {nav ? <IoClose size='30'/> : <FaBars size='20' />}
-        </div>
-        <ul className={nav ? 'absolute top-0 left-0 w-full h-dvh flex flex-col justify-center items-center bg-[#0e0e0e] gap-3 text-lg ' : 'hidden'}>
-            <li className=''><Link to='/'>Home</Link></li>
-            <li className=''><Link to='/portfolio'>Portfolio</Link></li>
-            <li className=''><Link to='/skills'>Skills</Link></li>
-            <li className=''><Link to='/contact'>Contact</Link></li>
+        </button>
+        <ul className={nav ? `absolute left-0 top-0 flex h-dvh w-full flex-col items-center justify-center gap-3 text-lg ${mobileMenuStyle}` : 'hidden'}>
+            <li><Link className="flex min-h-11 items-center px-5" to='/' onClick={() => setNav(false)}>Home</Link></li>
+            <li><Link className="flex min-h-11 items-center px-5" to='/portfolio' onClick={() => setNav(false)}>Portfolio</Link></li>
+            <li><Link className="flex min-h-11 items-center px-5" to='/skills' onClick={() => setNav(false)}>Skills</Link></li>
+            <li><Link className="flex min-h-11 items-center px-5" to='/contact' onClick={() => setNav(false)}>Contact</Link></li>
         </ul>
     </div>
   )

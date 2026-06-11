@@ -1,180 +1,170 @@
-import React from 'react'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import { useState, useEffect } from 'react';
-import { FaEnvelope, FaLinkedin, FaInstagram, FaDiscord } from 'react-icons/fa'
+import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { FaDiscord, FaEnvelope, FaInstagram, FaLinkedin } from "react-icons/fa";
+import Navbar from "./components/Navbar";
+import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
 
-import kfrk from './assets/adk.webm'
+const ContactShaderBackground = lazy(() => import("./components/ContactShaderBackground"));
 
-import { Grid } from 'ldrs/react'
-import 'ldrs/react/Grid.css'
+const EMAIL_LINK = "mailto:samuel.bagin1@gmail.com?subject=Hello%20Samuel&body=Hi%20Samuel,%0D%0A%0D%0AI%20would%20like%20to%20get%20in%20touch%20with%20you.%0D%0A%0D%0ABest%20regards";
 
-// <img src={dajkwn} className='absolute h-screen object-cover w-full md:rotate-90' />
+const contactCards = [
+  {
+    title: "Instagram",
+    value: "@samuelbagin",
+    action: "View photography and recent work",
+    href: "https://www.instagram.com/samuelbagin/",
+    icon: FaInstagram,
+  },
+  {
+    title: "Email",
+    value: "samuel.bagin1@gmail.com",
+    action: "Start a project conversation",
+    href: EMAIL_LINK,
+    icon: FaEnvelope,
+  },
+  {
+    title: "LinkedIn",
+    value: "Samuel Bagin",
+    action: "Connect professionally",
+    href: "https://www.linkedin.com/in/samuel-bag%C3%ADn/",
+    icon: FaLinkedin,
+  },
+];
 
-function Contact() {
+const glassCardClass = [
+  "group h-full min-h-52 overflow-hidden rounded-2xl",
+  "border border-white/25 bg-white/[0.11] text-white backdrop-blur-2xl",
+  "shadow-[inset_0_1px_0_rgba(255,255,255,0.24),0_8px_20px_rgba(0,0,0,0.08)]",
+  "transition-[transform,background-color,border-color,box-shadow] duration-200",
+  "ease-[cubic-bezier(0.23,1,0.32,1)]",
+  "group-hover:-translate-y-1 group-hover:border-white/40 group-hover:bg-white/[0.16]",
+  "group-active:scale-[0.98] group-active:translate-y-0",
+  "motion-reduce:transition-none motion-reduce:group-hover:translate-y-0",
+].join(" ");
 
-    const [isLoading, setIsLoading] = useState(true);
-    const [isSmallScreen, setIsSmallScreen] = useState(false);
-    const [copied, setCopied] = useState(false);
-
-    // Preload images
-    useEffect(() => {
-        const img1 = new Image();
-        let loadedCount = 0;
-
-        const handleImageLoad = () => {
-            loadedCount++;
-            if (loadedCount === 1) {
-                setIsLoading(false);
-            }
-        };
-
-        const handleImageError = () => {
-            loadedCount++;
-            if (loadedCount === 1) {
-                setIsLoading(false);
-            }
-        };
-
-        img1.src = 'https://res.cloudinary.com/dqktedlja/image/upload/v1751065519/vgh-ezgif.com-gif-to-webp-converter_rssfrn.webp';
-
-        img1.onload = handleImageLoad;
-        img1.onerror = handleImageError;
-
-        // Fallback in case loading takes too long
-        const timeout = setTimeout(() => {
-            setIsLoading(false);
-        }, 5000);
-
-        return () => clearTimeout(timeout);
-    }, []);
-
-    // Track screen size
-    useEffect(() => {
-        const checkScreenSize = () => {
-            setIsSmallScreen(window.innerWidth < 560);
-        };
-
-        checkScreenSize();
-        window.addEventListener('resize', checkScreenSize);
-
-        return () => window.removeEventListener('resize', checkScreenSize);
-    }, []);
-
-    const handleCopyToClipboard = async () => {
-        try {
-            await navigator.clipboard.writeText('apollo446');
-            setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
-        } catch (err) {
-            console.error('Failed to copy text: ', err);
-            const textArea = document.createElement('textarea');
-            textArea.value = 'apollo446';
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
-            setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
-        }
-    };
-
-    if (isLoading) {
-        return (
-            <div className="fixed inset-0 bg-[#000000] flex items-center justify-center">
-                <div className="flex flex-col items-center gap-4">
-                    <Grid
-                        size="60"
-                        speed="1.5"
-                        color="#69eae4"
-                    />
-                </div>
-            </div>
-        );
-    }
-
-
-    return (
-        <div className='overflow-x-hidden'>
-            <Navbar />
-
-            <div className="absolute w-full h-lvh justify-center items-center flex -z-10 overflow-hidden">
-                <video autoPlay loop muted playsInline data-wf-ignore="true" data-object-fit="cover"
-                    className=' w-full h-full object-cover'>
-                    <source src={kfrk}
-                        type="video/webm"
-                        data-wf-ignore="true" />
-                </video>
-                
-                <div className="h-screen w-full absolute bg-[#00000097] justify-center backdrop-blur-md "></div>
-            </div>
-
-            <div className='h-screen flex justify-center items-center relative top-3 md:top-0'>
-                <div className='md:flex justify-center items-center w-3/4 h-3/4 grid grid-cols-1 gap-5 md:gap-10 text-[#FEFEFA]'>
-
-                    <a className='h-36 w-full md:h-96 md:w-1/5 rounded-xl bg-[#bababa11] backdrop-blur-xl p-4 md:p-10 cursor-pointer hover:bg-[#bababa3b] transition-all duration-200'
-                        href='https://www.instagram.com/samuelbagin/' target='_blank' rel='noopener noreferrer'>
-                        <div className='font-bold text-2xl md:text-3xl mb-2'>Instagram</div>
-                        <div className='text-sm opacity-80'>@samuelbagin</div>
-                        <div className='md:flex justify-center items-center md:h-3/4 '>
-                            <FaInstagram size={isSmallScreen ? 70 : 150} className='absolute right-4 bottom-4 md:static hover:scale-95 duration-150 ease-out opacity-90' />
-                        </div>
-                    </a>
-
-                    <a
-                        href="mailto:samuel.bagin1@gmail.com?subject=Hello%20Samuel&body=Hi%20Samuel,%0D%0A%0D%0AI%20would%20like%20to%20get%20in%20touch%20with%20you.%0D%0A%0D%0ABest%20regards"
-                        className='h-36 w-full md:h-96 md:w-1/5 rounded-xl bg-[#bababa11] backdrop-blur-xl p-4 md:p-10 cursor-pointer hover:bg-[#bababa3b] transition-all duration-200'
-                    >
-                        <div className='font-bold text-2xl md:text-3xl mb-2'>Email</div>
-                        <div className='text-sm opacity-80'>samuel.bagin1@gmail.com</div>
-                        <div className='flex justify-center items-center h-3/4 '>
-                            <FaEnvelope size={isSmallScreen ? 65 : 150} className='absolute right-4 bottom-4 md:static hover:scale-95 duration-150 ease-out opacity-90' />
-                        </div>
-                    </a>
-
-
-
-                    <button
-                        type="button"
-                        className='h-36 w-full md:h-96 md:w-1/5 rounded-xl bg-[#bababa11] backdrop-blur-xl p-4 md:p-10 cursor-pointer hover:bg-[#bababa3b] transition-all duration-200 relative group'
-                        onClick={handleCopyToClipboard}
-                    >
-                        <div className='font-bold text-2xl md:text-3xl mb-2'>Discord</div>
-                        <div className={`transition-all duration-200 text-sm ${copied ? 'text-[#50D18D]' : 'opacity-80'}`}>
-                            {copied ? 'Copied!' : 'apollo446'}
-                        </div>
-                        <div className='flex justify-center items-center h-3/4'>
-                            <FaDiscord
-                                size={isSmallScreen ? 70 : 150}
-                                className={`absolute right-4 bottom-4 md:static hover:scale-95 duration-150 ease-out transition-all opacity-90 ${copied ? 'text-[#50D18D]' : ''}`}
-                            />
-                        </div>
-
-                        {/* CSS-only tooltip */}
-                        <div className='hidden md:flex absolute -top-12 left-1/2 transform -translate-x-1/2 bg-[#e8e8e845] text-white px-3 py-2 rounded-lg text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap'>
-                            Click to copy
-                            <div className='absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-[#e8e8e845]'></div>
-                        </div>
-                    </button>
-
-
-
-
-
-                    <a className='h-36 w-full md:h-96 md:w-1/5 rounded-xl bg-[#bababa11] backdrop-blur-xl p-4 md:p-10 cursor-pointer hover:bg-[#bababa3b] transition-all duration-200'
-                        href='https://www.linkedin.com/in/samuel-bag%C3%ADn/' target='_blank' rel='noopener noreferrer'>
-                        <div className='font-bold text-2xl md:text-3xl mb-2'>LinkedIn</div>
-                        <div className='text-sm opacity-80'>Samuel Bagin</div>
-                        <div className='flex justify-center items-center h-3/4 '>
-                            <FaLinkedin size={isSmallScreen ? 70 : 150} className='absolute right-4 bottom-4 md:static hover:scale-95 duration-150 ease-out opacity-90' />
-                        </div>
-                    </a>
-
-                </div>
-            </div>
-            <Footer />
-        </div>
-    )
+function ContactCard({ title, value, action, href, icon: Icon }) {
+  return (
+    <a
+      href={href}
+      target={href.startsWith("http") ? "_blank" : undefined}
+      rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+      className="group block rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-transparent"
+      aria-label={`${action}: ${value}`}
+    >
+      <Card className={glassCardClass}>
+        <CardHeader className="flex-row items-start justify-between space-y-0 p-6">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/20 bg-white/[0.12]">
+            <Icon aria-hidden="true" className="h-6 w-6" />
+          </div>
+          <span className="text-xs font-medium uppercase tracking-[0.16em] text-white/65">
+            Open
+          </span>
+        </CardHeader>
+        <CardContent className="flex h-[calc(100%-5.5rem)] flex-col justify-end p-6 pt-4">
+          <CardTitle className="text-2xl font-semibold tracking-[-0.02em] text-white">
+            {title}
+          </CardTitle>
+          <p className="mt-2 break-words text-sm font-medium text-white/90">{value}</p>
+          <p className="mt-4 text-sm leading-6 text-white/65">{action}</p>
+        </CardContent>
+      </Card>
+    </a>
+  );
 }
 
-export default Contact
+function Contact() {
+  const [copied, setCopied] = useState(false);
+  const copiedTimerRef = useRef(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    return () => window.clearTimeout(copiedTimerRef.current);
+  }, []);
+
+  const handleCopyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText("apollo446");
+    } catch {
+      const textArea = document.createElement("textarea");
+      textArea.value = "apollo446";
+      textArea.setAttribute("readonly", "");
+      textArea.style.position = "fixed";
+      textArea.style.opacity = "0";
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
+    }
+
+    setCopied(true);
+    window.clearTimeout(copiedTimerRef.current);
+    copiedTimerRef.current = window.setTimeout(() => setCopied(false), 2200);
+  };
+
+  return (
+    <div className="relative min-h-dvh overflow-x-hidden bg-[#160812] text-white">
+      <div className="fixed inset-0 z-0 bg-[#160812]" aria-hidden="true">
+        <Suspense fallback={null}>
+          <ContactShaderBackground />
+        </Suspense>
+        <div className="absolute inset-0 bg-black/35" />
+      </div>
+
+      <Navbar variant="glass" />
+
+      <main className="relative z-10 mx-auto flex min-h-dvh max-w-7xl items-center px-4 pb-16 pt-28 sm:px-6 lg:px-8">
+        <div className="grid w-full gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:items-end lg:gap-16">
+          <section className="max-w-xl">
+            <p className="mb-5 text-sm font-medium text-white/70">Based in Slovakia, working worldwide.</p>
+            <h1 className="text-balance text-5xl font-black leading-[0.96] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
+              Let&apos;s make something worth keeping.
+            </h1>
+            <p className="mt-6 max-w-lg text-pretty text-base leading-7 text-white/[0.72] sm:text-lg">
+              Available for creative production and thoughtful collaborations.
+              Choose the channel that works best for you.
+            </p>
+            <div className="mt-8 inline-flex items-center gap-3 rounded-xl border border-white/20 bg-white/[0.09] px-4 py-3 text-sm text-white/80 backdrop-blur-xl">
+              <span className="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_12px_rgba(110,231,183,0.65)]" />
+              Usually replies
+            </div>
+          </section>
+
+          <section aria-label="Contact options" className="grid gap-4 sm:grid-cols-2">
+            {contactCards.map((card) => <ContactCard key={card.title} {...card} />)}
+
+            <button
+              type="button"
+              onClick={handleCopyToClipboard}
+              className="group rounded-2xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-transparent"
+              aria-label="Copy Discord username apollo446"
+            >
+              <Card className={glassCardClass}>
+                <CardHeader className="flex-row items-start justify-between space-y-0 p-6">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/20 bg-white/[0.12]">
+                    <FaDiscord aria-hidden="true" className="h-6 w-6" />
+                  </div>
+                  <span className="text-xs font-medium uppercase tracking-[0.16em] text-white/65">
+                    {copied ? "Copied" : "Copy"}
+                  </span>
+                </CardHeader>
+                <CardContent className="flex h-[calc(100%-5.5rem)] flex-col justify-end p-6 pt-4">
+                  <CardTitle className="text-2xl font-semibold tracking-[-0.02em] text-white">
+                    Discord
+                  </CardTitle>
+                  <p className="mt-2 text-sm font-medium text-white/90">apollo446</p>
+                  <p className="mt-4 text-sm leading-6 text-white/65">
+                    {copied ? "Username copied to clipboard." : "Copy username for a quick message."}
+                  </p>
+                </CardContent>
+              </Card>
+            </button>
+          </section>
+        </div>
+      </main>
+
+      <p className="sr-only" aria-live="polite">{copied ? "Discord username copied." : ""}</p>
+    </div>
+  );
+}
+
+export default Contact;
