@@ -160,13 +160,13 @@ function Skills() {
               AI, data, web development, visual production, editing, and design tools used across selected projects.
             </p>
           </header>
-          <div className='h-[300vh] justify-center items-center flex py-8'>
+          <div className='h-[500vh] justify-center items-center flex py-8'>
             <div
               ref={skillsGridRef}
-              className="grid grid-cols-3 grid-rows-12 gap-4 w-4/5 h-full font-bold text-md text-center lg:text-3xl"
+              className="grid grid-cols-3 grid-rows-20 gap-4 w-4/5 h-full font-bold text-md text-center lg:text-3xl"
             >
               <div className="col-span-2 bg-[#00E6B3] text-[#312AF8] justify-center items-center flex rounded-2xl cursor-pointer">
-                Object Oriented Programming
+                GraphRAG & LLM Apps
               </div>
               <div className="row-span-2 col-start-3 bg-[#91FBC7] text-[#920089] justify-center items-center flex rounded-2xl cursor-pointer">
                 C++
@@ -176,7 +176,7 @@ function Skills() {
                 Java
               </div>
               <div className="col-start-1 row-start-2 bg-[#20CBD2] text-[#38226F] justify-center items-center flex rounded-2xl cursor-pointer">
-                NextJS
+                RAG & Vector Search
               </div>
 
               <div className="col-span-2 row-span-2 row-start-3 bg-[#FF0C75] text-[#760073] justify-center items-center flex rounded-2xl cursor-pointer">
@@ -186,11 +186,11 @@ function Skills() {
                 Matlab
               </div>
 
-              <div className="row-span-2 col-start-3 row-start-4 bg-[#76C187] text-[#4C545C] justify-center items-center flex rounded-2xl cursor-pointer">
-                AI
+              <div className="row-span-2 col-start-3 row-start-4 bg-[#09F999] text-[#172F1E] justify-center items-center flex rounded-2xl cursor-pointer">
+                Knowledge Graphs
               </div>
               <div className="col-span-2 col-start-2 row-start-6 bg-[#39CEF1] text-[#341B4E] justify-center items-center flex rounded-2xl cursor-pointer">
-                NoSQL
+                Ontologies & Schema Design
               </div>
 
               <div className="col-start-2 row-start-5 bg-[#E45538] text-[#383F7B] justify-center items-center flex rounded-2xl cursor-pointer">
@@ -233,6 +233,64 @@ function Skills() {
               </div>
               <div className="col-start-1 row-start-12 bg-[#00FF7F] text-[#103934] justify-center items-center flex rounded-2xl cursor-pointer">
                 Photo Editing
+              </div>
+
+              <div className="col-span-2 row-span-2 row-start-13 bg-[#00E6B3] text-[#312AF8] justify-center items-center flex rounded-2xl cursor-pointer">
+                LangChain & Prompt Engineering
+              </div>
+              <div className="col-start-3 row-start-13 bg-[#91FBC7] text-[#920089] justify-center items-center flex rounded-2xl cursor-pointer">
+                OpenAI, Gemini & Claude APIs
+              </div>
+              <div className="col-start-3 row-start-14 bg-[#00C944] text-[#00385B] justify-center items-center flex rounded-2xl cursor-pointer">
+                ML, Neural Networks & Evaluation
+              </div>
+
+              <div className="col-span-2 row-start-15 bg-[#20CBD2] text-[#38226F] justify-center items-center flex rounded-2xl cursor-pointer">
+                ETL, pandas & NumPy
+              </div>
+              <div className="col-start-3 row-start-15 bg-[#54A4A8] text-[#5B0047] justify-center items-center flex rounded-2xl cursor-pointer">
+                Power BI, Tableau & Excel
+              </div>
+
+              <div className="col-start-1 row-start-16 bg-[#FF0C75] text-[#760073] justify-center items-center flex rounded-2xl cursor-pointer">
+                FastAPI
+              </div>
+              <div className="row-span-2 col-start-2 row-start-16 bg-[#76C187] text-[#4C545C] justify-center items-center flex rounded-2xl cursor-pointer">
+                TypeScript & Vite
+              </div>
+              <div className="col-start-3 row-start-16 bg-[#39CEF1] text-[#341B4E] justify-center items-center flex rounded-2xl cursor-pointer">
+                Vue 3 & PWAs
+              </div>
+
+              <div className="col-start-1 row-start-17 bg-[#E45538] text-[#383F7B] justify-center items-center flex rounded-2xl cursor-pointer">
+                Node, Express, REST & WebSockets
+              </div>
+              <div className="col-start-3 row-start-17 bg-[#EF4759] text-[#130B54] justify-center items-center flex rounded-2xl cursor-pointer">
+                Laravel & Eloquent
+              </div>
+
+              <div className="row-span-2 col-start-1 row-start-18 bg-[#20C9A9] text-[#454653] justify-center items-center flex rounded-2xl cursor-pointer">
+                JWT, OAuth & TOTP
+              </div>
+              <div className="col-span-2 col-start-2 row-start-18 bg-[#009FB2] text-[#003780] justify-center items-center flex rounded-2xl cursor-pointer">
+                MariaDB & SQLite
+              </div>
+
+              <div className="col-start-2 row-start-19 bg-[#79EE3C] text-[#103934] justify-center items-center flex rounded-2xl cursor-pointer">
+                Docker & Nginx
+              </div>
+              <div className="col-start-3 row-start-19 bg-[#BFF6E7] text-[#244CDF] justify-center items-center flex rounded-2xl cursor-pointer">
+                GitHub Actions & CI/CD
+              </div>
+
+              <div className="col-start-1 row-start-20 bg-[#0077FF] text-[#FF0200] justify-center items-center flex rounded-2xl cursor-pointer">
+                Three.js, GSAP, Matter.js & Canvas
+              </div>
+              <div className="col-start-2 row-start-20 bg-[#0CD5DF] text-[#121E53] justify-center items-center flex rounded-2xl cursor-pointer">
+                Swift & SwiftUI
+              </div>
+              <div className="col-start-3 row-start-20 bg-[#104362] text-[#11CD40] justify-center items-center flex rounded-2xl cursor-pointer">
+                Tailwind, shadcn/ui & Radix
               </div>
             </div>
           </div>
