@@ -112,7 +112,7 @@ export default function DevelopDetailed() {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent" />
           <div className="absolute bottom-0 left-0 max-w-4xl p-6 md:p-10">
             <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">{project.title}</h1>
-            {project.shortText && <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-300 md:text-lg">{project.shortText}</p>}
+            {project.shortText && <p className="mt-4 hidden max-w-2xl text-base leading-7 text-zinc-300 sm:block md:text-lg">{project.shortText}</p>}
           </div>
         </div>
 

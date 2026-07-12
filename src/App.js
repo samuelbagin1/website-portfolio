@@ -447,8 +447,7 @@ function App() {
         scrollTrigger: {
           trigger: featuredProject,
           start: "top 82%",
-          end: "bottom 18%",
-          toggleActions: "play reverse play reverse",
+          toggleActions: "play none none reverse",
         },
       });
 
@@ -528,7 +527,7 @@ function App() {
           </div>
 
           <section ref={featuredProjectRef} className="mx-auto mt-32 w-[90%] max-w-5xl" aria-labelledby="featured-project-title">
-            <Card className="group overflow-hidden border-zinc-800 bg-[#151515] shadow-2xl shadow-black/20 transition duration-300 hover:border-zinc-600">
+            <Card className="group overflow-hidden border-zinc-800 bg-[#151515] shadow-2xl shadow-black/20 transition duration-300">
               <div className="grid md:grid-cols-[1.08fr_0.92fr]">
                 <div className="relative min-h-72 overflow-hidden md:min-h-full">
                   <img

@@ -79,6 +79,13 @@ const router = createBrowserRouter([
   },
 ]);
 
+window.history.scrollRestoration = "manual";
+window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+
+router.subscribe(() => {
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+});
+
 // In your main index.js file
 if ('storage' in navigator && 'estimate' in navigator.storage) {
   navigator.storage.estimate().then(estimate => {
