@@ -119,8 +119,11 @@ export default function DevelopDetailed() {
         <div className="mx-auto max-w-3xl">
           <MarkdownRenderer css={css}>{project.text}</MarkdownRenderer>
           <div className="mt-12 flex justify-center border-t border-zinc-800 pt-8">
-            <Button asChild size="lg">
-              <a href={project.linkText} target="_blank" rel="noopener noreferrer">View project <ArrowUpRight size={17} /></a>
+            <Button asChild size="lg" className="group/view-project h-12 rounded-full text-base text-zinc-950 active:scale-[0.98]">
+              <a href={project.linkText} target="_blank" rel="noopener noreferrer">
+                View project
+                <ArrowUpRight className="transition-transform duration-300 group-hover/view-project:-translate-y-0.5 group-hover/view-project:translate-x-0.5" size={17} />
+              </a>
             </Button>
           </div>
         </div>

@@ -5,9 +5,12 @@ import Seo, { getAbsoluteUrl } from "./components/Seo";
 import backVideo from "./assets/background.webm";
 import Button from "./components/Button";
 import BeholdWidget from './components/BeholdWidget';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./components/ui/card";
+import { Button as ShadcnButton } from "./components/ui/button";
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
+import { ArrowRight } from 'lucide-react';
 
 
 import { Grid } from 'ldrs/react'
@@ -34,6 +37,7 @@ function App() {
   const profileImageRef = useRef(null);
   const taglineRef = useRef(null);
   const buttonRef = useRef(null);
+  const featuredProjectRef = useRef(null);
   const videosRef = useRef(null);
   const widgetRef = useRef(null);
   const ctaSectionRef = useRef(null);
@@ -429,6 +433,34 @@ function App() {
     return () => clearTimeout(timer);
   }, [isLoading, isSmallScreen]);
 
+  useEffect(() => {
+    if (isLoading || !featuredProjectRef.current) return undefined;
+
+    const media = gsap.matchMedia();
+
+    media.add("(prefers-reduced-motion: no-preference)", () => {
+      const featuredProject = featuredProjectRef.current;
+      const image = featuredProject?.querySelector("[data-featured-project-image]");
+      const content = featuredProject?.querySelector("[data-featured-project-content]");
+
+      const reveal = gsap.timeline({
+        scrollTrigger: {
+          trigger: featuredProject,
+          start: "top 82%",
+          end: "bottom 18%",
+          toggleActions: "play reverse play reverse",
+        },
+      });
+
+      reveal
+        .fromTo(featuredProject, { autoAlpha: 0, y: 36 }, { autoAlpha: 1, y: 0, duration: 0.75, ease: "power3.out" })
+        .fromTo(image, { scale: 1.06 }, { scale: 1, duration: 1.1, ease: "power3.out" }, "<")
+        .fromTo(content, { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.55, ease: "power2.out" }, "-=0.35");
+    });
+
+    return () => media.revert();
+  }, [isLoading]);
+
   return (
     <>
       <Seo
@@ -494,6 +526,46 @@ function App() {
               <Button to="/portfolio" size='large'>View My Work</Button>
             </div>
           </div>
+
+          <section ref={featuredProjectRef} className="mx-auto mt-32 w-[90%] max-w-5xl" aria-labelledby="featured-project-title">
+            <Card className="group overflow-hidden border-zinc-800 bg-[#151515] shadow-2xl shadow-black/20 transition duration-300 hover:border-zinc-600">
+              <div className="grid md:grid-cols-[1.08fr_0.92fr]">
+                <div className="relative min-h-72 overflow-hidden md:min-h-full">
+                  <img
+                    src="https://res.cloudinary.com/dqktedlja/image/upload/v1783868199/develop/073a925e6dee48ec8f1ed3600_gspkq8.webp"
+                    alt="Knowledge graph visualization for the AI-Based Knowledge Graph Construction project"
+                    data-featured-project-image
+                    className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent md:bg-gradient-to-r" />
+                </div>
+
+                <div data-featured-project-content className="flex flex-col justify-center">
+                  <CardHeader className="pb-3">
+                    <p className="text-xs font-medium uppercase tracking-[0.22em] text-zinc-400">Featured project</p>
+                    <CardTitle id="featured-project-title" className="pt-2 text-3xl leading-tight md:text-4xl">
+                      AI-Based Knowledge Graph Construction
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base leading-6 text-zinc-400">
+                      An AI pipeline that turns Slovak legal and financial PDFs into explainable Neo4j knowledge graphs for GraphRAG-style querying.
+                    </CardDescription>
+                  </CardContent>
+                  <CardFooter className="justify-center">
+                    <ShadcnButton asChild variant="outline" className="group/button h-10 rounded-full border-0 bg-white px-4 text-sm text-zinc-950 hover:bg-zinc-200 hover:text-zinc-950 active:scale-[0.98]">
+                      <Link to="/portfolio/develop/ai-based-knowledge-graph-construction-6a53ab28">
+                        Read case study
+                        <ArrowRight className="transition-transform duration-300 group-hover/button:translate-x-0.5" size={17} />
+                      </Link>
+                    </ShadcnButton>
+                  </CardFooter>
+                </div>
+              </div>
+            </Card>
+          </section>
 
           <div ref={videosRef} className='md:flex justify-center items-center w-[90%] md:w-3/4 mx-auto mt-40 gap-4'>
             <Link to="/portfolio/video" className='w-1/2 h-full'>
